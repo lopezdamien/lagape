@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Vite
+.vite/
+dist/
+lagape-dashboard/dist/
+
+# Uploads (fichiers utilisateurs)
+lagape-dashboard/uploads/*
+!lagape-dashboard/uploads/.gitkeep
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*

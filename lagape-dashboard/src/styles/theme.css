@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+  /* Charte L'AGAPE */
+  --bleu-nuit: #0d1b2a;
+  --bleu-profond: #152238;
+  --bleu-moyen: #1e3353;
+  --argent: #b8c4d0;
+  --argent-clair: #d8e0e8;
+  --or: #c9a96e;
+  --or-clair: #e8d5b0;
+  --blanc-casse: #f5f0eb;
+  --texte-clair: #e8e4df;
+  --texte-gris: #8a9aaa;
+
+  /* Dashboard specifique */
+  --sidebar-width: 260px;
+  --header-height: 64px;
+  --card-bg: rgba(30, 51, 83, 0.45);
+  --border: rgba(184, 196, 208, 0.1);
+  --border-or: rgba(201, 169, 110, 0.25);
+  --danger: #c0392b;
+  --succes: #27ae60;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bleu-nuit);
+  color: var(--texte-clair);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, textarea, select {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+button { cursor: pointer; }
+a { text-decoration: none; }

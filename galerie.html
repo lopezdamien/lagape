@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galerie — L'AGAPE · Genève</title>
+  <meta name="description" content="Galerie photos du restaurant L'AGAPE à Genève — l'ambiance, les plats et les coulisses de notre cuisine bistronomique."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bleu-nuit: #0d1b2a; --bleu-profond: #152238; --bleu-moyen: #1e3353;
+      --argent: #b8c4d0; --argent-clair: #d8e0e8;
+      --or: #c9a96e; --or-clair: #e8d5b0;
+      --blanc-casse: #f5f0eb; --texte-clair: #e8e4df; --texte-gris: #8a9aaa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bleu-nuit); color: var(--texte-clair); font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 22px 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(13,27,42,0.97); border-bottom: 1px solid rgba(184,196,208,0.1); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; letter-spacing: 0.1em; color: var(--or-clair); text-decoration: none; }
+    .nav-links { display: flex; gap: 38px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--argent-clair); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--or); }
+    .nav-reserve { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--or); color: var(--or); background: transparent; text-decoration: none; transition: all 0.3s; }
+    .nav-reserve:hover { background: var(--or); color: var(--bleu-nuit); }
+    .nav-burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; padding: 4px; }
+    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent-clair); transition: all 0.42s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--or-clair); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
+    .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
+    .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
+    .mobile-overlay-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 0.12em; color: var(--or-clair); margin-bottom: 48px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; }
+    .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
+    .mobile-nav-list { list-style: none; text-align: center; }
+    .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
+    .mobile-nav-list a { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 9vw, 3.2rem); font-weight: 300; color: var(--texte-clair); text-decoration: none; letter-spacing: 0.06em; display: block; padding: 10px 0; transition: color 0.3s; }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or-clair); }
+    .mobile-reserve-wrap { margin-top: 44px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.6s, transform 0.4s 0.6s; }
+    .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
+    .mobile-reserve-wrap a { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 38px; border: 1px solid var(--or); color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
+    .mobile-social-row { position: absolute; bottom: 36px; display: flex; gap: 28px; opacity: 0; transition: opacity 0.4s 0.65s; }
+    .mobile-overlay.open .mobile-social-row { opacity: 1; }
+    .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--texte-gris); text-decoration: none; transition: color 0.3s; }
+    .mobile-social-row a:hover { color: var(--or); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 160px 60px 80px; text-align: center; background: linear-gradient(170deg, #0d1b2a 0%, #152238 60%, #0d1b2a 100%); position: relative; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(201,169,110,0.07) 0%, transparent 60%); }
+    .page-label { font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; color: var(--blanc-casse); margin-bottom: 16px; }
+    .page-title em { font-style: italic; color: var(--or-clair); }
+    .page-divider { width: 50px; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); margin: 0 auto 24px; }
+    .page-desc { font-size: 0.88rem; color: var(--argent); max-width: 480px; margin: 0 auto; }
+
+    /* FILTRES */
+    .filtres {
+      display: flex; justify-content: center; gap: 0;
+      padding: 30px 60px; border-bottom: 1px solid rgba(184,196,208,0.08);
+    }
+    .filtre-btn {
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 12px 28px; color: var(--texte-gris);
+      cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent;
+      transition: all 0.3s; font-family: 'Montserrat', sans-serif; font-weight: 400;
+    }
+    .filtre-btn:hover { color: var(--argent-clair); }
+    .filtre-btn.active { color: var(--or); border-bottom-color: var(--or); }
+
+    /* GALERIE MASONRY */
+    .galerie-container { padding: 40px 40px 80px; max-width: 1300px; margin: 0 auto; }
+    .galerie-grid {
+      columns: 3; column-gap: 12px;
+    }
+    .galerie-item {
+      break-inside: avoid; margin-bottom: 12px;
+      position: relative; overflow: hidden; cursor: pointer;
+      background: var(--bleu-moyen);
+    }
+    .galerie-item:hover .galerie-overlay { opacity: 1; }
+    .galerie-item:hover .galerie-img { transform: scale(1.04); }
+    .galerie-img {
+      width: 100%; display: block; transition: transform 0.5s ease;
+      background: linear-gradient(135deg, var(--bleu-moyen), #243a56);
+    }
+    .galerie-placeholder {
+      width: 100%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 0.85rem;
+      color: var(--texte-gris); letter-spacing: 0.08em;
+    }
+    .galerie-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.2) 60%, transparent 100%);
+      opacity: 0; transition: opacity 0.4s;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .galerie-caption { font-size: 0.78rem; color: var(--texte-clair); }
+    .galerie-caption em { display: block; font-size: 0.65rem; color: var(--or); font-style: normal; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 3px; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(8,16,25,0.97);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 85vw; max-height: 85vh;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bleu-profond);
+    }
+    .lightbox-placeholder {
+      width: 600px; max-width: 80vw; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      color: var(--texte-gris);
+    }
+    .lightbox-close {
+      position: absolute; top: 30px; right: 40px;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--argent); cursor: pointer; background: none; border: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .lightbox-close:hover { color: var(--or); }
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 1.5rem; color: var(--argent-clair); cursor: pointer;
+      background: none; border: none; padding: 20px;
+      transition: color 0.3s;
+    }
+    .lightbox-nav:hover { color: var(--or); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    /* NOTE */
+    .galerie-note {
+      text-align: center; padding: 0 60px 60px;
+      font-size: 0.78rem; color: var(--texte-gris); font-style: italic;
+    }
+    .galerie-note a { color: var(--or); text-decoration: none; }
+    .galerie-note a:hover { text-decoration: underline; }
+
+    /* CTA */
+    .cta-band { background: var(--bleu-profond); padding: 60px; text-align: center; border-top: 1px solid rgba(184,196,208,0.08); }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--blanc-casse); margin-bottom: 12px; }
+    .cta-title em { font-style: italic; color: var(--or-clair); }
+    .cta-text { font-size: 0.85rem; color: var(--argent); margin-bottom: 28px; }
+    .btn-primary { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 40px; background: var(--or); color: var(--bleu-nuit); text-decoration: none; transition: all 0.3s; font-weight: 500; display: inline-block; }
+    .btn-primary:hover { background: var(--or-clair); }
+
+    footer { background: rgba(8,16,25,0.98); border-top: 1px solid rgba(184,196,208,0.08); padding: 40px 60px 24px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: var(--texte-gris); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--or-clair); }
+
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-burger { display: flex; }
+      .page-header { padding: 130px 24px 60px; }
+      .filtres { overflow-x: auto; justify-content: flex-start; padding: 20px 24px; }
+      .galerie-container { padding: 20px 16px 60px; }
+      .galerie-grid { columns: 2; }
+      .cta-band, .galerie-note { padding: 40px 24px; }
+      footer { padding: 30px 24px 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 500px) {
+      .galerie-grid { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">L'AGAPE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html" class="active">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-reserve">Réserver</a>
+    <div class="nav-burger" id="nav-burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" id="mobile-overlay">
+    <div class="mobile-overlay-logo">L'AGAPE</div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html" class="active">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <div class="mobile-reserve-wrap"><a href="reservation.html">Réserver une table</a></div>
+    <div class="mobile-social-row">
+      <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <p class="page-label">En images</p>
+    <h1 class="page-title">La <em>Galerie</em></h1>
+    <div class="page-divider"></div>
+    <p class="page-desc">Découvrez l'ambiance de L'AGAPE, nos créations et les coulisses de notre cuisine.</p>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="filtres">
+    <button class="filtre-btn active" onclick="filtrer('tout', this)">Tout</button>
+    <button class="filtre-btn" onclick="filtrer('ambiance', this)">Ambiance</button>
+    <button class="filtre-btn" onclick="filtrer('cuisine', this)">Cuisine</button>
+    <button class="filtre-btn" onclick="filtrer('plats', this)">Les plats</button>
+    <button class="filtre-btn" onclick="filtrer('equipe', this)">L'équipe</button>
+  </div>
+
+  <!-- GALERIE -->
+  <div class="galerie-container">
+    <div class="galerie-grid" id="galerie-grid">
+      <div style="text-align:center;padding:60px;color:var(--texte-gris);font-size:0.8rem;letter-spacing:0.1em;">Chargement…</div>
+    </div>
+  </div>
+
+  <div class="galerie-note">
+    Pour découvrir davantage de photos et suivre nos créations du moment,
+    retrouvez-nous sur <a href="https://www.instagram.com/lagape_geneve" target="_blank">@lagape_geneve</a>.
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">Fermer ✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1, event)">&#8592;</button>
+    <div class="lightbox-img" id="lightbox-content"></div>
+    <button class="lightbox-nav lightbox-next" onclick="navLightbox(1, event)">&#8594;</button>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <h2 class="cta-title">Vivez l'expérience <em>en personne</em></h2>
+    <p class="cta-text">Aucune photo ne remplace le plaisir d'être à table chez nous.</p>
+    <a href="reservation.html" class="btn-primary">Réserver une table</a>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      <span class="footer-logo">L'AGAPE</span>
+      <span>11 Rue Caroline, 1227 Genève · +41 22 343 12 98</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    const CAT_LABELS = { ambiance: 'Ambiance', cuisine: 'Cuisine', plats: 'Les plats', equipe: "L'équipe" };
+    const API = 'http://localhost:3001';
+    let allItems = [];
+    let currentIndex = 0;
+
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
+      document.getElementById('nav-burger').classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+
+    // Filtres
+    function filtrer(cat, btn) {
+      document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.galerie-item').forEach(item => {
+        item.style.display = (cat === 'tout' || item.dataset.cat === cat) ? '' : 'none';
+      });
+    }
+
+    // Rendu dynamique depuis l'API
+    async function chargerGalerie() {
+      const grid = document.getElementById('galerie-grid');
+      try {
+        const r = await fetch(API + '/api/galerie');
+        const data = await r.json();
+        const photos = (data.photos || []).filter(p => p.filename);
+
+        if (photos.length === 0) {
+          grid.innerHTML = '<div style="text-align:center;padding:60px;color:var(--texte-gris);font-size:0.8rem;letter-spacing:0.1em;">Aucune photo pour l\'instant.</div>';
+          return;
+        }
+
+        grid.innerHTML = photos.map((photo, idx) => `
+          <div class="galerie-item" data-cat="${photo.categorie}" onclick="openLightbox(${idx})">
+            <img class="galerie-img" src="${API}/uploads/galerie/${photo.filename}" alt="${photo.caption}" loading="lazy"/>
+            <div class="galerie-overlay">
+              <div class="galerie-caption">
+                <em>${CAT_LABELS[photo.categorie] || photo.categorie}</em>${photo.caption}
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        allItems = photos;
+      } catch (e) {
+        grid.innerHTML = '<div style="text-align:center;padding:60px;color:var(--texte-gris);font-size:0.8rem;">Impossible de charger la galerie.</div>';
+      }
+    }
+
+    // Lightbox
+    function openLightbox(idx) {
+      currentIndex = idx;
+      const photo = allItems[idx];
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-content').innerHTML =
+        `<img src="${API}/uploads/galerie/${photo.filename}" alt="${photo.caption}" style="max-width:85vw;max-height:85vh;display:block;"/>`;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    function navLightbox(dir, e) {
+      e.stopPropagation();
+      const visibleItems = [...document.querySelectorAll('.galerie-item')].filter(i => i.style.display !== 'none');
+      const visIdx = visibleItems.findIndex(i => parseInt(i.getAttribute('onclick').match(/\d+/)[0]) === currentIndex);
+      const newVisIdx = (visIdx + dir + visibleItems.length) % visibleItems.length;
+      const newIdx = parseInt(visibleItems[newVisIdx].getAttribute('onclick').match(/\d+/)[0]);
+      openLightbox(newIdx);
+    }
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('lightbox').classList.contains('open')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navLightbox(-1, { stopPropagation: () => {} });
+        if (e.key === 'ArrowRight') navLightbox(1, { stopPropagation: () => {} });
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', chargerGalerie);
+  </script>
+</body>
+</html>

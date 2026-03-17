@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Carte — L'AGAPE · Genève</title>
+  <meta name="description" content="Découvrez la carte de L'AGAPE, restaurant bistronomique à Genève. Entrées, plats, desserts et carte des vins."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bleu-nuit: #0d1b2a; --bleu-profond: #152238; --bleu-moyen: #1e3353;
+      --argent: #b8c4d0; --argent-clair: #d8e0e8;
+      --or: #c9a96e; --or-clair: #e8d5b0;
+      --blanc-casse: #f5f0eb; --texte-clair: #e8e4df; --texte-gris: #8a9aaa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bleu-nuit); color: var(--texte-clair); font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 22px 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(13,27,42,0.97); border-bottom: 1px solid rgba(184,196,208,0.1); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; letter-spacing: 0.1em; color: var(--or-clair); text-decoration: none; }
+    .nav-links { display: flex; gap: 38px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--argent-clair); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--or); }
+    .nav-reserve { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--or); color: var(--or); background: transparent; text-decoration: none; transition: all 0.3s; }
+    .nav-reserve:hover { background: var(--or); color: var(--bleu-nuit); }
+    .nav-burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; padding: 4px; }
+    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent-clair); transition: all 0.42s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--or-clair); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
+    .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
+    .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
+    .mobile-overlay-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 0.12em; color: var(--or-clair); margin-bottom: 48px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; }
+    .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
+    .mobile-nav-list { list-style: none; text-align: center; }
+    .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
+    .mobile-nav-list a { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 9vw, 3.2rem); font-weight: 300; color: var(--texte-clair); text-decoration: none; letter-spacing: 0.06em; display: block; padding: 10px 0; transition: color 0.3s; }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or-clair); }
+    .mobile-reserve-wrap { margin-top: 44px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.6s, transform 0.4s 0.6s; }
+    .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
+    .mobile-reserve-wrap a { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 38px; border: 1px solid var(--or); color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
+    .mobile-social-row { position: absolute; bottom: 36px; display: flex; gap: 28px; opacity: 0; transition: opacity 0.4s 0.65s; }
+    .mobile-overlay.open .mobile-social-row { opacity: 1; }
+    .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--texte-gris); text-decoration: none; transition: color 0.3s; }
+    .mobile-social-row a:hover { color: var(--or); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 160px 60px 80px;
+      text-align: center;
+      background: linear-gradient(170deg, #0d1b2a 0%, #152238 60%, #0d1b2a 100%);
+      position: relative;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(201,169,110,0.07) 0%, transparent 60%);
+    }
+    .page-label { font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; color: var(--blanc-casse); margin-bottom: 16px; }
+    .page-title em { font-style: italic; color: var(--or-clair); }
+    .page-divider { width: 50px; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); margin: 0 auto 24px; }
+    .page-desc { font-size: 0.88rem; color: var(--argent); max-width: 480px; margin: 0 auto; }
+
+    /* MENU NAV TABS */
+    .menu-tabs {
+      background: var(--bleu-profond);
+      border-bottom: 1px solid rgba(184,196,208,0.08);
+      display: flex; justify-content: center;
+      gap: 0; position: sticky; top: 70px; z-index: 50;
+    }
+    .menu-tab {
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 18px 32px; color: var(--texte-gris);
+      cursor: pointer; border-bottom: 2px solid transparent;
+      transition: all 0.3s; background: none; border-top: none; border-left: none; border-right: none;
+      font-family: 'Montserrat', sans-serif; font-weight: 400;
+    }
+    .menu-tab:hover { color: var(--argent-clair); }
+    .menu-tab.active { color: var(--or); border-bottom-color: var(--or); }
+
+    /* MENU SECTIONS */
+    main { max-width: 900px; margin: 0 auto; padding: 0 40px 100px; }
+    .menu-section { padding: 70px 0; border-bottom: 1px solid rgba(184,196,208,0.07); }
+    .menu-section:last-child { border-bottom: none; }
+    .menu-section-header { text-align: center; margin-bottom: 50px; }
+    .menu-section-icon { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--or); opacity: 0.6; margin-bottom: 10px; }
+    .menu-section-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--blanc-casse); margin-bottom: 8px; }
+    .menu-section-subtitle { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texte-gris); }
+
+    /* PLATS */
+    .plat { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(184,196,208,0.07); }
+    .plat:last-child { border-bottom: none; }
+    .plat-info { flex: 1; }
+    .plat-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; color: var(--blanc-casse); margin-bottom: 5px; }
+    .plat-desc { font-size: 0.77rem; color: var(--texte-gris); font-style: italic; }
+    .plat-price { font-size: 0.9rem; color: var(--or); white-space: nowrap; letter-spacing: 0.04em; flex-shrink: 0; }
+    .plat-dots { flex: 1; border-bottom: 1px dotted rgba(184,196,208,0.15); margin: 0 12px; align-self: flex-end; padding-bottom: 4px; max-width: 200px; }
+
+    /* MENU DU JOUR */
+    .formule-box {
+      background: rgba(201,169,110,0.06);
+      border: 1px solid rgba(201,169,110,0.2);
+      padding: 36px 40px; margin-bottom: 50px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
+    }
+    .formule-item {}
+    .formule-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
+    .formule-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--blanc-casse); margin-bottom: 4px; }
+    .formule-detail { font-size: 0.78rem; color: var(--texte-gris); margin-bottom: 8px; }
+    .formule-price { font-size: 1.1rem; color: var(--or); }
+
+    /* VINS */
+    .vin-categorie { margin-bottom: 40px; }
+    .vin-cat-title { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--argent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(184,196,208,0.1); }
+    .vin { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(184,196,208,0.05); font-size: 0.84rem; }
+    .vin-info { flex: 1; }
+    .vin-name { color: var(--texte-clair); }
+    .vin-region { font-size: 0.72rem; color: var(--texte-gris); font-style: italic; }
+    .vin-prix { display: flex; gap: 20px; color: var(--argent); font-size: 0.78rem; white-space: nowrap; }
+    .vin-prix span { color: var(--texte-gris); font-size: 0.65rem; display: block; }
+
+    /* NOTE BAS */
+    .menu-note {
+      text-align: center; margin-top: 50px;
+      padding: 28px; background: rgba(30,51,83,0.3);
+      border: 1px solid rgba(184,196,208,0.08);
+      font-size: 0.78rem; color: var(--texte-gris); font-style: italic;
+    }
+
+    /* FOOTER */
+    footer { background: rgba(8,16,25,0.98); border-top: 1px solid rgba(184,196,208,0.08); padding: 40px 60px 24px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: var(--texte-gris); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--or-clair); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-burger { display: flex; }
+      .page-header { padding: 130px 24px 60px; }
+      main { padding: 0 20px 60px; }
+      .formule-box { grid-template-columns: 1fr; }
+      .plat { flex-wrap: wrap; }
+      .plat-dots { display: none; }
+      .menu-tabs { overflow-x: auto; justify-content: flex-start; }
+      .menu-tab { padding: 16px 20px; white-space: nowrap; }
+      footer { padding: 30px 24px 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">L'AGAPE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html" class="active">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-reserve">Réserver</a>
+    <div class="nav-burger" id="nav-burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" id="mobile-overlay">
+    <div class="mobile-overlay-logo">L'AGAPE</div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html" class="active">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <div class="mobile-reserve-wrap"><a href="reservation.html">Réserver une table</a></div>
+    <div class="mobile-social-row">
+      <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="page-label">Hiver 2026</p>
+    <h1 class="page-title">La <em>Carte</em></h1>
+    <div class="page-divider"></div>
+    <p class="page-desc">Cuisine du marché, renouvelée selon les saisons et l'inspiration du chef.</p>
+  </div>
+
+  <!-- TABS NAVIGATION -->
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="showSection('formules', this)">Formules</button>
+    <button class="menu-tab" onclick="showSection('entrees', this)">Entrées</button>
+    <button class="menu-tab" onclick="showSection('plats', this)">Plats</button>
+    <button class="menu-tab" onclick="showSection('desserts', this)">Desserts</button>
+    <button class="menu-tab" onclick="showSection('vins', this)">Vins</button>
+  </div>
+
+  <main>
+
+    <!-- FORMULES -->
+    <div id="section-formules" class="menu-section">
+      <div class="menu-section-header">
+        <div class="menu-section-icon">✦</div>
+        <h2 class="menu-section-title">Nos Formules</h2>
+        <p class="menu-section-subtitle">Du mardi au samedi, midi et soir</p>
+      </div>
+      <div class="formule-box">
+        <div class="formule-item">
+          <p class="formule-label">Formule déjeuner</p>
+          <p class="formule-name">Le Menu du Marché</p>
+          <p class="formule-detail">Entrée + Plat ou Plat + Dessert</p>
+          <p class="formule-price">CHF 42.—</p>
+        </div>
+        <div class="formule-item">
+          <p class="formule-label">Formule déjeuner</p>
+          <p class="formule-name">Le Menu Complet</p>
+          <p class="formule-detail">Entrée + Plat + Dessert</p>
+          <p class="formule-price">CHF 58.—</p>
+        </div>
+        <div class="formule-item">
+          <p class="formule-label">Formule dîner</p>
+          <p class="formule-name">Menu Bistronomique</p>
+          <p class="formule-detail">3 services au choix de la carte</p>
+          <p class="formule-price">CHF 72.—</p>
+        </div>
+        <div class="formule-item">
+          <p class="formule-label">Formule dîner</p>
+          <p class="formule-name">Menu Dégustation</p>
+          <p class="formule-detail">5 services — carte blanche au chef</p>
+          <p class="formule-price">CHF 98.—</p>
+        </div>
+      </div>
+      <div class="menu-note">
+        Les menus dégustation peuvent être accompagnés d'un accord mets &amp; vins sur demande.<br/>
+        Prévenez-nous de vos allergies ou régimes alimentaires lors de votre réservation.
+      </div>
+    </div>
+
+    <!-- ENTRÉES -->
+    <div id="section-entrees" class="menu-section" style="display:none;">
+      <div class="menu-section-header">
+        <div class="menu-section-icon">❧</div>
+        <h2 class="menu-section-title">Entrées</h2>
+        <p class="menu-section-subtitle">Pour commencer</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Terrine de foie gras maison</p>
+          <p class="plat-desc">Chutney de figues, brioche toastée au beurre noisette</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 26.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Saint-Jacques poêlées</p>
+          <p class="plat-desc">Velouté de topinambour fumé, huile de truffe noire, noisettes torréfiées</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 32.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Soupe à l'oignon gratinée</p>
+          <p class="plat-desc">Bouillon de bœuf maison, croûton, gruyère AOP vieux fondu</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 18.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Œuf parfait basse température</p>
+          <p class="plat-desc">Crème de cèpes, lardons fumés, pain de seigle grillé</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 22.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Salade de homard breton</p>
+          <p class="plat-desc">Avocat, pamplemousse rose, vinaigrette à l'estragon</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 38.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Burrata di bufala</p>
+          <p class="plat-desc">Tomates confites, basilic, huile d'olive vierge extra, fleur de sel</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 20.—</p>
+      </div>
+    </div>
+
+    <!-- PLATS -->
+    <div id="section-plats" class="menu-section" style="display:none;">
+      <div class="menu-section-header">
+        <div class="menu-section-icon">◈</div>
+        <h2 class="menu-section-title">Plats</h2>
+        <p class="menu-section-subtitle">Viandes &amp; Poissons</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Filet de bœuf Rossini</p>
+          <p class="plat-desc">Escalope de foie gras poêlée, sauce Périgueux, pommes sarladaises</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 58.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Turbot sauvage rôti à l'arête</p>
+          <p class="plat-desc">Écrasé de pommes de terre à la ciboule, beurre blanc aux agrumes</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 52.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Ris de veau aux morilles</p>
+          <p class="plat-desc">Jus corsé à la crème, purée truffée, pousses de saison</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 48.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Canard à l'orange façon L'AGAPE</p>
+          <p class="plat-desc">Magret rosé, sauce Grand Marnier, gratin dauphinois, orange confite</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 44.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Dos de cabillaud meunière</p>
+          <p class="plat-desc">Beurre noisette aux câpres, légumes glacés du marché</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 40.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Risotto de saison (végétarien)</p>
+          <p class="plat-desc">Parmesan 24 mois, champignons sauvages, huile de truffe blanche</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 36.—</p>
+      </div>
+    </div>
+
+    <!-- DESSERTS -->
+    <div id="section-desserts" class="menu-section" style="display:none;">
+      <div class="menu-section-header">
+        <div class="menu-section-icon">✿</div>
+        <h2 class="menu-section-title">Desserts</h2>
+        <p class="menu-section-subtitle">Pour finir en douceur</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Soufflé au Grand Marnier</p>
+          <p class="plat-desc">Crème anglaise à la vanille Bourbon, zestes d'orange confits</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 18.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Millefeuille à la vanille de Madagascar</p>
+          <p class="plat-desc">Pâte feuilletée caramélisée, crème légère, sucre glace</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 16.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Tarte tatin revisitée</p>
+          <p class="plat-desc">Pommes caramélisées, crème normande, glace Calvados</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 15.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Mousse au chocolat Valrhona</p>
+          <p class="plat-desc">Guanaja 70%, tuile craquante, fleur de sel</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 14.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Sélection de fromages affinés</p>
+          <p class="plat-desc">Plateau du fromager, confiture maison, pain de campagne</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 22.—</p>
+      </div>
+      <div class="plat">
+        <div class="plat-info">
+          <p class="plat-name">Mignardises &amp; petits fours</p>
+          <p class="plat-desc">Assortiment de la maison, servi avec le café</p>
+        </div>
+        <div class="plat-dots"></div>
+        <p class="plat-price">CHF 10.—</p>
+      </div>
+    </div>
+
+    <!-- VINS -->
+    <div id="section-vins" class="menu-section" style="display:none;">
+      <div class="menu-section-header">
+        <div class="menu-section-icon">♦</div>
+        <h2 class="menu-section-title">Carte des Vins</h2>
+        <p class="menu-section-subtitle">Sélection de notre sommelier</p>
+      </div>
+      <div class="vin-categorie">
+        <p class="vin-cat-title">Vins blancs</p>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Domaine Chèvre d'Or — Chablis Premier Cru</p>
+            <p class="vin-region">Bourgogne, France · 2022</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 16.—</div>
+            <div><span>bouteille</span>CHF 72.—</div>
+          </div>
+        </div>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Domaine Weinbach — Riesling Réserve</p>
+            <p class="vin-region">Alsace, France · 2021</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 14.—</div>
+            <div><span>bouteille</span>CHF 64.—</div>
+          </div>
+        </div>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Châtelain Biollaz — Fendant du Valais</p>
+            <p class="vin-region">Valais, Suisse · 2023</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 12.—</div>
+            <div><span>bouteille</span>CHF 52.—</div>
+          </div>
+        </div>
+      </div>
+      <div class="vin-categorie">
+        <p class="vin-cat-title">Vins rouges</p>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Château Léoville Barton — Saint-Julien</p>
+            <p class="vin-region">Bordeaux, France · 2018</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 22.—</div>
+            <div><span>bouteille</span>CHF 120.—</div>
+          </div>
+        </div>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Domaine Faiveley — Gevrey-Chambertin</p>
+            <p class="vin-region">Bourgogne, France · 2020</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 20.—</div>
+            <div><span>bouteille</span>CHF 95.—</div>
+          </div>
+        </div>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Adrian &amp; Diego Mathier — Cornalin</p>
+            <p class="vin-region">Valais, Suisse · 2022</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 14.—</div>
+            <div><span>bouteille</span>CHF 58.—</div>
+          </div>
+        </div>
+      </div>
+      <div class="vin-categorie">
+        <p class="vin-cat-title">Champagnes &amp; Pétillants</p>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Billecart-Salmon — Brut Réserve</p>
+            <p class="vin-region">Champagne, France · NM</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>au verre</span>CHF 24.—</div>
+            <div><span>bouteille</span>CHF 115.—</div>
+          </div>
+        </div>
+        <div class="vin">
+          <div class="vin-info">
+            <p class="vin-name">Louis Roederer — Cristal Brut</p>
+            <p class="vin-region">Champagne, France · 2016</p>
+          </div>
+          <div class="vin-prix">
+            <div><span>—</span>&nbsp;</div>
+            <div><span>bouteille</span>CHF 320.—</div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-note">
+        Carte des vins disponible sur demande. Notre sommelier se fera un plaisir de vous conseiller.
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <span class="footer-logo">L'AGAPE</span>
+      <span>11 Rue Caroline, 1227 Genève · +41 22 343 12 98</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
+      document.getElementById('nav-burger').classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+    function showSection(id, btn) {
+      document.querySelectorAll('.menu-section').forEach(s => s.style.display = 'none');
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('section-' + id).style.display = 'block';
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

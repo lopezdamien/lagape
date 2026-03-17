@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réservation — L'AGAPE · Genève</title>
+  <meta name="description" content="Réservez votre table au restaurant L'AGAPE à Genève — en ligne, par téléphone ou par email."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bleu-nuit: #0d1b2a; --bleu-profond: #152238; --bleu-moyen: #1e3353;
+      --argent: #b8c4d0; --argent-clair: #d8e0e8;
+      --or: #c9a96e; --or-clair: #e8d5b0;
+      --blanc-casse: #f5f0eb; --texte-clair: #e8e4df; --texte-gris: #8a9aaa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bleu-nuit); color: var(--texte-clair); font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 22px 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(13,27,42,0.97); border-bottom: 1px solid rgba(184,196,208,0.1); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; letter-spacing: 0.1em; color: var(--or-clair); text-decoration: none; }
+    .nav-links { display: flex; gap: 38px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--argent-clair); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--or); }
+    .nav-reserve { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--or); color: var(--or); background: transparent; text-decoration: none; transition: all 0.3s; }
+    .nav-reserve:hover { background: var(--or); color: var(--bleu-nuit); }
+    .nav-burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; padding: 4px; }
+    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent-clair); transition: all 0.42s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--or-clair); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
+    .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
+    .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
+    .mobile-overlay-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 0.12em; color: var(--or-clair); margin-bottom: 48px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; }
+    .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
+    .mobile-nav-list { list-style: none; text-align: center; }
+    .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
+    .mobile-nav-list a { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 9vw, 3.2rem); font-weight: 300; color: var(--texte-clair); text-decoration: none; letter-spacing: 0.06em; display: block; padding: 10px 0; transition: color 0.3s; }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or-clair); }
+    .mobile-reserve-wrap { margin-top: 44px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.6s, transform 0.4s 0.6s; }
+    .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
+    .mobile-reserve-wrap a { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 38px; border: 1px solid var(--or); color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
+    .mobile-social-row { position: absolute; bottom: 36px; display: flex; gap: 28px; opacity: 0; transition: opacity 0.4s 0.65s; }
+    .mobile-overlay.open .mobile-social-row { opacity: 1; }
+    .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--texte-gris); text-decoration: none; transition: color 0.3s; }
+    .mobile-social-row a:hover { color: var(--or); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 160px 60px 80px; text-align: center; background: linear-gradient(170deg, #0d1b2a 0%, #152238 60%, #0d1b2a 100%); position: relative; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(201,169,110,0.07) 0%, transparent 60%); }
+    .page-label { font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; color: var(--blanc-casse); margin-bottom: 16px; }
+    .page-title em { font-style: italic; color: var(--or-clair); }
+    .page-divider { width: 50px; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); margin: 0 auto 24px; }
+    .page-desc { font-size: 0.88rem; color: var(--argent); max-width: 480px; margin: 0 auto; }
+
+    /* CONTENU PRINCIPAL */
+    .main-content { max-width: 1100px; margin: 0 auto; padding: 80px 60px 100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
+
+    /* FORMULAIRE */
+    .form-section {}
+    .section-label { font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--blanc-casse); margin-bottom: 12px; line-height: 1.2; }
+    .section-title em { font-style: italic; color: var(--or-clair); }
+    .section-divider { width: 50px; height: 1px; background: linear-gradient(to right, var(--or), transparent); margin-bottom: 36px; }
+
+    /* TheFork CTA */
+    .thefork-cta {
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.3);
+      padding: 32px 36px; margin-bottom: 32px;
+      text-align: center;
+    }
+    .thefork-badge { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
+    .thefork-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--blanc-casse); margin-bottom: 8px; }
+    .thefork-desc { font-size: 0.78rem; color: var(--texte-gris); margin-bottom: 20px; }
+    .btn-thefork { display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 36px; background: var(--or); color: var(--bleu-nuit); text-decoration: none; transition: all 0.3s; font-weight: 500; }
+    .btn-thefork:hover { background: var(--or-clair); }
+
+    .form-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+    .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: rgba(184,196,208,0.1); }
+    .form-divider span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texte-gris); }
+
+    /* FORMULAIRE CONTACT */
+    form { }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--texte-gris); margin-bottom: 8px; }
+    input, select, textarea {
+      width: 100%; padding: 14px 16px;
+      background: rgba(30,51,83,0.4); border: 1px solid rgba(184,196,208,0.15);
+      color: var(--texte-clair); font-family: 'Montserrat', sans-serif; font-size: 0.84rem; font-weight: 300;
+      outline: none; transition: border-color 0.3s; -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--or); }
+    input::placeholder, textarea::placeholder { color: var(--texte-gris); }
+    select option { background: var(--bleu-profond); }
+    textarea { resize: vertical; min-height: 100px; }
+    .btn-submit { width: 100%; padding: 16px; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; background: var(--or); color: var(--bleu-nuit); border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 500; transition: background 0.3s; }
+    .btn-submit:hover { background: var(--or-clair); }
+    .form-note { font-size: 0.72rem; color: var(--texte-gris); margin-top: 12px; font-style: italic; }
+
+    /* INFOS LATÉRALES */
+    .info-sidebar { position: sticky; top: 100px; }
+    .info-card { background: rgba(21,34,56,0.7); border: 1px solid rgba(184,196,208,0.1); padding: 36px; margin-bottom: 20px; }
+    .info-card-title { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201,169,110,0.15); }
+    .horaires-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 8px 0; border-bottom: 1px solid rgba(184,196,208,0.05); color: var(--argent); }
+    .horaires-row .jour { color: var(--texte-clair); }
+    .horaires-row.ferme .heure { color: var(--texte-gris); font-style: italic; }
+    .contact-link { display: flex; align-items: center; gap: 12px; font-size: 0.82rem; color: var(--argent); text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(184,196,208,0.05); transition: color 0.3s; }
+    .contact-link:hover { color: var(--or); }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-icon { color: var(--or); width: 16px; text-align: center; flex-shrink: 0; }
+    .info-note { font-size: 0.75rem; color: var(--texte-gris); padding: 16px; background: rgba(201,169,110,0.05); border-left: 2px solid var(--or); margin-top: 8px; }
+
+    /* TRAITEUR */
+    .traiteur-section { background: var(--bleu-profond); padding: 80px 60px; border-top: 1px solid rgba(184,196,208,0.08); }
+    .traiteur-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .traiteur-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--blanc-casse); margin-bottom: 16px; }
+    .traiteur-title em { font-style: italic; color: var(--or-clair); }
+    .traiteur-text { font-size: 0.85rem; color: var(--argent); margin-bottom: 12px; }
+    .traiteur-items { list-style: none; margin: 20px 0; }
+    .traiteur-items li { font-size: 0.8rem; color: var(--texte-gris); padding: 7px 0; border-bottom: 1px solid rgba(184,196,208,0.06); display: flex; align-items: center; gap: 10px; }
+    .traiteur-items li::before { content: '✦'; color: var(--or); font-size: 0.5rem; }
+    .btn-contact { display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(--or); color: var(--or); text-decoration: none; transition: all 0.3s; }
+    .btn-contact:hover { background: var(--or); color: var(--bleu-nuit); }
+    .traiteur-image { aspect-ratio: 4/3; background: var(--bleu-moyen); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--texte-gris); letter-spacing: 0.1em; }
+
+    footer { background: rgba(8,16,25,0.98); border-top: 1px solid rgba(184,196,208,0.08); padding: 40px 60px 24px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: var(--texte-gris); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--or-clair); }
+
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-burger { display: flex; }
+      .page-header { padding: 130px 24px 60px; }
+      .main-content { grid-template-columns: 1fr; padding: 50px 24px 60px; gap: 50px; }
+      .info-sidebar { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+      .traiteur-section { padding: 60px 24px; }
+      .traiteur-inner { grid-template-columns: 1fr; }
+      footer { padding: 30px 24px 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* SUCCESS MESSAGE */
+    .success-msg { display: none; background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.3); padding: 20px 24px; text-align: center; }
+    .success-msg p { font-size: 0.85rem; color: var(--or-clair); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">L'AGAPE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html" class="active">Réservation</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-reserve">Réserver</a>
+    <div class="nav-burger" id="nav-burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" id="mobile-overlay">
+    <div class="mobile-overlay-logo">L'AGAPE</div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html" class="active">Réservation</a></li>
+    </ul>
+    <div class="mobile-reserve-wrap"><a href="reservation.html">Réserver une table</a></div>
+    <div class="mobile-social-row">
+      <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <p class="page-label">Votre table vous attend</p>
+    <h1 class="page-title">Réserver <em>une table</em></h1>
+    <div class="page-divider"></div>
+    <p class="page-desc">Du mardi au samedi, midi et soir. Nous serons ravis de vous accueillir.</p>
+  </div>
+
+  <div class="main-content">
+
+    <!-- COLONNE GAUCHE : FORMULAIRE -->
+    <div class="form-section">
+      <p class="section-label">Réservation en ligne</p>
+      <h2 class="section-title">Réservez votre <em>soirée</em></h2>
+      <div class="section-divider"></div>
+
+      <!-- THEFORK -->
+      <div class="thefork-cta">
+        <p class="thefork-badge">Réservation instantanée</p>
+        <p class="thefork-title">Réserver via TheFork</p>
+        <p class="thefork-desc">Confirmez votre table en quelques clics, disponibilités en temps réel.</p>
+        <a href="https://www.thefork.fr/restaurant/l-agape-geneve" target="_blank" class="btn-thefork">
+          Réserver sur TheFork →
+        </a>
+      </div>
+
+      <div class="form-divider"><span>ou contactez-nous directement</span></div>
+
+      <!-- FORMULAIRE DE CONTACT -->
+      <form id="reservation-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Jean" required/>
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" placeholder="Dupont" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="jean@exemple.ch" required/>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+41 79 000 00 00"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date">Date souhaitée *</label>
+            <input type="date" id="date" name="date" required/>
+          </div>
+          <div class="form-group">
+            <label for="service">Service *</label>
+            <select id="service" name="service" required>
+              <option value="">Choisir...</option>
+              <option value="dejeuner">Déjeuner (12h – 14h)</option>
+              <option value="diner">Dîner (19h – 21h)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="couverts">Nombre de couverts *</label>
+          <select id="couverts" name="couverts" required>
+            <option value="">Sélectionner...</option>
+            <option value="1">1 personne</option>
+            <option value="2">2 personnes</option>
+            <option value="3">3 personnes</option>
+            <option value="4">4 personnes</option>
+            <option value="5">5 personnes</option>
+            <option value="6">6 personnes</option>
+            <option value="7+">7 personnes et plus</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message &amp; allergies</label>
+          <textarea id="message" name="message" placeholder="Occasion spéciale, allergies alimentaires, régimes particuliers..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Envoyer ma demande</button>
+        <p class="form-note">* Champs obligatoires. Nous confirmerons votre réservation par email sous 24h.</p>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        <p>✦ Votre demande a bien été envoyée. Nous vous répondrons dans les plus brefs délais.</p>
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE : INFOS -->
+    <div class="info-sidebar">
+      <div class="info-card">
+        <p class="info-card-title">Horaires d'ouverture</p>
+        <div class="horaires-row ferme"><span class="jour">Lundi</span><span class="heure">Fermé</span></div>
+        <div class="horaires-row"><span class="jour">Mardi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+        <div class="horaires-row"><span class="jour">Mercredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+        <div class="horaires-row"><span class="jour">Jeudi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+        <div class="horaires-row"><span class="jour">Vendredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+        <div class="horaires-row"><span class="jour">Samedi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+        <div class="horaires-row ferme"><span class="jour">Dimanche</span><span class="heure">Fermé</span></div>
+      </div>
+
+      <div class="info-card">
+        <p class="info-card-title">Contact</p>
+        <a href="tel:+41223431298" class="contact-link">
+          <span class="contact-icon">✆</span>
+          +41 22 343 12 98
+        </a>
+        <a href="mailto:contact@lagape.ch" class="contact-link">
+          <span class="contact-icon">✉</span>
+          contact@lagape.ch
+        </a>
+        <a href="https://maps.google.com/?q=11+Rue+Caroline+Geneve" target="_blank" class="contact-link">
+          <span class="contact-icon">↟</span>
+          11 Rue Caroline, 1227 Genève
+        </a>
+        <a href="https://www.instagram.com/lagape_geneve" target="_blank" class="contact-link">
+          <span class="contact-icon">◈</span>
+          @lagape_geneve
+        </a>
+        <div class="info-note">
+          Pour les groupes de 7 personnes et plus ou les événements privatifs, merci de nous contacter directement par téléphone ou par email.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SERVICE TRAITEUR -->
+  <div class="traiteur-section">
+    <div class="traiteur-inner">
+      <div>
+        <p class="section-label" style="font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px;">Nouveauté</p>
+        <h2 class="traiteur-title">Notre service <em>traiteur</em></h2>
+        <p class="traiteur-text">L'AGAPE propose désormais son savoir-faire en dehors des murs du restaurant pour vos événements privés et professionnels à Genève et ses environs.</p>
+        <ul class="traiteur-items">
+          <li>Cocktails et réceptions d'entreprise</li>
+          <li>Dîners privés et événements familiaux</li>
+          <li>Buffets gastronomiques sur mesure</li>
+          <li>Livraison de plateaux et de mets préparés</li>
+        </ul>
+        <a href="mailto:contact@lagape.ch?subject=Service%20Traiteur" class="btn-contact">Nous contacter pour un devis →</a>
+      </div>
+      <div class="traiteur-image">· Service traiteur ·</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom">
+      <span class="footer-logo">L'AGAPE</span>
+      <span>11 Rue Caroline, 1227 Genève · +41 22 343 12 98</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
+      document.getElementById('nav-burger').classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+    // Date min = aujourd'hui
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+
+    // Soumission formulaire
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById('reservation-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

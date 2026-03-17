@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L'AGAPE — Restaurant Bistronomique · Genève</title>
+  <meta name="description" content="L'AGAPE, restaurant bistronomique à Genève. Cuisine raffinée, produits de saison. Bib Gourmand Michelin & Gault Millau."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bleu-nuit: #0d1b2a;
+      --bleu-profond: #152238;
+      --bleu-moyen: #1e3353;
+      --argent: #b8c4d0;
+      --argent-clair: #d8e0e8;
+      --or: #c9a96e;
+      --or-clair: #e8d5b0;
+      --blanc-casse: #f5f0eb;
+      --texte-clair: #e8e4df;
+      --texte-gris: #8a9aaa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bleu-nuit);
+      color: var(--texte-clair);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 22px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(13,27,42,0.97), transparent);
+      transition: background 0.4s;
+    }
+    nav.scrolled { background: rgba(13,27,42,0.98); border-bottom: 1px solid rgba(184,196,208,0.1); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 400; letter-spacing: 0.1em;
+      color: var(--or-clair); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 38px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--argent-clair);
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--or); }
+    .nav-reserve {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 10px 22px; border: 1px solid var(--or);
+      color: var(--or); background: transparent;
+      text-decoration: none; transition: all 0.3s; cursor: pointer;
+    }
+    .nav-reserve:hover { background: var(--or); color: var(--bleu-nuit); }
+    .nav-burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; padding: 4px; }
+    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent-clair); transition: all 0.42s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--or-clair); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
+
+    /* ── MOBILE OVERLAY ── */
+    .mobile-overlay {
+      position: fixed; inset: 0; z-index: 101;
+      background: var(--bleu-nuit);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      clip-path: circle(0% at calc(100% - 44px) 44px);
+      transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+      pointer-events: none;
+    }
+    .mobile-overlay.open {
+      clip-path: circle(170% at calc(100% - 44px) 44px);
+      pointer-events: all;
+    }
+    .mobile-overlay-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; letter-spacing: 0.12em; color: var(--or-clair);
+      margin-bottom: 48px;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.4s 0.3s, transform 0.4s 0.3s;
+    }
+    .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
+    .mobile-nav-list { list-style: none; text-align: center; }
+    .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
+    .mobile-nav-list a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 9vw, 3.2rem);
+      font-weight: 300; color: var(--texte-clair);
+      text-decoration: none; letter-spacing: 0.06em;
+      display: block; padding: 10px 0; transition: color 0.3s;
+    }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or-clair); }
+    .mobile-reserve-wrap {
+      margin-top: 44px;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.4s 0.6s, transform 0.4s 0.6s;
+    }
+    .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
+    .mobile-reserve-wrap a {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 13px 38px; border: 1px solid var(--or);
+      color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s;
+    }
+    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
+    .mobile-social-row {
+      position: absolute; bottom: 36px;
+      display: flex; gap: 28px;
+      opacity: 0; transition: opacity 0.4s 0.65s;
+    }
+    .mobile-overlay.open .mobile-social-row { opacity: 1; }
+    .mobile-social-row a {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--texte-gris); text-decoration: none; transition: color 0.3s;
+    }
+    .mobile-social-row a:hover { color: var(--or); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh; min-height: 680px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      position: relative; overflow: hidden;
+      background: linear-gradient(165deg, #0d1b2a 0%, #152238 40%, #1a2d4a 70%, #0d1b2a 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(201,169,110,0.08) 0%, transparent 65%);
+    }
+    .hero-ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 28px; opacity: 0.9;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 8.5rem);
+      font-weight: 300; letter-spacing: 0.06em;
+      color: var(--blanc-casse); line-height: 1;
+      margin-bottom: 12px;
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 300; letter-spacing: 0.25em;
+      color: var(--argent); text-transform: uppercase;
+      margin-bottom: 50px;
+    }
+    .hero-divider {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--or), transparent);
+      margin: 0 auto 50px;
+    }
+    .hero-cta {
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    .btn-primary {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 16px 40px; background: var(--or); color: var(--bleu-nuit);
+      text-decoration: none; transition: all 0.3s;
+      font-weight: 500;
+    }
+    .btn-primary:hover { background: var(--or-clair); }
+    .btn-secondary {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 16px 40px; border: 1px solid var(--argent);
+      color: var(--argent-clair); text-decoration: none; transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--or); color: var(--or); }
+    .hero-scroll {
+      position: absolute; bottom: 40px;
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--texte-gris); display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--texte-gris), transparent);
+    }
+
+    /* ── SECTIONS COMMUNES ── */
+    section { padding: 100px 60px; }
+    .section-label {
+      font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; color: var(--blanc-casse);
+      line-height: 1.2; margin-bottom: 24px;
+    }
+    .section-title em { font-style: italic; color: var(--or-clair); }
+    .section-divider {
+      width: 50px; height: 1px;
+      background: linear-gradient(to right, var(--or), transparent);
+      margin-bottom: 32px;
+    }
+    .section-text { color: var(--argent); max-width: 580px; font-size: 0.9rem; }
+
+    /* ── DISTINCTIONS ── */
+    .distinctions {
+      background: var(--bleu-profond);
+      border-top: 1px solid rgba(184,196,208,0.08);
+      border-bottom: 1px solid rgba(184,196,208,0.08);
+      padding: 50px 60px;
+      display: flex; align-items: center; justify-content: center; gap: 80px;
+      flex-wrap: wrap;
+    }
+    .distinction-item {
+      display: flex; align-items: center; gap: 18px;
+      text-align: left;
+    }
+    .distinction-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; color: var(--or); line-height: 1;
+    }
+    .distinction-name {
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--argent-clair); display: block; margin-bottom: 3px;
+    }
+    .distinction-desc { font-size: 0.75rem; color: var(--texte-gris); }
+    .distinction-sep { width: 1px; height: 50px; background: rgba(184,196,208,0.15); }
+
+    /* ── PRÉSENTATION ── */
+    .presentation {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .pres-image {
+      aspect-ratio: 4/5; background: var(--bleu-moyen);
+      position: relative; overflow: hidden;
+    }
+    .pres-image-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--bleu-moyen) 0%, #243a56 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: var(--texte-gris); letter-spacing: 0.1em;
+    }
+    .pres-image::after {
+      content: ''; position: absolute;
+      top: -15px; left: -15px; right: 15px; bottom: 15px;
+      border: 1px solid rgba(201,169,110,0.25); pointer-events: none;
+    }
+    .pres-content { padding: 20px 0; }
+    .pres-content .section-text { max-width: 100%; margin-bottom: 32px; }
+    .pres-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--or-clair); border-left: 1px solid var(--or);
+      padding-left: 20px; margin: 24px 0; line-height: 1.6;
+    }
+
+    /* ── MISE EN AVANT MENU ── */
+    .menu-preview { background: var(--bleu-profond); }
+    .menu-preview-inner { max-width: 1200px; margin: 0 auto; }
+    .menu-preview-header { text-align: center; margin-bottom: 60px; }
+    .menu-preview-header .section-divider { margin: 0 auto 32px; }
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      margin-bottom: 50px;
+    }
+    .menu-card {
+      background: rgba(30,51,83,0.5);
+      padding: 40px 32px;
+      border-top: 1px solid rgba(201,169,110,0.2);
+      transition: background 0.3s;
+    }
+    .menu-card:hover { background: rgba(30,51,83,0.9); }
+    .menu-card-cat {
+      font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 20px;
+    }
+    .menu-item { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid rgba(184,196,208,0.08); }
+    .menu-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .menu-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 400; color: var(--blanc-casse);
+      margin-bottom: 4px;
+    }
+    .menu-item-desc { font-size: 0.75rem; color: var(--texte-gris); margin-bottom: 6px; }
+    .menu-item-price { font-size: 0.8rem; color: var(--or); letter-spacing: 0.05em; }
+    .menu-preview-footer { text-align: center; }
+
+    /* ── HORAIRES & CONTACT ── */
+    .infos { max-width: 1200px; margin: 0 auto; }
+    .infos-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 60px;
+    }
+    .info-block-title {
+      font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 24px;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .horaires-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem; padding: 8px 0;
+      border-bottom: 1px solid rgba(184,196,208,0.06);
+      color: var(--argent);
+    }
+    .horaires-row .jour { color: var(--texte-clair); }
+    .horaires-row.ferme .heure { color: var(--texte-gris); font-style: italic; }
+    .contact-item {
+      font-size: 0.82rem; color: var(--argent);
+      margin-bottom: 14px; display: flex; align-items: flex-start; gap: 12px;
+    }
+    .contact-item a { color: var(--argent); text-decoration: none; transition: color 0.3s; }
+    .contact-item a:hover { color: var(--or); }
+    .contact-icon { color: var(--or); font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+    .traiteur-box {
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.25);
+      padding: 24px 28px;
+      margin-top: 8px;
+    }
+    .traiteur-box p { font-size: 0.82rem; color: var(--argent); margin-bottom: 14px; }
+    .traiteur-box a {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--or); text-decoration: none;
+    }
+    .traiteur-box a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(8, 16, 25, 0.98);
+      border-top: 1px solid rgba(184,196,208,0.08);
+      padding: 50px 60px 30px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px; margin-bottom: 40px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--or-clair); margin-bottom: 12px;
+    }
+    .footer-tagline { font-size: 0.75rem; color: var(--texte-gris); margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 16px; }
+    .footer-social a {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--texte-gris); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-social a:hover { color: var(--or); }
+    .footer-col-title {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      font-size: 0.78rem; color: var(--texte-gris); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--argent-clair); }
+    .footer-bottom {
+      border-top: 1px solid rgba(184,196,208,0.08);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.68rem; color: var(--texte-gris);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-burger { display: flex; }
+      section { padding: 70px 24px; }
+      .distinctions { padding: 40px 24px; gap: 40px; }
+      .distinction-sep { display: none; }
+      .presentation { grid-template-columns: 1fr; gap: 40px; }
+      .pres-image { aspect-ratio: 16/9; }
+      .pres-image::after { display: none; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .infos-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      footer { padding: 40px 24px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">L'AGAPE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-reserve">Réserver</a>
+    <div class="nav-burger" id="nav-burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay" id="mobile-overlay">
+    <div class="mobile-overlay-logo">L'AGAPE</div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="menu.html">La Carte</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <div class="mobile-reserve-wrap">
+      <a href="reservation.html">Réserver une table</a>
+    </div>
+    <div class="mobile-social-row">
+      <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-ornament">Genève · Restaurant Bistronomique</p>
+    <h1 class="hero-title">L'AGAPE</h1>
+    <p class="hero-subtitle">Cuisine du marché · Savoir-faire · Partage</p>
+    <div class="hero-divider"></div>
+    <div class="hero-cta">
+      <a href="reservation.html" class="btn-primary">Réserver une table</a>
+      <a href="menu.html" class="btn-secondary">Découvrir la carte</a>
+    </div>
+    <div class="hero-scroll">Défiler</div>
+  </section>
+
+  <!-- DISTINCTIONS -->
+  <div class="distinctions">
+    <div class="distinction-item">
+      <div class="distinction-icon">✦</div>
+      <div>
+        <span class="distinction-name">Michelin</span>
+        <span class="distinction-desc">Bib Gourmand</span>
+      </div>
+    </div>
+    <div class="distinction-sep"></div>
+    <div class="distinction-item">
+      <div class="distinction-icon">◈</div>
+      <div>
+        <span class="distinction-name">Gault &amp; Millau</span>
+        <span class="distinction-desc">Distingué</span>
+      </div>
+    </div>
+    <div class="distinction-sep"></div>
+    <div class="distinction-item">
+      <div class="distinction-icon">❧</div>
+      <div>
+        <span class="distinction-name">Bistronomie</span>
+        <span class="distinction-desc">Depuis notre ouverture</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÉSENTATION -->
+  <section style="padding-top: 110px; padding-bottom: 110px;">
+    <div class="presentation">
+      <div class="pres-image">
+        <div class="pres-image-placeholder">
+          · Photo du restaurant ·
+        </div>
+      </div>
+      <div class="pres-content">
+        <p class="section-label">Notre philosophie</p>
+        <h2 class="section-title">Une cuisine <em>sincère</em>,<br/>des produits d'exception</h2>
+        <div class="section-divider"></div>
+        <p class="section-text">
+          Au cœur de Genève, L'AGAPE est un lieu de partage où la gastronomie rencontre la convivialité.
+          Notre cuisine bistronomique valorise les producteurs locaux et les saisons, pour une expérience
+          authentique et raffinée, accessible à tous.
+        </p>
+        <blockquote class="pres-quote">
+          « L'agapé, du grec ancien, est le festin offert à tous.<br/>
+          C'est l'âme même de notre table. »
+        </blockquote>
+        <a href="histoire.html" class="btn-secondary">Notre histoire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU PREVIEW -->
+  <section class="menu-preview">
+    <div class="menu-preview-inner">
+      <div class="menu-preview-header">
+        <p class="section-label">Hiver 2026</p>
+        <h2 class="section-title">La Carte <em>du moment</em></h2>
+        <div class="section-divider"></div>
+        <p class="section-text" style="margin: 0 auto; text-align: center; max-width: 500px;">
+          Une sélection de notre carte actuelle — renouvelée au fil des marchés et des saisons.
+        </p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <p class="menu-card-cat">Entrées</p>
+          <div class="menu-item">
+            <p class="menu-item-name">Terrine de foie gras maison</p>
+            <p class="menu-item-desc">Chutney de figues, brioche toastée</p>
+            <p class="menu-item-price">CHF 26.—</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Saint-Jacques poêlées</p>
+            <p class="menu-item-desc">Velouté de topinambour, huile de truffe</p>
+            <p class="menu-item-price">CHF 32.—</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Soupe à l'oignon gratinée</p>
+            <p class="menu-item-desc">Bouillon de bœuf, gruyère AOP vieux</p>
+            <p class="menu-item-price">CHF 18.—</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <p class="menu-card-cat">Plats</p>
+          <div class="menu-item">
+            <p class="menu-item-name">Filet de bœuf Rossini</p>
+            <p class="menu-item-desc">Foie gras, sauce Périgueux, pommes sarladaises</p>
+            <p class="menu-item-price">CHF 58.—</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Turbot sauvage rôti</p>
+            <p class="menu-item-desc">Écrasé de pommes de terre, beurre blanc agrumes</p>
+            <p class="menu-item-price">CHF 52.—</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Ris de veau aux morilles</p>
+            <p class="menu-item-desc">Jus corsé, purée truffée</p>
+            <p class="menu-item-price">CHF 48.—</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <p class="menu-card-cat">Desserts</p>
+          <div class="menu-item">
+            <p class="menu-item-name">Soufflé au Grand Marnier</p>
+            <p class="menu-item-desc">Crème anglaise vanille Bourbon</p>
+            <p class="menu-item-price">CHF 18.—</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Millefeuille à la vanille</p>
+            <p class="menu-item-desc">Pâte feuilletée caramélisée, crème légère</p>
+            <p class="menu-item-price">CHF 16.—</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Sélection de fromages affinés</p>
+            <p class="menu-item-desc">Plateau du fromager, confiture maison</p>
+            <p class="menu-item-price">CHF 22.—</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-preview-footer">
+        <a href="menu.html" class="btn-secondary">Voir la carte complète</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS PRATIQUES -->
+  <section>
+    <div class="infos">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <p class="section-label">Informations pratiques</p>
+        <h2 class="section-title">Nous <em>rendre visite</em></h2>
+        <div class="section-divider" style="margin: 0 auto;"></div>
+      </div>
+      <div class="infos-grid">
+        <div>
+          <p class="info-block-title">Horaires d'ouverture</p>
+          <div class="horaires-row ferme"><span class="jour">Lundi</span><span class="heure">Fermé</span></div>
+          <div class="horaires-row"><span class="jour">Mardi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+          <div class="horaires-row"><span class="jour">Mercredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+          <div class="horaires-row"><span class="jour">Jeudi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+          <div class="horaires-row"><span class="jour">Vendredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+          <div class="horaires-row"><span class="jour">Samedi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+          <div class="horaires-row ferme"><span class="jour">Dimanche</span><span class="heure">Fermé</span></div>
+        </div>
+        <div>
+          <p class="info-block-title">Contact &amp; Adresse</p>
+          <div class="contact-item">
+            <span class="contact-icon">↟</span>
+            <span>11 Rue Caroline<br/>1227 Genève, Suisse</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">↝</span>
+            <a href="tel:+41223431298">+41 22 343 12 98</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">◎</span>
+            <a href="mailto:contact@lagape.ch">contact@lagape.ch</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">◈</span>
+            <a href="https://www.instagram.com/lagape_geneve" target="_blank">@lagape_geneve</a>
+          </div>
+        </div>
+        <div>
+          <p class="info-block-title">Service Traiteur</p>
+          <div class="traiteur-box">
+            <p>
+              Nouveauté : L'AGAPE propose désormais un service traiteur pour vos événements
+              privés, cocktails et réceptions d'entreprise à Genève.
+            </p>
+            <a href="mailto:contact@lagape.ch">Nous contacter →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">L'AGAPE</div>
+        <p class="footer-tagline">Restaurant Bistronomique · Genève</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
+          <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
+          <a href="https://www.tripadvisor.com" target="_blank">TripAdvisor</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigation</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="menu.html">La Carte</a></li>
+          <li><a href="histoire.html">Notre Histoire</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Réserver</p>
+        <ul class="footer-links">
+          <li><a href="reservation.html">En ligne via TheFork</a></li>
+          <li><a href="tel:+41223431298">Par téléphone</a></li>
+          <li><a href="mailto:contact@lagape.ch">Par email</a></li>
+          <li><a href="mailto:contact@lagape.ch">Service traiteur</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 L'AGAPE — 11 Rue Caroline, Genève</span>
+      <span>Bib Gourmand Michelin · Gault &amp; Millau</span>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    // Mobile menu plein écran
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      const overlay = document.getElementById('mobile-overlay');
+      const burger = document.getElementById('nav-burger');
+      overlay.classList.toggle('open', menuOpen);
+      burger.classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+  </script>
+</body>
+</html>
