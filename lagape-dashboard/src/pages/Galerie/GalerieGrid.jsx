@@ -151,8 +151,8 @@ export default function GalerieGrid() {
                 onMouseEnter={e => e.currentTarget.querySelector('.overlay').style.opacity = '1'}
                 onMouseLeave={e => e.currentTarget.querySelector('.overlay').style.opacity = '0'}
               >
-                {photo.filename ? (
-                  <img src={`/uploads/galerie/${photo.filename}`} alt={photo.caption} style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
+                {photo.url || photo.filename ? (
+                  <img src={photo.url || `/uploads/galerie/${photo.filename}`} alt={photo.caption} style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
                 ) : (
                   <div style={{ height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Cormorant Garamond, serif', color: 'var(--texte-gris)', fontSize: '0.85rem' }}>
                     · {photo.caption} ·
