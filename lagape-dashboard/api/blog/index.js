@@ -1,8 +1,9 @@
-import { kv } from '@vercel/kv'
+import { kvGet, kvSet } from '../_redis.js'
 import { put } from '@vercel/blob'
 import { v4 as uuidv4 } from 'uuid'
 import formidable from 'formidable'
 import { promises as fs } from 'fs'
+import { checkAuth } from '../_auth.js'
 
 const DEFAULT = { articles: [] }
 
@@ -29,16 +30,17 @@ function slugify(str) {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   if (req.method === 'OPTIONS') return res.status(200).end()
 
   try {
     if (req.method === 'GET') {
-      const data = (await kv.get('blog')) || DEFAULT
+      const data = (await kvGet('blog')) || DEFAULT
       return res.json(data)
     }
 
     if (req.method === 'POST') {
+      if (!checkAuth(req, res)) return
       const { fields, files } = await parseForm(req)
       let imageUrl = null
 
@@ -54,7 +56,7 @@ export default async function handler(req, res) {
         await fs.unlink(file.filepath).catch(() => {})
       }
 
-      const data = (await kv.get('blog')) || DEFAULT
+      const data = (await kvGet('blog')) || DEFAULT
       const titre = field(fields.titre)
       const article = {
         id: uuidv4(),
@@ -67,7 +69,7 @@ export default async function handler(req, res) {
         createdAt: new Date().toISOString(),
       }
       data.articles.push(article)
-      await kv.set('blog', data)
+      await kvSet('blog', data)
       return res.status(201).json(article)
     }
 

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../../components/layout/Header'
 import Button from '../../components/ui/Button'
 import { toast } from '../../components/ui/Toast'
+import { apiFetch } from '../../lib/api'
 
 function slugify(str) {
   return str.toLowerCase()
@@ -60,7 +61,7 @@ export default function BlogForm() {
     if (imageFile) fd.append('image', imageFile)
     const url = isEdit ? `/api/blog/${id}` : '/api/blog'
     const method = isEdit ? 'PUT' : 'POST'
-    const r = await fetch(url, { method, body: fd })
+    const r = await apiFetch(url, { method, body: fd })
     setLoading(false)
     if (r.ok) {
       toast(isEdit ? 'Article modifié' : 'Article créé')

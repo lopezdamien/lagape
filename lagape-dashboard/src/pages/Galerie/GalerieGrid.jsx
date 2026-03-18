@@ -3,6 +3,7 @@ import Header from '../../components/layout/Header'
 import Button from '../../components/ui/Button'
 import Modal from '../../components/ui/Modal'
 import { toast } from '../../components/ui/Toast'
+import { apiFetch } from '../../lib/api'
 
 const CATS = [
   { value: 'tout', label: 'Tout' },
@@ -32,7 +33,7 @@ export default function GalerieGrid() {
   useEffect(() => { loadPhotos() }, [])
 
   async function handleDelete() {
-    const r = await fetch(`/api/galerie/${deleteTarget.id}`, { method: 'DELETE' })
+    const r = await apiFetch(`/api/galerie/${deleteTarget.id}`, { method: 'DELETE' })
     if (r.ok) { toast('Photo supprimée'); loadPhotos() }
     else toast('Erreur suppression', 'error')
     setDeleteTarget(null)
@@ -52,7 +53,7 @@ export default function GalerieGrid() {
     fd.append('image', uploadForm.file)
     fd.append('caption', uploadForm.caption)
     fd.append('categorie', uploadForm.categorie)
-    const r = await fetch('/api/galerie', { method: 'POST', body: fd })
+    const r = await apiFetch('/api/galerie', { method: 'POST', body: fd })
     setUploading(false)
     if (r.ok) {
       const newPhoto = await r.json()

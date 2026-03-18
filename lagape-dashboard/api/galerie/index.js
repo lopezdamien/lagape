@@ -1,8 +1,9 @@
-import { kv } from '@vercel/kv'
+import { kvGet, kvSet } from '../_redis.js'
 import { put } from '@vercel/blob'
 import { v4 as uuidv4 } from 'uuid'
 import formidable from 'formidable'
 import { promises as fs } from 'fs'
+import { checkAuth } from '../_auth.js'
 
 const DEFAULT = { photos: [] }
 
@@ -23,16 +24,17 @@ function field(val) {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   if (req.method === 'OPTIONS') return res.status(200).end()
 
   try {
     if (req.method === 'GET') {
-      const data = (await kv.get('galerie')) || DEFAULT
+      const data = (await kvGet('galerie')) || DEFAULT
       return res.json(data)
     }
 
     if (req.method === 'POST') {
+      if (!checkAuth(req, res)) return
       const { fields, files } = await parseForm(req)
       let url = null
 
@@ -48,7 +50,7 @@ export default async function handler(req, res) {
         await fs.unlink(file.filepath).catch(() => {})
       }
 
-      const data = (await kv.get('galerie')) || DEFAULT
+      const data = (await kvGet('galerie')) || DEFAULT
       const photo = {
         id: uuidv4(),
         url,
@@ -58,7 +60,7 @@ export default async function handler(req, res) {
         createdAt: new Date().toISOString(),
       }
       data.photos.push(photo)
-      await kv.set('galerie', data)
+      await kvSet('galerie', data)
       return res.status(201).json(photo)
     }
 

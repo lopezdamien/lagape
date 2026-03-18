@@ -4,6 +4,7 @@ import Header from '../../components/layout/Header'
 import Button from '../../components/ui/Button'
 import Modal from '../../components/ui/Modal'
 import { toast } from '../../components/ui/Toast'
+import { apiFetch } from '../../lib/api'
 
 export default function BlogList() {
   const [articles, setArticles] = useState([])
@@ -18,7 +19,7 @@ export default function BlogList() {
   useEffect(() => { loadArticles() }, [])
 
   async function handleDelete() {
-    const r = await fetch(`/api/blog/${deleteTarget.id}`, { method: 'DELETE' })
+    const r = await apiFetch(`/api/blog/${deleteTarget.id}`, { method: 'DELETE' })
     if (r.ok) { toast('Article supprimé'); loadArticles() }
     else toast('Erreur suppression', 'error')
     setDeleteTarget(null)
@@ -27,7 +28,7 @@ export default function BlogList() {
   async function togglePublie(article) {
     const fd = new FormData()
     fd.append('publie', String(!article.publie))
-    const r = await fetch(`/api/blog/${article.id}`, { method: 'PUT', body: fd })
+    const r = await apiFetch(`/api/blog/${article.id}`, { method: 'PUT', body: fd })
     if (r.ok) { toast(article.publie ? 'Dépublié' : 'Publié'); loadArticles() }
     else toast('Erreur', 'error')
   }

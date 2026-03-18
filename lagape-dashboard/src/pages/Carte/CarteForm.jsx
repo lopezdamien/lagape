@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../../components/layout/Header'
 import Button from '../../components/ui/Button'
 import { toast } from '../../components/ui/Toast'
+import { apiFetch } from '../../lib/api'
 
 const TYPE_LABELS = { formules: 'Formule', plats: 'Plat', vins: 'Vin' }
 
@@ -51,7 +52,7 @@ export default function CarteForm() {
     setLoading(true)
     const url = isEdit ? `/api/carte/${formType}/${id}` : `/api/carte/${formType}`
     const method = isEdit ? 'PUT' : 'POST'
-    const r = await fetch(url, {
+    const r = await apiFetch(url, {
       method,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),

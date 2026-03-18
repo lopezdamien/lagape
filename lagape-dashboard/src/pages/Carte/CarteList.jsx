@@ -4,6 +4,7 @@ import Header from '../../components/layout/Header'
 import Button from '../../components/ui/Button'
 import Modal from '../../components/ui/Modal'
 import { toast } from '../../components/ui/Toast'
+import { apiFetch } from '../../lib/api'
 
 const TABS = [
   { id: 'formules', label: 'Formules' },
@@ -29,7 +30,7 @@ export default function CarteList() {
 
   async function handleDelete() {
     const { type, id } = deleteTarget
-    const r = await fetch(`/api/carte/${type}/${id}`, { method: 'DELETE' })
+    const r = await apiFetch(`/api/carte/${type}/${id}`, { method: 'DELETE' })
     if (r.ok) {
       toast('Supprimé avec succès')
       loadData()

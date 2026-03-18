@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 
 const navItems = [
   { to: '/', label: 'Tableau de bord', icon: '◈', end: true },
@@ -8,6 +9,8 @@ const navItems = [
 ]
 
 export default function Sidebar() {
+  const { logout } = useAuth()
+
   return (
     <aside style={{
       width: 'var(--sidebar-width)',
@@ -70,13 +73,16 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Lien site vitrine */}
+      {/* Footer sidebar */}
       <div style={{
         padding: '20px 28px',
         borderTop: '1px solid var(--border)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
       }}>
         <a
-          href="http://localhost:8080"
+          href="https://lagape.vercel.app"
           target="_blank"
           rel="noreferrer"
           style={{
@@ -94,6 +100,25 @@ export default function Sidebar() {
         >
           ↗ Voir le site
         </a>
+        <button
+          onClick={logout}
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            fontSize: '0.62rem',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'var(--texte-gris)',
+            cursor: 'pointer',
+            textAlign: 'left',
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--danger)'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--texte-gris)'}
+        >
+          ⎋ Déconnexion
+        </button>
       </div>
     </aside>
   )

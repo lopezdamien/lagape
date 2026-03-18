@@ -1,6 +1,6 @@
 // POST /api/seed — initialise KV avec les données de départ
 // À appeler une seule fois après avoir lié la KV store au projet
-import { kv } from '@vercel/kv'
+import { kvGet, kvSet } from './_redis.js'
 
 const CARTE = {
   "formules": [
@@ -64,13 +64,13 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' })
 
   try {
-    const existing = await kv.get('carte')
+    const existing = await kvGet('carte')
     if (existing) return res.json({ message: 'KV déjà initialisé — aucune action.' })
 
     await Promise.all([
-      kv.set('carte', CARTE),
-      kv.set('galerie', GALERIE),
-      kv.set('blog', BLOG),
+      kvSet('carte', CARTE),
+      kvSet('galerie', GALERIE),
+      kvSet('blog', BLOG),
     ])
     res.json({ success: true, message: 'KV initialisé avec les données de départ.' })
   } catch (e) {

@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import { ToastContainer, useToast } from './components/ui/Toast'
+import { useAuth } from './contexts/AuthContext'
+import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import CarteList from './pages/Carte/CarteList'
 import CarteForm from './pages/Carte/CarteForm'
@@ -10,6 +12,9 @@ import BlogForm from './pages/Blog/BlogForm'
 
 export default function App() {
   const toasts = useToast()
+  const { isAuthenticated } = useAuth()
+
+  if (!isAuthenticated) return <Login />
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>

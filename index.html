@@ -227,6 +227,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem; color: var(--or); line-height: 1;
     }
+    .distinction-icon svg { display: block; }
     .distinction-name {
       font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--argent-clair); display: block; margin-bottom: 3px;
@@ -443,7 +444,31 @@
   <!-- DISTINCTIONS -->
   <div class="distinctions">
     <div class="distinction-item">
-      <div class="distinction-icon">✦</div>
+      <div class="distinction-icon">
+        <!-- Bib Gourmand Michelin — logo stylisé -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54" aria-label="Bib Gourmand Michelin">
+          <!-- Cercle de fond rouge Michelin -->
+          <circle cx="27" cy="27" r="27" fill="#e2231a"/>
+          <!-- Corps de Bibendum — torse arrondi fait de rouleaux -->
+          <ellipse cx="27" cy="33" rx="11" ry="8" fill="white" opacity="0.95"/>
+          <ellipse cx="27" cy="27" rx="9"  ry="6.5" fill="white" opacity="0.95"/>
+          <ellipse cx="27" cy="22" rx="7"  ry="5.5" fill="white" opacity="0.95"/>
+          <!-- Tête -->
+          <circle cx="27" cy="15" r="6" fill="white" opacity="0.95"/>
+          <!-- Yeux -->
+          <circle cx="24.8" cy="13.8" r="1.1" fill="#e2231a"/>
+          <circle cx="29.2" cy="13.8" r="1.1" fill="#e2231a"/>
+          <!-- Sourire -->
+          <path d="M24.5 16.8 Q27 18.6 29.5 16.8" stroke="#e2231a" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+          <!-- Bras gauche -->
+          <path d="M16 27 Q14 24 16.5 22" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.95"/>
+          <!-- Bras droit -->
+          <path d="M38 27 Q40 24 37.5 22" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.95"/>
+          <!-- Jambes -->
+          <path d="M22 40 Q21 44 20 46" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.95"/>
+          <path d="M32 40 Q33 44 34 46" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.95"/>
+        </svg>
+      </div>
       <div>
         <span class="distinction-name">Michelin</span>
         <span class="distinction-desc">Bib Gourmand</span>
@@ -505,60 +530,9 @@
         </p>
       </div>
       <div class="menu-grid">
-        <div class="menu-card">
-          <p class="menu-card-cat">Entrées</p>
-          <div class="menu-item">
-            <p class="menu-item-name">Terrine de foie gras maison</p>
-            <p class="menu-item-desc">Chutney de figues, brioche toastée</p>
-            <p class="menu-item-price">CHF 26.—</p>
-          </div>
-          <div class="menu-item">
-            <p class="menu-item-name">Saint-Jacques poêlées</p>
-            <p class="menu-item-desc">Velouté de topinambour, huile de truffe</p>
-            <p class="menu-item-price">CHF 32.—</p>
-          </div>
-          <div class="menu-item">
-            <p class="menu-item-name">Soupe à l'oignon gratinée</p>
-            <p class="menu-item-desc">Bouillon de bœuf, gruyère AOP vieux</p>
-            <p class="menu-item-price">CHF 18.—</p>
-          </div>
-        </div>
-        <div class="menu-card">
-          <p class="menu-card-cat">Plats</p>
-          <div class="menu-item">
-            <p class="menu-item-name">Filet de bœuf Rossini</p>
-            <p class="menu-item-desc">Foie gras, sauce Périgueux, pommes sarladaises</p>
-            <p class="menu-item-price">CHF 58.—</p>
-          </div>
-          <div class="menu-item">
-            <p class="menu-item-name">Turbot sauvage rôti</p>
-            <p class="menu-item-desc">Écrasé de pommes de terre, beurre blanc agrumes</p>
-            <p class="menu-item-price">CHF 52.—</p>
-          </div>
-          <div class="menu-item">
-            <p class="menu-item-name">Ris de veau aux morilles</p>
-            <p class="menu-item-desc">Jus corsé, purée truffée</p>
-            <p class="menu-item-price">CHF 48.—</p>
-          </div>
-        </div>
-        <div class="menu-card">
-          <p class="menu-card-cat">Desserts</p>
-          <div class="menu-item">
-            <p class="menu-item-name">Soufflé au Grand Marnier</p>
-            <p class="menu-item-desc">Crème anglaise vanille Bourbon</p>
-            <p class="menu-item-price">CHF 18.—</p>
-          </div>
-          <div class="menu-item">
-            <p class="menu-item-name">Millefeuille à la vanille</p>
-            <p class="menu-item-desc">Pâte feuilletée caramélisée, crème légère</p>
-            <p class="menu-item-price">CHF 16.—</p>
-          </div>
-          <div class="menu-item">
-            <p class="menu-item-name">Sélection de fromages affinés</p>
-            <p class="menu-item-desc">Plateau du fromager, confiture maison</p>
-            <p class="menu-item-price">CHF 22.—</p>
-          </div>
-        </div>
+        <div class="menu-card"></div>
+        <div class="menu-card"></div>
+        <div class="menu-card"></div>
       </div>
       <div class="menu-preview-footer">
         <a href="menu.html" class="btn-secondary">Voir la carte complète</a>
@@ -672,6 +646,26 @@
       burger.classList.toggle('open', menuOpen);
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     }
+
+    // Menu preview dynamique
+    function esc(str) {
+      return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    fetch('https://lagape-dashboard.vercel.app/api/carte').then(r => r.json()).then(data => {
+      const cards = document.querySelectorAll('.menu-card');
+      const cats = ['entrees', 'plats', 'desserts'];
+      const labels = { entrees: 'Entrées', plats: 'Plats', desserts: 'Desserts' };
+      cats.forEach((cat, i) => {
+        const items = (data.plats || []).filter(p => p.categorie === cat && p.actif !== false).slice(0, 3);
+        if (!items.length || !cards[i]) return;
+        cards[i].innerHTML = `<p class="menu-card-cat">${labels[cat]}</p>` +
+          items.map(p => `<div class="menu-item">
+            <p class="menu-item-name">${esc(p.nom)}</p>
+            <p class="menu-item-desc">${esc((p.description || '').split(',')[0])}</p>
+            <p class="menu-item-price">CHF ${esc(p.prix)}.—</p>
+          </div>`).join('');
+      });
+    }).catch(() => { /* fallback : contenu statique conservé */ });
   </script>
 </body>
 </html>
