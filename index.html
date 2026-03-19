@@ -230,25 +230,27 @@
       background: var(--bleu-profond);
       border-top: 1px solid rgba(184,196,208,0.08);
       border-bottom: 1px solid rgba(184,196,208,0.08);
-      padding: 50px 60px;
-      display: flex; align-items: center; justify-content: center; gap: 80px;
+      padding: 56px 60px;
+      display: flex; align-items: center; justify-content: center; gap: 120px;
       flex-wrap: wrap;
     }
     .distinction-item {
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
       text-align: center;
     }
-    .distinction-icon {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; color: var(--or); line-height: 1;
+    .distinction-icon { line-height: 1; }
+    .distinction-logo {
+      height: 50px;
+      opacity: 0.85;
+      transition: opacity 0.4s ease;
+      display: block;
     }
-    .distinction-icon svg { display: block; }
-    .distinction-name {
-      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--argent-clair); display: block; margin-bottom: 3px;
+    .distinction-logo:hover { opacity: 1; }
+    .distinction-label {
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--argent); font-weight: 300;
     }
-    .distinction-desc { font-size: 0.75rem; color: var(--texte-gris); }
-    .distinction-sep { width: 1px; height: 50px; background: rgba(184,196,208,0.15); }
+    .distinction-sep { width: 1px; height: 44px; background: rgba(184,196,208,0.12); }
 
     /* ── PRÉSENTATION ── */
     .presentation {
@@ -395,7 +397,7 @@
       section { padding: 70px 24px; }
       .hero-cta { flex-direction: column; align-items: center; gap: 12px; }
       .btn-primary, .btn-secondary, .btn-gift { width: 260px; text-align: center; }
-      .distinctions { padding: 40px 24px; gap: 40px; }
+      .distinctions { padding: 40px 24px; gap: 50px; }
       .distinction-sep { display: none; }
       .presentation { grid-template-columns: 1fr; gap: 40px; }
       .pres-image { aspect-ratio: 16/9; }
@@ -463,16 +465,16 @@
   <div class="distinctions">
     <div class="distinction-item">
       <div class="distinction-icon">
-        <img src="images/bib-gourmand.png" alt="Bib Gourmand Michelin" height="80" style="filter: brightness(0) invert(1);">
+        <img src="images/bib-gourmand.png" alt="Bib Gourmand Michelin" class="distinction-logo" style="filter: brightness(0) invert(1);">
       </div>
-      <span style="font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--argent-clair);">Bib Gourmand</span>
+      <span class="distinction-label">Bib Gourmand</span>
     </div>
     <div class="distinction-sep"></div>
     <div class="distinction-item">
       <div class="distinction-icon">
-        <img src="images/gault-millau.png" alt="Gault & Millau" height="80" style="filter: brightness(0) invert(1);">
+        <img src="images/gault-millau.png" alt="Gault & Millau" class="distinction-logo" style="filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg) brightness(1.05);">
       </div>
-      <span style="font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--argent-clair);">14/20</span>
+      <span class="distinction-label">14/20</span>
     </div>
   </div>
 
