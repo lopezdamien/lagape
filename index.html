@@ -165,7 +165,7 @@
       margin: 0 auto 50px;
     }
     .hero-cta {
-      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
     }
     .btn-primary {
       font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -180,6 +180,21 @@
       color: var(--argent-clair); text-decoration: none; transition: all 0.3s;
     }
     .btn-secondary:hover { border-color: var(--or); color: var(--or); }
+    .btn-gift {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 16px 40px; border: 1px solid var(--or);
+      color: var(--or); text-decoration: none; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .btn-gift::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--or); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+    .btn-gift:hover::before { transform: scaleX(1); }
+    .btn-gift span { position: relative; z-index: 1; transition: color 0.35s; }
+    .btn-gift:hover span { color: var(--bleu-nuit); }
     .hero-scroll {
       position: absolute; bottom: 40px;
       font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
@@ -378,6 +393,8 @@
       .nav-links, .nav-reserve { display: none; }
       .nav-burger { display: flex; }
       section { padding: 70px 24px; }
+      .hero-cta { flex-direction: column; align-items: center; gap: 12px; }
+      .btn-primary, .btn-secondary, .btn-gift { width: 260px; text-align: center; }
       .distinctions { padding: 40px 24px; gap: 40px; }
       .distinction-sep { display: none; }
       .presentation { grid-template-columns: 1fr; gap: 40px; }
@@ -437,6 +454,7 @@
     <div class="hero-cta">
       <a href="reservation.html" class="btn-primary">Réserver une table</a>
       <a href="menu.html" class="btn-secondary">Découvrir la carte</a>
+      <a href="mailto:contact@lagape.ch?subject=Bon%20cadeau%20L%27AGAPE" class="btn-gift"><span>◇ Offrir</span></a>
     </div>
     <div class="hero-scroll">Défiler</div>
   </section>
