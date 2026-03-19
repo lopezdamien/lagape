@@ -392,6 +392,70 @@
       font-size: 0.68rem; color: var(--texte-gris);
     }
 
+    /* ── POPUP ── */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(8,16,25,0.82);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .popup-overlay.visible { opacity: 1; pointer-events: all; }
+    .popup {
+      background: var(--bleu-profond);
+      border: 1px solid rgba(201,169,110,0.3);
+      max-width: 480px; width: 100%;
+      padding: 52px 48px 44px;
+      text-align: center;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.5s ease;
+    }
+    .popup-overlay.visible .popup { transform: translateY(0); }
+    .popup::before {
+      content: ''; position: absolute;
+      top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(201,169,110,0.08);
+      pointer-events: none;
+    }
+    .popup-close {
+      position: absolute; top: 18px; right: 20px;
+      background: none; border: none; cursor: pointer;
+      color: var(--texte-gris); font-size: 1.1rem; line-height: 1;
+      transition: color 0.3s; padding: 4px;
+    }
+    .popup-close:hover { color: var(--or); }
+    .popup-ornament {
+      font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 20px;
+    }
+    .popup-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 300; color: var(--blanc-casse);
+      line-height: 1.3; margin-bottom: 18px;
+    }
+    .popup-divider {
+      width: 40px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--or), transparent);
+      margin: 0 auto 20px;
+    }
+    .popup-text {
+      font-size: 0.82rem; color: var(--argent);
+      line-height: 1.8; margin-bottom: 34px;
+    }
+    .popup-btn {
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 14px 38px; background: var(--or); color: var(--bleu-nuit);
+      border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;
+      font-weight: 500; transition: background 0.3s;
+    }
+    .popup-btn:hover { background: var(--or-clair); }
+    @media (max-width: 900px) {
+      .popup { padding: 44px 28px 36px; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
@@ -414,6 +478,21 @@
   </style>
 </head>
 <body>
+
+  <!-- POPUP ANNONCE -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopup()" aria-label="Fermer">✕</button>
+      <p class="popup-ornament">Nouveauté · Avril 2026</p>
+      <h2 class="popup-title">Nous ouvrons<br/>le lundi</h2>
+      <div class="popup-divider"></div>
+      <p class="popup-text">
+        À partir du mois d'avril, L'AGAPE vous accueille également le lundi.<br/>
+        Midi et soir, de 12h à 14h &amp; de 19h à 21h.
+      </p>
+      <button class="popup-btn" onclick="closePopup()">Compris</button>
+    </div>
+  </div>
 
   <!-- NAVIGATION -->
   <nav id="main-nav">
@@ -620,6 +699,21 @@
   </footer>
 
   <script>
+    // Popup annonce
+    function closePopup() {
+      document.getElementById('popup-overlay').classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('popup-overlay').classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }, 800);
+    });
+    document.getElementById('popup-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+
     // Navbar scroll
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
