@@ -94,9 +94,10 @@
       pointer-events: all;
     }
     .mobile-overlay-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; letter-spacing: 0.12em; color: var(--or-clair);
-      margin-bottom: 48px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; letter-spacing: 0.2em; color: #ffffff;
+      font-weight: 700; text-transform: uppercase;
+      margin-bottom: 40px;
       opacity: 0; transform: translateY(18px);
       transition: opacity 0.4s 0.3s, transform 0.4s 0.3s;
     }
@@ -109,34 +110,36 @@
     .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
     .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
     .mobile-nav-list a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 9vw, 3.2rem);
-      font-weight: 300; color: var(--texte-clair);
-      text-decoration: none; letter-spacing: 0.06em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.8rem, 8vw, 2.8rem);
+      font-weight: 500; color: var(--grey-cloud);
+      text-decoration: none; letter-spacing: 0.1em;
+      text-transform: uppercase;
       display: block; padding: 10px 0; transition: color 0.3s;
     }
-    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or-clair); }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or); }
     .mobile-reserve-wrap {
-      margin-top: 44px;
+      margin-top: 40px;
       opacity: 0; transform: translateY(18px);
       transition: opacity 0.4s 0.6s, transform 0.4s 0.6s;
     }
     .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
     .mobile-reserve-wrap a {
-      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      padding: 13px 38px; border: 1px solid var(--or);
+      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 14px 42px; border: 1px solid var(--or);
       color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s;
+      font-family: 'Barlow', sans-serif; font-weight: 500;
     }
-    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
+    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bg-dark); }
     .mobile-social-row {
-      position: absolute; bottom: 36px;
-      display: flex; gap: 28px;
+      margin-top: 32px;
+      display: flex; gap: 24px;
       opacity: 0; transition: opacity 0.4s 0.65s;
     }
     .mobile-overlay.open .mobile-social-row { opacity: 1; }
     .mobile-social-row a {
       font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--texte-gris); text-decoration: none; transition: color 0.3s;
+      color: var(--text-muted); text-decoration: none; transition: color 0.3s;
     }
     .mobile-social-row a:hover { color: var(--or); }
 
@@ -220,6 +223,7 @@
       content: ''; display: block; width: 1px; height: 40px;
       background: linear-gradient(to bottom, var(--texte-gris), transparent);
     }
+    @media (max-width: 900px) { .hero-scroll { display: none; } }
 
     /* ── SECTIONS COMMUNES ── */
     section { padding: 100px 60px; }
@@ -285,8 +289,8 @@
       width: 100%; height: 100%;
       background: linear-gradient(135deg, var(--bleu-moyen) 0%, #243a56 100%);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; color: var(--texte-gris); letter-spacing: 0.1em;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem; color: var(--texte-gris); letter-spacing: 0.1em;
     }
     .pres-image::after {
       content: ''; position: absolute;
@@ -296,10 +300,11 @@
     .pres-content { padding: 20px 0; }
     .pres-content .section-text { max-width: 100%; margin-bottom: 32px; }
     .pres-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-style: italic;
-      color: var(--or-clair); border-left: 1px solid var(--or);
-      padding-left: 20px; margin: 24px 0; line-height: 1.6;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem; font-style: italic;
+      font-weight: 300;
+      color: var(--or-clair); border-left: 2px solid var(--or);
+      padding-left: 20px; margin: 24px 0; line-height: 1.7;
     }
 
     /* ── MISE EN AVANT MENU ── */
@@ -325,9 +330,9 @@
     .menu-item { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid rgba(184,196,208,0.08); }
     .menu-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .menu-item-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; font-weight: 400; color: var(--blanc-casse);
-      margin-bottom: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem; font-weight: 500; color: var(--blanc-casse);
+      margin-bottom: 4px; letter-spacing: 0.05em; text-transform: uppercase;
     }
     .menu-item-desc { font-size: 0.75rem; color: var(--texte-gris); margin-bottom: 6px; }
     .menu-item-price { font-size: 0.8rem; color: var(--or); letter-spacing: 0.05em; }
@@ -382,8 +387,9 @@
       gap: 60px; margin-bottom: 40px;
     }
     .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; color: var(--or-clair); margin-bottom: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; font-weight: 700; color: var(--grey-cloud);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
     }
     .footer-tagline { font-size: 0.75rem; color: var(--texte-gris); margin-bottom: 20px; }
     .footer-social { display: flex; gap: 16px; }

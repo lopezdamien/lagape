@@ -15,7 +15,7 @@ export default function Sidebar() {
     <aside style={{
       width: 'var(--sidebar-width)',
       minHeight: '100vh',
-      background: 'var(--bleu-profond)',
+      background: 'var(--blue-paon)',
       borderRight: '1px solid var(--border)',
       display: 'flex',
       flexDirection: 'column',
@@ -30,18 +30,19 @@ export default function Sidebar() {
         borderBottom: '1px solid var(--border)',
       }}>
         <div style={{
-          fontFamily: 'Cormorant Garamond, serif',
-          fontSize: '1.7rem',
-          fontWeight: 400,
-          color: 'var(--or-clair)',
-          letterSpacing: '0.1em',
+          fontFamily: 'Barlow Condensed, sans-serif',
+          fontSize: '1.8rem',
+          fontWeight: 700,
+          color: '#ffffff',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
           marginBottom: '4px',
         }}>L'AGAPE</div>
         <div style={{
           fontSize: '0.58rem',
           letterSpacing: '0.3em',
           textTransform: 'uppercase',
-          color: 'var(--texte-gris)',
+          color: 'var(--text-muted)',
         }}>Administration</div>
       </div>
 
@@ -58,13 +59,14 @@ export default function Sidebar() {
               gap: '14px',
               padding: '13px 28px',
               fontSize: '0.72rem',
-              letterSpacing: '0.14em',
+              letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: isActive ? 'var(--or)' : 'var(--texte-gris)',
-              background: isActive ? 'rgba(201,169,110,0.07)' : 'transparent',
+              color: isActive ? 'var(--or)' : 'var(--grey-cloud)',
+              background: isActive ? 'rgba(201,169,110,0.08)' : 'transparent',
               borderLeft: isActive ? '2px solid var(--or)' : '2px solid transparent',
               transition: 'all 0.2s',
               textDecoration: 'none',
+              fontWeight: isActive ? 500 : 300,
             })}
           >
             <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>{item.icon}</span>
@@ -89,14 +91,14 @@ export default function Sidebar() {
             fontSize: '0.62rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'var(--texte-gris)',
+            color: 'var(--text-muted)',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
             transition: 'color 0.2s',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--or)'}
-          onMouseLeave={e => e.currentTarget.style.color = 'var(--texte-gris)'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
         >
           ↗ Voir le site
         </a>
@@ -109,13 +111,13 @@ export default function Sidebar() {
             fontSize: '0.62rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'var(--texte-gris)',
+            color: 'var(--text-muted)',
             cursor: 'pointer',
             textAlign: 'left',
             transition: 'color 0.2s',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--danger)'}
-          onMouseLeave={e => e.currentTarget.style.color = 'var(--texte-gris)'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
         >
           ⎋ Déconnexion
         </button>

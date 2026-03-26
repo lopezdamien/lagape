@@ -7,26 +7,28 @@ export default function Header({ title, subtitle, actions }) {
       alignItems: 'center',
       justifyContent: 'space-between',
       padding: '0 40px',
-      background: 'var(--bleu-nuit)',
+      background: 'var(--bg-dark)',
       position: 'sticky',
       top: 0,
       zIndex: 5,
     }}>
       <div>
         <div style={{
-          fontFamily: 'Cormorant Garamond, serif',
-          fontSize: '1.3rem',
-          fontWeight: 400,
-          color: 'var(--blanc-casse)',
-          letterSpacing: '0.04em',
+          fontFamily: 'Barlow Condensed, sans-serif',
+          fontSize: '1.4rem',
+          fontWeight: 700,
+          color: '#ffffff',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
         }}>{title}</div>
         {subtitle && (
           <div style={{
             fontSize: '0.62rem',
-            letterSpacing: '0.2em',
+            letterSpacing: '0.22em',
             textTransform: 'uppercase',
-            color: 'var(--texte-gris)',
+            color: 'var(--text-muted)',
             marginTop: '2px',
+            fontWeight: 400,
           }}>{subtitle}</div>
         )}
       </div>

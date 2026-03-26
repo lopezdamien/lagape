@@ -48,7 +48,7 @@
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
     .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
     .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
-    .mobile-overlay-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; letter-spacing: 0.12em; color: var(--or-clair); margin-bottom: 48px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; }
+    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 700; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; }
     .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
     .mobile-nav-list { list-style: none; text-align: center; }
     .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
@@ -57,15 +57,15 @@
     .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
     .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
     .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
-    .mobile-nav-list a { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 9vw, 3.2rem); font-weight: 300; color: var(--texte-clair); text-decoration: none; letter-spacing: 0.06em; display: block; padding: 10px 0; transition: color 0.3s; }
-    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or-clair); }
+    .mobile-nav-list a { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 8vw, 2.8rem); font-weight: 500; color: var(--grey-cloud); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; display: block; padding: 10px 0; transition: color 0.3s; }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or); }
     .mobile-reserve-wrap { margin-top: 44px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.6s, transform 0.4s 0.6s; }
     .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
     .mobile-reserve-wrap a { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 38px; border: 1px solid var(--or); color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s; }
     .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
-    .mobile-social-row { position: absolute; bottom: 36px; display: flex; gap: 28px; opacity: 0; transition: opacity 0.4s 0.65s; }
+    .mobile-social-row { margin-top: 32px; display: flex; gap: 24px; opacity: 0; transition: opacity 0.4s 0.65s; }
     .mobile-overlay.open .mobile-social-row { opacity: 1; }
-    .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--texte-gris); text-decoration: none; transition: color 0.3s; }
+    .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
     .mobile-social-row a:hover { color: var(--or); }
 
     /* PAGE HEADER */
@@ -109,7 +109,7 @@
     }
     .galerie-placeholder {
       width: 100%; display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif; font-size: 0.85rem;
+      font-family: 'Barlow', sans-serif; font-size: 0.8rem;
       color: var(--texte-gris); letter-spacing: 0.08em;
     }
     .galerie-overlay {
@@ -136,7 +136,7 @@
     .lightbox-placeholder {
       width: 600px; max-width: 80vw; aspect-ratio: 4/3;
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-family: 'Barlow', sans-serif; font-size: 0.9rem;
       color: var(--texte-gris);
     }
     .lightbox-close {
@@ -166,7 +166,7 @@
 
     /* CTA */
     .cta-band { background: var(--bleu-profond); padding: 60px; text-align: center; border-top: 1px solid rgba(184,196,208,0.08); }
-    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--blanc-casse); margin-bottom: 12px; }
+    .cta-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
     .cta-title em { font-style: italic; color: var(--or-clair); }
     .cta-text { font-size: 0.85rem; color: var(--argent); margin-bottom: 28px; }
     .btn-primary { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 40px; background: var(--or); color: var(--bleu-nuit); text-decoration: none; transition: all 0.3s; font-weight: 500; display: inline-block; }
@@ -174,7 +174,7 @@
 
     footer { background: rgba(8,16,25,0.98); border-top: 1px solid rgba(184,196,208,0.08); padding: 40px 60px 24px; }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: var(--texte-gris); }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--or-clair); }
+    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--grey-cloud); letter-spacing: 0.15em; text-transform: uppercase; }
 
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
