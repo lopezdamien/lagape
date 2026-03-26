@@ -4,6 +4,7 @@ import { ToastContainer, useToast } from './components/ui/Toast'
 import { useAuth } from './contexts/AuthContext'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Accueil from './pages/Accueil'
 import CarteList from './pages/Carte/CarteList'
 import CarteForm from './pages/Carte/CarteForm'
 import GalerieGrid from './pages/Galerie/GalerieGrid'
@@ -27,6 +28,7 @@ export default function App() {
       }}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/accueil" element={<Accueil />} />
           <Route path="/carte" element={<CarteList />} />
           <Route path="/carte/nouveau" element={<CarteForm />} />
           <Route path="/carte/:type/:id" element={<CarteForm />} />

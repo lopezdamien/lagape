@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext'
 
 const navItems = [
   { to: '/', label: 'Tableau de bord', icon: '◈', end: true },
+  { to: '/accueil', label: "Page d'accueil", icon: '⌂' },
   { to: '/carte', label: 'La Carte', icon: '❧' },
   { to: '/galerie', label: 'Galerie', icon: '✦' },
   { to: '/blog', label: 'Blog', icon: '◎' },

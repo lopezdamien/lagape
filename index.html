@@ -284,6 +284,12 @@
     .pres-image {
       aspect-ratio: 4/5; background: var(--bleu-moyen);
       position: relative; overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(201,169,110,0.3);
+      box-shadow:
+        0 0 0 6px rgba(0,43,60,0.8),
+        0 0 0 7px rgba(201,169,110,0.15),
+        0 24px 60px rgba(0,0,0,0.4);
     }
     .pres-image-placeholder {
       width: 100%; height: 100%;
@@ -291,11 +297,7 @@
       display: flex; align-items: center; justify-content: center;
       font-family: 'Barlow', sans-serif;
       font-size: 0.8rem; color: var(--texte-gris); letter-spacing: 0.1em;
-    }
-    .pres-image::after {
-      content: ''; position: absolute;
-      top: -15px; left: -15px; right: 15px; bottom: 15px;
-      border: 1px solid rgba(201,169,110,0.25); pointer-events: none;
+      border-radius: 4px;
     }
     .pres-content { padding: 20px 0; }
     .pres-content .section-text { max-width: 100%; margin-bottom: 32px; }
@@ -306,6 +308,8 @@
       color: var(--or-clair); border-left: 2px solid var(--or);
       padding-left: 20px; margin: 24px 0; line-height: 1.7;
     }
+    .pres-content .btn-secondary { margin-top: 32px; display: inline-block; }
+
 
     /* ── MISE EN AVANT MENU ── */
     .menu-preview { background: var(--bleu-profond); }
@@ -517,8 +521,7 @@
       <h2 class="popup-title">Nous ouvrons<br/>le lundi</h2>
       <div class="popup-divider"></div>
       <p class="popup-text">
-        À partir du mois d'avril, L'AGAPE vous accueille également le lundi.<br/>
-        Midi et soir, de 12h à 14h &amp; de 19h à 21h.
+        À partir du mois d'avril, L'AGAPE vous accueille également le lundi, pour les services du midi et du soir.
       </p>
       <button class="popup-btn" onclick="closePopup()">Compris</button>
     </div>
@@ -560,7 +563,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-ornament">Genève · Restaurant Bistronomique</p>
+    <p class="hero-ornament">· Genève ·<br/>Restaurant bistronomique</p>
     <h1 class="hero-title">L'AGAPE</h1>
     <p class="hero-subtitle">Cuisine vivante · Saveurs · Partage</p>
     <div class="hero-divider"></div>
@@ -578,14 +581,12 @@
       <div class="distinction-icon">
         <img src="images/bib-gourmand.png" alt="Bib Gourmand Michelin" class="distinction-logo" style="filter: brightness(0) invert(1);">
       </div>
-      <span class="distinction-label">Bib Gourmand</span>
     </div>
     <div class="distinction-sep"></div>
     <div class="distinction-item">
       <div class="distinction-icon">
         <img src="images/gault-millau.png" alt="Gault & Millau" class="distinction-logo distinction-logo-sm" style="filter: brightness(0) invert(1);">
       </div>
-      <span class="distinction-label">14/20</span>
     </div>
   </div>
 
@@ -593,22 +594,23 @@
   <section style="padding-top: 110px; padding-bottom: 110px;">
     <div class="presentation">
       <div class="pres-image">
-        <div class="pres-image-placeholder">
+        <div class="pres-image-placeholder" id="pres-photo-placeholder">
           · Photo du restaurant ·
         </div>
+        <img id="pres-photo-img" src="" alt="L'AGAPE restaurant" style="width:100%;height:100%;object-fit:cover;display:none;"/>
       </div>
       <div class="pres-content">
         <p class="section-label">Notre philosophie</p>
-        <h2 class="section-title">Une cuisine <em>sincère</em>,<br/>des produits de saison</h2>
+        <h2 class="section-title">Une cuisine <em>sincère</em>,<br/>des produits<br/><em>de saison</em></h2>
         <div class="section-divider"></div>
         <p class="section-text">
-          Au cœur de Genève, L'AGAPE est un lieu de partage où la gastronomie rencontre la convivialité.
+          À deux pas du vieux Carouge et non loin du centre ville de Genève, L'AGAPE est un lieu de partage où la gastronomie rencontre la convivialité.
           Notre cuisine bistronomique valorise les producteurs locaux et les saisons, pour une expérience
           authentique et raffinée, accessible à tous.
         </p>
         <blockquote class="pres-quote">
-          « L'agapé, du grec ancien, est le festin offert à tous.<br/>
-          C'est l'âme même de notre table. »
+          « Les agapes, premiers festins de l’histoire,<br/>célèbrent l’art de se réunir et de partager.<br/>
+          Une tradition vivante, que nous faisons nôtre à chaque service. »
         </blockquote>
         <a href="histoire.html" class="btn-secondary">Notre histoire</a>
       </div>
@@ -647,20 +649,22 @@
       </div>
       <div class="infos-grid">
         <div>
-          <p class="info-block-title">Horaires d'ouverture</p>
-          <div class="horaires-row"><span class="jour">Lundi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
-          <div class="horaires-row"><span class="jour">Mardi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
-          <div class="horaires-row"><span class="jour">Mercredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
-          <div class="horaires-row"><span class="jour">Jeudi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
-          <div class="horaires-row"><span class="jour">Vendredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
-          <div class="horaires-row"><span class="jour">Samedi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
+          <p class="info-block-title">Horaires d'ouverture de notre cuisine</p>
+          <div class="horaires-row"><span class="jour">Lundi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+          <div class="horaires-row"><span class="jour">Mardi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+          <div class="horaires-row"><span class="jour">Mercredi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+          <div class="horaires-row"><span class="jour">Jeudi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+          <div class="horaires-row"><span class="jour">Vendredi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+          <div class="horaires-row"><span class="jour">Samedi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
           <div class="horaires-row ferme"><span class="jour">Dimanche</span><span class="heure">Fermé</span></div>
         </div>
         <div>
           <p class="info-block-title">Contact &amp; Adresse</p>
           <div class="contact-item">
             <span class="contact-icon">↟</span>
-            <span>Rue Caroline, 11<br/>1227 Les Acacias, Suisse</span>
+            <a href="https://maps.google.com/?q=Rue+Caroline+11,+1227+Les+Acacias,+Gen%C3%A8ve" target="_blank" rel="noreferrer">
+              Rue Caroline, 11<br/>1227 Les Acacias, Suisse
+            </a>
           </div>
           <div class="contact-item">
             <span class="contact-icon">↝</span>
@@ -694,7 +698,6 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo">L'AGAPE</div>
-        <p class="footer-tagline">Restaurant Bistronomique · Genève</p>
         <div class="footer-logo-container" style="margin: 30px 0; border: 1px solid rgba(209, 217, 225, 0.1); padding: 40px; display: inline-block; border-radius: 4px;">
            <!-- Pictogramme placeholder based on new branding -->
            <div style="width: 100px; height: 100px; border: 2px solid var(--grey-cloud); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; position: relative;">
@@ -731,7 +734,6 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 L'AGAPE — Rue Caroline, 11 · Les Acacias</span>
-      <span>Bib Gourmand Michelin · Gault &amp; Millau</span>
     </div>
   </footer>
 
@@ -750,6 +752,51 @@
     document.getElementById('popup-overlay').addEventListener('click', function(e) {
       if (e.target === this) closePopup();
     });
+
+    // Chargement dynamique des éléments (logo, photo)
+    (async function loadSiteConfig() {
+      try {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocal
+          ? 'http://localhost:3001'
+          : 'https://lagape-dashboard.vercel.app';
+        const r = await fetch(`${API_BASE}/api/siteconfig`);
+        if (!r.ok) return;
+        const data = await r.json();
+
+        // Photo présentation
+        if (data.photoAccueil) {
+          const img = document.getElementById('pres-photo-img');
+          const placeholder = document.getElementById('pres-photo-placeholder');
+          img.src = `${API_BASE}/uploads/siteconfig/${data.photoAccueil}`;
+          img.onload = () => {
+            placeholder.style.display = 'none';
+            img.style.display = 'block';
+          };
+        }
+
+        // Logo dynamique
+        if (data.logo) {
+          const logoUrl = `${API_BASE}/uploads/siteconfig/${data.logo}`;
+          const logoImgHtml = `<img src="${logoUrl}" alt="L'AGAPE" style="height: 44px; width: auto; display: block;"/>`;
+          
+          // Navigation
+          const navLogo = document.querySelector('.nav-logo');
+          if (navLogo) navLogo.innerHTML = logoImgHtml;
+          
+          // Mobile Overlay
+          const mobileLogo = document.querySelector('.mobile-overlay-logo');
+          if (mobileLogo) mobileLogo.innerHTML = logoImgHtml;
+          
+          // Footer
+          const footerLogos = document.querySelectorAll('.footer-logo');
+          footerLogos.forEach(fl => {
+            fl.innerHTML = logoImgHtml;
+            fl.style.height = 'auto'; // Reset potential constraints
+          });
+        }
+      } catch(e) { /* fallback static */ }
+    })();
 
     // Navbar scroll
     const nav = document.getElementById('main-nav');

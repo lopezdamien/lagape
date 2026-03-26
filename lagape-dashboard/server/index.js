@@ -6,6 +6,7 @@ import { createHmac } from 'crypto'
 import carteRouter from './routes/carte.js'
 import galerieRouter from './routes/galerie.js'
 import blogRouter from './routes/blog.js'
+import siteconfigRouter from './routes/siteconfig.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
@@ -36,6 +37,7 @@ app.post('/api/auth', (req, res) => {
 app.use('/api/carte', carteRouter)
 app.use('/api/galerie', galerieRouter)
 app.use('/api/blog', blogRouter)
+app.use('/api/siteconfig', siteconfigRouter)
 
 app.listen(PORT, () => {
   console.log(`✦ L'AGAPE API — http://localhost:${PORT}`)
