@@ -62,7 +62,7 @@
     .nav-links a {
       text-decoration: none; color: var(--grey-cloud);
       font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 400; transition: color 0.3s;
+      font-weight: 600; transition: color 0.3s;
     }
     .nav-links a:hover { color: var(--grey-cloud-light); opacity: 0.8; }
     .nav-reserve {
@@ -256,23 +256,23 @@
       flex-wrap: wrap;
     }
     .distinction-item {
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
-      text-align: center;
+      display: flex; flex-direction: row; align-items: center; gap: 20px;
+      text-align: left;
     }
-    .distinction-icon { line-height: 1; }
+    .distinction-icon { line-height: 1; flex-shrink: 0; }
     .distinction-logo {
-      height: 136px;
+      height: 90px;
       opacity: 0.85;
       transition: opacity 0.4s ease;
       display: block;
     }
     .distinction-logo-sm {
-      height: 120px;
+      height: 80px;
     }
     .distinction-logo:hover { opacity: 1; }
     .distinction-label {
-      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--argent); font-weight: 300;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--grey-cloud); font-weight: 700;
     }
     .distinction-sep { width: 1px; height: 44px; background: rgba(184,196,208,0.12); }
 
@@ -528,7 +528,6 @@
   <nav id="main-nav">
     <a href="index.html" class="nav-logo">L'AGAPE</a>
     <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
       <li><a href="menu.html">La Carte</a></li>
       <li><a href="histoire.html">Notre Histoire</a></li>
       <li><a href="galerie.html">Galerie</a></li>
@@ -600,7 +599,7 @@
       </div>
       <div class="pres-content">
         <p class="section-label">Notre philosophie</p>
-        <h2 class="section-title">Une cuisine <em>sincère</em>,<br/>des produits d'exception</h2>
+        <h2 class="section-title">Une cuisine <em>sincère</em>,<br/>des produits de saison</h2>
         <div class="section-divider"></div>
         <p class="section-text">
           Au cœur de Genève, L'AGAPE est un lieu de partage où la gastronomie rencontre la convivialité.
@@ -620,11 +619,11 @@
   <section class="menu-preview">
     <div class="menu-preview-inner">
       <div class="menu-preview-header">
-        <p class="section-label">Hiver 2026</p>
+        <p class="section-label">Printemps 2026</p>
         <h2 class="section-title">La Carte <em>du moment</em></h2>
         <div class="section-divider"></div>
         <p class="section-text" style="margin: 0 auto; text-align: center; max-width: 500px;">
-          Une sélection de notre carte actuelle — renouvelée au fil des marchés et des saisons.
+          Une sélection de notre carte actuelle, renouvelée au fil des saisons.
         </p>
       </div>
       <div class="menu-grid">
@@ -649,7 +648,7 @@
       <div class="infos-grid">
         <div>
           <p class="info-block-title">Horaires d'ouverture</p>
-          <div class="horaires-row ferme"><span class="jour">Lundi</span><span class="heure">Fermé</span></div>
+          <div class="horaires-row"><span class="jour">Lundi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
           <div class="horaires-row"><span class="jour">Mardi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
           <div class="horaires-row"><span class="jour">Mercredi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
           <div class="horaires-row"><span class="jour">Jeudi</span><span class="heure">12h–14h &amp; 19h–21h</span></div>
@@ -661,7 +660,7 @@
           <p class="info-block-title">Contact &amp; Adresse</p>
           <div class="contact-item">
             <span class="contact-icon">↟</span>
-            <span>11 Rue Caroline<br/>1227 Genève, Suisse</span>
+            <span>Rue Caroline, 11<br/>1227 Les Acacias, Suisse</span>
           </div>
           <div class="contact-item">
             <span class="contact-icon">↝</span>
@@ -731,7 +730,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 L'AGAPE — 11 Rue Caroline, Genève</span>
+      <span>© 2026 L'AGAPE — Rue Caroline, 11 · Les Acacias</span>
       <span>Bib Gourmand Michelin · Gault &amp; Millau</span>
     </div>
   </footer>
