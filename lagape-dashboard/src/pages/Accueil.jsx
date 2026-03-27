@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Header from '../components/layout/Header'
 import Button from '../components/ui/Button'
+import { apiFetch } from '../lib/api'
 
 const API = '/api/siteconfig'
 const UPLOADS = 'http://localhost:3001/uploads/siteconfig'
@@ -13,7 +14,7 @@ export default function Accueil() {
   const photoInputRef = useRef()
 
   useEffect(() => {
-    fetch(API)
+    apiFetch(API)
       .then(r => r.json())
       .then(data => { setConfig(data); setLoading(false) })
       .catch(() => setLoading(false))
@@ -34,7 +35,7 @@ export default function Accueil() {
     fd.append('photo', file)
 
     try {
-      const r = await fetch(`${API}/photo-accueil`, { method: 'POST', body: fd })
+      const r = await apiFetch(`${API}/photo-accueil`, { method: 'POST', body: fd })
       const data = await r.json()
       if (r.ok) {
         setConfig(c => ({ ...c, photoAccueil: data.photoAccueil }))
@@ -53,7 +54,7 @@ export default function Accueil() {
   async function handleDelete() {
     if (!confirm('Supprimer la photo de présentation ?')) return
     try {
-      const r = await fetch(`${API}/photo-accueil`, { method: 'DELETE' })
+      const r = await apiFetch(`${API}/photo-accueil`, { method: 'DELETE' })
       if (r.ok) {
         setConfig(c => ({ ...c, photoAccueil: null }))
         notify('Photo supprimée')

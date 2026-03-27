@@ -44,7 +44,7 @@ export default function Sidebar() {
           letterSpacing: '0.3em',
           textTransform: 'uppercase',
           color: 'var(--text-muted)',
-        }}>Gestion</div>
+        }}>Administration</div>
       </div>
 
       {/* Navigation */}

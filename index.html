@@ -736,9 +736,12 @@
       document.body.style.overflow = '';
     }
     window.addEventListener('load', () => {
+      if (localStorage.getItem('lagape_popup_shown')) return;
+      
       setTimeout(() => {
         document.getElementById('popup-overlay').classList.add('visible');
         document.body.style.overflow = 'hidden';
+        localStorage.setItem('lagape_popup_shown', 'true');
       }, 800);
     });
     document.getElementById('popup-overlay').addEventListener('click', function(e) {
