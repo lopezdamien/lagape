@@ -183,8 +183,10 @@
     }
     .hero-cta {
       display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      position: relative; z-index: 5;
     }
     .btn-primary {
+      display: inline-block;
       font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
       padding: 16px 40px; background: var(--or); color: var(--bg-dark);
       text-decoration: none; transition: all 0.3s;
@@ -192,6 +194,7 @@
     }
     .btn-primary:hover { background: var(--or-clair); }
     .btn-secondary {
+      display: inline-block;
       font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
       padding: 16px 40px; border: 1px solid var(--grey-cloud);
       color: var(--grey-cloud); text-decoration: none; transition: all 0.3s;
