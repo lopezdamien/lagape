@@ -11,6 +11,7 @@ import GalerieGrid from './pages/Galerie/GalerieGrid'
 import BlogList from './pages/Blog/BlogList'
 import BlogForm from './pages/Blog/BlogForm'
 
+// Force-trigger build on Vercel (Mar 27)
 export default function App() {
   const toasts = useToast()
   const { isAuthenticated } = useAuth()
