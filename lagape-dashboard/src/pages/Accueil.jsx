@@ -63,7 +63,9 @@ export default function Accueil() {
     }
   }
 
-  const photoUrl = config?.photoAccueil ? `${UPLOADS}/${config.photoAccueil}` : null
+  const photoUrl = config?.photoAccueil 
+    ? (config.photoAccueil.startsWith('http') ? config.photoAccueil : `${UPLOADS}/${config.photoAccueil}`) 
+    : null
 
   return (
     <div>

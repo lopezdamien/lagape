@@ -760,7 +760,8 @@
         if (data.photoAccueil) {
           const img = document.getElementById('pres-photo-img');
           const placeholder = document.getElementById('pres-photo-placeholder');
-          img.src = `${API_BASE}/uploads/siteconfig/${data.photoAccueil}`;
+          const isFullUrl = data.photoAccueil.startsWith('http');
+          img.src = isFullUrl ? data.photoAccueil : `${API_BASE}/uploads/siteconfig/${data.photoAccueil}`;
           img.onload = () => {
             placeholder.style.display = 'none';
             img.style.display = 'block';
