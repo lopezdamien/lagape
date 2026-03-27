@@ -10,7 +10,7 @@ const TYPE_LABELS = { formules: 'Formule', plats: 'Plat', vins: 'Vin' }
 const PLAT_CATS = [
   { value: 'entrees', label: 'Entrées' },
   { value: 'plats', label: 'Plats' },
-  { value: 'desserts', label: 'Desserts' },
+  { value: 'desserts', label: 'Fromages & Desserts' },
 ]
 
 const VIN_CATS = [

@@ -10,7 +10,7 @@ const TABS = [
   { id: 'formules', label: 'Formules' },
   { id: 'entrees', label: 'Entrées' },
   { id: 'plats', label: 'Plats' },
-  { id: 'desserts', label: 'Desserts' },
+  { id: 'desserts', label: 'Fromages & Desserts' },
   { id: 'vins', label: 'Vins' },
 ]
 
