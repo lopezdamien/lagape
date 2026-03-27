@@ -14,14 +14,13 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, UPLOADS_DIR),
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase()
-    const prefix = req.path.includes('logo') ? 'logo' : 'photo-accueil'
-    cb(null, `${prefix}-${Date.now()}${ext}`)
+    cb(null, `photo-accueil-${Date.now()}${ext}`)
   }
 })
 const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
-    const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']
+    const allowed = ['image/jpeg', 'image/png', 'image/webp']
     cb(null, allowed.includes(file.mimetype))
   },
   limits: { fileSize: 10 * 1024 * 1024 }
@@ -32,7 +31,7 @@ async function readData() {
     const raw = await fs.readFile(DATA_FILE, 'utf-8')
     return JSON.parse(raw)
   } catch {
-    return { photoAccueil: null, logo: null }
+    return { photoAccueil: null }
   }
 }
 
@@ -68,22 +67,6 @@ router.post('/photo-accueil', upload.single('photo'), async (req, res) => {
   }
 })
 
-// POST /api/siteconfig/logo
-router.post('/logo', upload.single('photo'), async (req, res) => {
-  try {
-    const data = await readData()
-    if (data.logo) {
-      const old = path.join(UPLOADS_DIR, data.logo)
-      await fs.unlink(old).catch(() => {})
-    }
-    data.logo = req.file ? req.file.filename : null
-    await writeData(data)
-    res.json({ logo: data.logo })
-  } catch {
-    res.status(500).json({ error: 'Erreur upload logo' })
-  }
-})
-
 // DELETE /api/siteconfig/photo-accueil
 router.delete('/photo-accueil', async (req, res) => {
   try {
@@ -97,22 +80,6 @@ router.delete('/photo-accueil', async (req, res) => {
     res.json({ success: true })
   } catch {
     res.status(500).json({ error: 'Erreur suppression photo' })
-  }
-})
-
-// DELETE /api/siteconfig/logo
-router.delete('/logo', async (req, res) => {
-  try {
-    const data = await readData()
-    if (data.logo) {
-      const filepath = path.join(UPLOADS_DIR, data.logo)
-      await fs.unlink(filepath).catch(() => {})
-      data.logo = null
-      await writeData(data)
-    }
-    res.json({ success: true })
-  } catch {
-    res.status(500).json({ error: 'Erreur suppression logo' })
   }
 })
 
