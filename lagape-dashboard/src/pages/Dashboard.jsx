@@ -27,7 +27,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Header title="Tableau de bord" subtitle="L'AGAPE · Administration" />
+      <Header title="Tableau de bord !!! TEST !!!" subtitle="L'AGAPE · Administration" />
       <div style={{ padding: '40px' }}>
 
         {/* Stats */}
