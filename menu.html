@@ -272,8 +272,16 @@
         <h2 class="menu-section-title">Carte des Vins</h2>
         <p class="menu-section-subtitle">Sélection de notre sommelier</p>
       </div>
-      <div class="menu-note">
-        Carte des vins disponible sur demande. Notre sommelier se fera un plaisir de vous conseiller.
+      <div style="text-align: center; padding: 40px 0;">
+        <p style="font-size: 0.9rem; color: var(--grey-cloud); margin-bottom: 30px; line-height: 1.6;">
+          Découvrez notre sélection de vins, <br/>
+          mise à jour régulièrement par notre sommelier.
+        </p>
+        <a href="https://app.sommit.io/v4/public/menus/e95625ba-02ec-4696-bf2f-ed9c90eec93c?source=qrCode" 
+           target="_blank" 
+           style="display: inline-block; padding: 18px 40px; border: 1px solid var(--or); color: var(--or); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s; font-weight: 500;">
+          Consulter la carte des vins ↗
+        </a>
       </div>
     </div>
 
@@ -367,7 +375,7 @@
       renderPlats(data.plats || [], 'entrees');
       renderPlats(data.plats || [], 'plats');
       renderPlats(data.plats || [], 'desserts');
-      renderVins(data.vins || []);
+      // renderVins(data.vins || []);
     }).catch(() => { /* fallback : contenu statique conservé */ });
   </script>
 </body>
