@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 router.post('/plats', async (req, res) => {
   try {
     const data = await readData()
-    const plat = { id: uuidv4(), ...req.body, actif: true, ordre: data.plats.length + 1 }
+    const plat = { id: uuidv4(), ...req.body, ordre: data.plats.length + 1 }
     data.plats.push(plat)
     await writeData(data)
     res.status(201).json(plat)

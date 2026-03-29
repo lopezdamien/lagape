@@ -153,9 +153,46 @@
     }
 
     /* FOOTER */
-    footer { background: rgba(8,16,25,0.98); border-top: 1px solid rgba(184,196,208,0.08); padding: 40px 60px 24px; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: var(--texte-gris); }
-    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--grey-cloud); letter-spacing: 0.15em; text-transform: uppercase; }
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(8, 16, 25, 0.98);
+      border-top: 1px solid rgba(184,196,208,0.08);
+      padding: 80px 60px 40px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .footer-tagline { font-size: 0.88rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
+    .footer-social { display: flex; gap: 20px; }
+    .footer-social a {
+      color: var(--blanc-casse); opacity: 0.9;
+      text-decoration: none; transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-social a:hover { color: var(--or); opacity: 1; transform: translateY(-2px); }
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 24px; font-weight: 600;
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 14px; }
+    .footer-links a {
+      font-size: 0.85rem; color: var(--argent); text-decoration: none; transition: color 0.3s;
+      font-weight: 300; letter-spacing: 0.03em;
+    }
+    .footer-links a:hover { color: var(--blanc-casse); }
+    .footer-bottom {
+      border-top: 1px solid rgba(184,196,208,0.08);
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.72rem; color: rgba(184,196,208,0.4); font-weight: 300; letter-spacing: 0.05em;
+    }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -169,8 +206,9 @@
       .plat-dots { display: none; }
       .menu-tabs { overflow-x: auto; justify-content: flex-start; }
       .menu-tab { padding: 16px 20px; white-space: nowrap; }
-      footer { padding: 30px 24px 20px; }
-      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      footer { padding: 40px 24px 24px; }
     }
   </style>
 </head>
@@ -288,15 +326,57 @@
   </main>
 
   <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">L'AGAPE</div>
+        <p class="footer-tagline">Restaurant bistronomique à Genève</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/lagape_geneve" target="_blank" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+              <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/lagapegeneve" target="_blank" aria-label="Facebook">
+            <svg width="22" height="22" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/>
+            </svg>
+          </a>
+          <a href="https://www.tripadvisor.com" target="_blank" aria-label="TripAdvisor">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigation</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="menu.html">La Carte</a></li>
+          <li><a href="histoire.html">Notre Histoire</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Réserver</p>
+        <ul class="footer-links">
+          <li><a href="reservation.html">En ligne via TheFork</a></li>
+          <li><a href="tel:+41223431298">Par téléphone</a></li>
+          <li><a href="mailto:contact@lagape.ch">Par email</a></li>
+          <li><a href="mailto:contact@lagape.ch">Service traiteur</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--grey-cloud); letter-spacing: 0.1em; text-transform: uppercase;">L'AGAPE</div>
-      <span>11 Rue Caroline, 1227 Genève · +41 22 343 12 98</span>
-      <span>© 2026</span>
+      <span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span>
     </div>
   </footer>
 
   <script>
-    const API_URL = 'https://lagape-dashboard.vercel.app/api/carte';
+    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:3001/api/carte' 
+      : 'https://lagape-dashboard.vercel.app/api/carte';
 
     let menuOpen = false;
     function toggleMenu() {
@@ -330,7 +410,7 @@
     function renderPlats(plats, categorie) {
       const section = document.getElementById('section-' + categorie);
       section.querySelectorAll('.plat').forEach(el => el.remove());
-      const items = plats.filter(p => p.categorie === categorie && p.actif !== false);
+      const items = plats.filter(p => p.categorie === categorie);
       if (!items.length) return;
       section.insertAdjacentHTML('beforeend', items.map(p => `
         <div class="plat">

@@ -30,7 +30,6 @@ export default async function handler(req, res) {
     const data = (await kvGet('carte')) || DEFAULT
     const collection = data[type] || []
     const item = { id: uuidv4(), ...body, ordre: collection.length + 1 }
-    if (type === 'plats') item.actif = true
     data[type] = [...collection, item]
     await kvSet('carte', data)
     return res.status(201).json(item)

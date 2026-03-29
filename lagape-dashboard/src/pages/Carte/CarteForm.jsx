@@ -21,7 +21,7 @@ const VIN_CATS = [
 
 const DEFAULTS = {
   formules: { label: '', nom: '', detail: '', prix: '' },
-  plats: { categorie: 'entrees', nom: '', description: '', prix: '', actif: true },
+  plats: { categorie: 'entrees', nom: '', description: '', prix: '', accueil: false },
   vins: { categorieVin: 'blancs', nom: '', region: '', prixVerre: '', prixBouteille: '' },
 }
 
@@ -155,18 +155,36 @@ export default function CarteForm() {
               {field('Catégorie', 'categorie', { select: true, options: PLAT_CATS })}
               {field('Nom du plat', 'nom', { placeholder: 'ex: Saint-Jacques poêlées' })}
               {field('Description', 'description', { textarea: true, placeholder: 'Ingrédients et préparation' })}
-              {field('Prix (CHF)', 'prix', { placeholder: '32', type: 'text' })}
               <div style={{ marginBottom: '22px' }}>
                 <label style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
                   <input
                     type="checkbox"
-                    checked={form.actif !== false}
-                    onChange={e => set('actif', e.target.checked)}
+                    checked={form.accueil === true}
+                    onChange={e => set('accueil', e.target.checked)}
                     style={{ accentColor: 'var(--or)' }}
                   />
-                  Visible sur la carte
+                  Visible sur la page d'accueil
                 </label>
               </div>
+
+              {form.accueil === true && (
+                <div style={{ marginBottom: '22px', borderLeft: '2px solid var(--or)', paddingLeft: '14px', marginLeft: '6px' }}>
+                  <label style={labelStyle}>Description page d'accueil</label>
+                  <textarea
+                    rows={2}
+                    value={form.descriptionAccueil || ''}
+                    onChange={e => set('descriptionAccueil', e.target.value)}
+                    style={{ ...inputStyle, resize: 'vertical' }}
+                    onFocus={e => e.target.style.borderColor = 'var(--or)'}
+                    onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                  />
+                  <p style={{ marginTop: '8px', marginBottom: 0, fontSize: '0.65rem', color: 'var(--texte-gris)', fontStyle: 'italic' }}>
+                    Version courte affichée sur la page d'accueil (une ligne maximum).
+                  </p>
+                </div>
+              )}
+
+              {field('Prix (CHF)', 'prix', { placeholder: '32', type: 'text' })}
             </>
           )}
 

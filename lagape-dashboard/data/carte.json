@@ -1,38 +1,233 @@
 {
   "formules": [
-    { "id": "f1", "label": "Formule déjeuner", "nom": "Le Menu du Marché", "detail": "Entrée + Plat ou Plat + Dessert", "prix": "42", "ordre": 1 },
-    { "id": "f2", "label": "Formule déjeuner", "nom": "Le Menu Complet", "detail": "Entrée + Plat + Dessert", "prix": "58", "ordre": 2 },
-    { "id": "f3", "label": "Formule dîner", "nom": "Menu Bistronomique", "detail": "3 services au choix de la carte", "prix": "72", "ordre": 3 },
-    { "id": "f4", "label": "Formule dîner", "nom": "Menu Dégustation", "detail": "5 services — carte blanche au chef", "prix": "98", "ordre": 4 }
+    {
+      "id": "f1",
+      "label": "Formule Dej",
+      "nom": "Le Menu du JEREMY",
+      "detail": "Entrée + Plat ou Plat + Dessert",
+      "prix": "42",
+      "ordre": 1
+    },
+    {
+      "id": "f2",
+      "label": "Formule Lunch",
+      "nom": "Le Menu Complet",
+      "detail": "Entrée + Plat + Dessert",
+      "prix": "58",
+      "ordre": 2
+    },
+    {
+      "id": "f3",
+      "label": "Formule dîner",
+      "nom": "Menu Bistronomique",
+      "detail": "3 services au choix de la carte",
+      "prix": "72",
+      "ordre": 3
+    },
+    {
+      "id": "f4",
+      "label": "Formule dîner",
+      "nom": "Menu Dégustation",
+      "detail": "5 services — carte blanche au chef",
+      "prix": "98",
+      "ordre": 4
+    }
   ],
   "plats": [
-    { "id": "e1", "categorie": "entrees", "nom": "Terrine de foie gras maison", "description": "Chutney de figues, brioche toastée au beurre noisette", "prix": "26", "ordre": 1, "actif": true },
-    { "id": "e2", "categorie": "entrees", "nom": "Saint-Jacques poêlées", "description": "Velouté de topinambour fumé, huile de truffe noire, noisettes torréfiées", "prix": "32", "ordre": 2, "actif": true },
-    { "id": "e3", "categorie": "entrees", "nom": "Soupe à l'oignon gratinée", "description": "Bouillon de bœuf maison, croûton, gruyère AOP vieux fondu", "prix": "18", "ordre": 3, "actif": true },
-    { "id": "e4", "categorie": "entrees", "nom": "Œuf parfait basse température", "description": "Crème de cèpes, lardons fumés, pain de seigle grillé", "prix": "22", "ordre": 4, "actif": true },
-    { "id": "e5", "categorie": "entrees", "nom": "Salade de homard breton", "description": "Avocat, pamplemousse rose, vinaigrette à l'estragon", "prix": "38", "ordre": 5, "actif": true },
-    { "id": "e6", "categorie": "entrees", "nom": "Burrata di bufala", "description": "Tomates confites, basilic, huile d'olive vierge extra, fleur de sel", "prix": "20", "ordre": 6, "actif": true },
-    { "id": "p1", "categorie": "plats", "nom": "Filet de bœuf Rossini", "description": "Escalope de foie gras poêlée, sauce Périgueux, pommes sarladaises", "prix": "58", "ordre": 1, "actif": true },
-    { "id": "p2", "categorie": "plats", "nom": "Turbot sauvage rôti à l'arête", "description": "Écrasé de pommes de terre à la ciboule, beurre blanc aux agrumes", "prix": "52", "ordre": 2, "actif": true },
-    { "id": "p3", "categorie": "plats", "nom": "Ris de veau aux morilles", "description": "Jus corsé à la crème, purée truffée, pousses de saison", "prix": "48", "ordre": 3, "actif": true },
-    { "id": "p4", "categorie": "plats", "nom": "Canard à l'orange façon L'AGAPE", "description": "Magret rosé, sauce Grand Marnier, gratin dauphinois, orange confite", "prix": "44", "ordre": 4, "actif": true },
-    { "id": "p5", "categorie": "plats", "nom": "Dos de cabillaud meunière", "description": "Beurre noisette aux câpres, légumes glacés du marché", "prix": "40", "ordre": 5, "actif": true },
-    { "id": "p6", "categorie": "plats", "nom": "Risotto de saison (végétarien)", "description": "Parmesan 24 mois, champignons sauvages, huile de truffe blanche", "prix": "36", "ordre": 6, "actif": true },
-    { "id": "d1", "categorie": "desserts", "nom": "Soufflé au Grand Marnier", "description": "Crème anglaise à la vanille Bourbon, zestes d'orange confits", "prix": "18", "ordre": 1, "actif": true },
-    { "id": "d2", "categorie": "desserts", "nom": "Millefeuille à la vanille de Madagascar", "description": "Pâte feuilletée caramélisée, crème légère, sucre glace", "prix": "16", "ordre": 2, "actif": true },
-    { "id": "d3", "categorie": "desserts", "nom": "Tarte tatin revisitée", "description": "Pommes caramélisées, crème normande, glace Calvados", "prix": "15", "ordre": 3, "actif": true },
-    { "id": "d4", "categorie": "desserts", "nom": "Mousse au chocolat Valrhona", "description": "Guanaja 70%, tuile craquante, fleur de sel", "prix": "14", "ordre": 4, "actif": true },
-    { "id": "d5", "categorie": "desserts", "nom": "Sélection de fromages affinés", "description": "Plateau du fromager, confiture maison, pain de campagne", "prix": "22", "ordre": 5, "actif": true },
-    { "id": "d6", "categorie": "desserts", "nom": "Mignardises & petits fours", "description": "Assortiment de la maison, servi avec le café", "prix": "10", "ordre": 6, "actif": true }
+    {
+      "id": "e1",
+      "categorie": "entrees",
+      "nom": "ŒUF GRTA CUIT À FROID",
+      "description": "Morilles, maigre de porc fumé, petits pois à la française\net émulsion lait d’amande",
+      "prix": "21",
+      "ordre": 1,
+      "actif": true,
+      "accueil": true,
+      "descriptionAccueil": "Morilles, petits pois et lait d’amande\n"
+    },
+    {
+      "id": "e2",
+      "categorie": "entrees",
+      "nom": "TRIO D’ASPERGES DE SAISON",
+      "description": "Asperges blanches et vertes, émulsion iodée, shiso,\ncitron et sésame noir",
+      "prix": "23",
+      "ordre": 2,
+      "actif": true,
+      "accueil": true,
+      "descriptionAccueil": "Asperges vertes et blanches, shiso et citron\n"
+    },
+    {
+      "id": "e3",
+      "categorie": "entrees",
+      "nom": "CALAMAR DE MÉDITERRANÉE FARCI",
+      "description": "Chorizo ibérique, coriandre et noix de cajou, sauce saté,\nolives et câpres",
+      "prix": "22",
+      "ordre": 3,
+      "actif": true
+    },
+    {
+      "id": "e4",
+      "categorie": "entrees",
+      "nom": "CRÊPE SOUFFLÉE AU SEIGLE DE LA TOUVIÈRE ",
+      "description": "Farce de cabillaud fumé, émulsion bisque,\nhuile d’aneth et œufs de poisson",
+      "prix": "20",
+      "ordre": 4,
+      "actif": true
+    },
+    {
+      "id": "p1",
+      "categorie": "plats",
+      "nom": "L'INCONTOURNABLE BOEUF FAÇON ROSSINI AU CHARIOT",
+      "description": "",
+      "prix": "54",
+      "ordre": 1,
+      "actif": true
+    },
+    {
+      "id": "p2",
+      "categorie": "plats",
+      "nom": "LOTTE GRILLÉE LAQUÉE PONZU BBQ",
+      "description": "Riz soufflé, billes de soja, gel citron safran, mayonnaise wasabi et encre de seiche,\nbouillon umami aux agrumes et tagliatelles de légumes",
+      "prix": "45",
+      "ordre": 2,
+      "actif": true,
+      "accueil": true,
+      "descriptionAccueil": "Agrumes, légumes de saison et bouillon umami\n"
+    },
+    {
+      "id": "p3",
+      "categorie": "plats",
+      "nom": "CARRÉ D’AGNEAU FARCI ALPENSTEIN",
+      "description": "Abricot sec, pignons de pin et vadouvan, sauce chimichurri,\ntartelette fine et déclinaison de fenouil",
+      "prix": "49",
+      "ordre": 3,
+      "actif": true,
+      "accueil": true,
+      "descriptionAccueil": "Abricot sec, fenouil et sauce chimichurri\n"
+    },
+    {
+      "id": "p4",
+      "categorie": "plats",
+      "nom": "CANNELLONI FAÇON BARBA JUAN",
+      "description": "Artichaut, citron, échalote, amande de Noto, cerfeuil,\ncôte de blette, ricotta et scamorza",
+      "prix": "34",
+      "ordre": 4,
+      "actif": true
+    },
+    {
+      "id": "d1",
+      "categorie": "desserts",
+      "nom": "ASSIETTE DE FROMAGES",
+      "description": "Sélection du moment de la fromagerie De Bleu! à Carouge\n",
+      "prix": "16",
+      "ordre": 1,
+      "actif": true
+    },
+    {
+      "id": "d2",
+      "categorie": "desserts",
+      "nom": "MIEL DE STEPHANIE EN RUCHE ET SUCRE DE DATTE",
+      "description": "",
+      "prix": "15",
+      "ordre": 2,
+      "actif": true,
+      "accueil": false
+    },
+    {
+      "id": "d3",
+      "categorie": "desserts",
+      "nom": "RHUBARBE EN TEXTURES",
+      "description": "Crumble amande, bavaroise rhubarbe, confit\net rhubarbe déshydratée",
+      "prix": "15",
+      "ordre": 3,
+      "actif": true,
+      "accueil": true,
+      "descriptionAccueil": "Rhubarbe, amande et vanille\n"
+    },
+    {
+      "id": "d4",
+      "categorie": "desserts",
+      "nom": "TOUT CHOCOLAT",
+      "description": "Feuillantine chocolat, ganache montée, poudre de cacao,\nsorbet chocolat et chocolat craquant",
+      "prix": "15",
+      "ordre": 4,
+      "actif": true,
+      "accueil": true,
+      "descriptionAccueil": "Ganache, cacao et croustillant\n"
+    }
   ],
   "vins": [
-    { "id": "v1", "categorieVin": "blancs", "nom": "Domaine Chèvre d'Or — Chablis Premier Cru", "region": "Bourgogne, France · 2022", "prixVerre": "16", "prixBouteille": "72", "ordre": 1 },
-    { "id": "v2", "categorieVin": "blancs", "nom": "Domaine Weinbach — Riesling Réserve", "region": "Alsace, France · 2021", "prixVerre": "14", "prixBouteille": "64", "ordre": 2 },
-    { "id": "v3", "categorieVin": "blancs", "nom": "Châtelain Biollaz — Fendant du Valais", "region": "Valais, Suisse · 2023", "prixVerre": "12", "prixBouteille": "52", "ordre": 3 },
-    { "id": "v4", "categorieVin": "rouges", "nom": "Château Léoville Barton — Saint-Julien", "region": "Bordeaux, France · 2018", "prixVerre": "22", "prixBouteille": "120", "ordre": 1 },
-    { "id": "v5", "categorieVin": "rouges", "nom": "Domaine Faiveley — Gevrey-Chambertin", "region": "Bourgogne, France · 2020", "prixVerre": "20", "prixBouteille": "95", "ordre": 2 },
-    { "id": "v6", "categorieVin": "rouges", "nom": "Adrian & Diego Mathier — Cornalin", "region": "Valais, Suisse · 2022", "prixVerre": "14", "prixBouteille": "58", "ordre": 3 },
-    { "id": "v7", "categorieVin": "champagnes", "nom": "Billecart-Salmon — Brut Réserve", "region": "Champagne, France · NM", "prixVerre": "24", "prixBouteille": "115", "ordre": 1 },
-    { "id": "v8", "categorieVin": "champagnes", "nom": "Louis Roederer — Cristal Brut", "region": "Champagne, France · 2016", "prixVerre": null, "prixBouteille": "320", "ordre": 2 }
+    {
+      "id": "v1",
+      "categorieVin": "blancs",
+      "nom": "Domaine Chèvre d'Or — Chablis Premier Cru",
+      "region": "Bourgogne, France · 2022",
+      "prixVerre": "16",
+      "prixBouteille": "72",
+      "ordre": 1
+    },
+    {
+      "id": "v2",
+      "categorieVin": "blancs",
+      "nom": "Domaine Weinbach — Riesling Réserve",
+      "region": "Alsace, France · 2021",
+      "prixVerre": "14",
+      "prixBouteille": "64",
+      "ordre": 2
+    },
+    {
+      "id": "v3",
+      "categorieVin": "blancs",
+      "nom": "Châtelain Biollaz — Fendant du Valais",
+      "region": "Valais, Suisse · 2023",
+      "prixVerre": "12",
+      "prixBouteille": "52",
+      "ordre": 3
+    },
+    {
+      "id": "v4",
+      "categorieVin": "rouges",
+      "nom": "Château Léoville Barton — Saint-Julien",
+      "region": "Bordeaux, France · 2018",
+      "prixVerre": "22",
+      "prixBouteille": "120",
+      "ordre": 1
+    },
+    {
+      "id": "v5",
+      "categorieVin": "rouges",
+      "nom": "Domaine Faiveley — Gevrey-Chambertin",
+      "region": "Bourgogne, France · 2020",
+      "prixVerre": "20",
+      "prixBouteille": "95",
+      "ordre": 2
+    },
+    {
+      "id": "v6",
+      "categorieVin": "rouges",
+      "nom": "Adrian & Diego Mathier — Cornalin",
+      "region": "Valais, Suisse · 2022",
+      "prixVerre": "14",
+      "prixBouteille": "58",
+      "ordre": 3
+    },
+    {
+      "id": "v7",
+      "categorieVin": "champagnes",
+      "nom": "Billecart-Salmon — Brut Réserve",
+      "region": "Champagne, France · NM",
+      "prixVerre": "24",
+      "prixBouteille": "115",
+      "ordre": 1
+    },
+    {
+      "id": "v8",
+      "categorieVin": "champagnes",
+      "nom": "Louis Roederer — Cristal Brut",
+      "region": "Champagne, France · 2016",
+      "prixVerre": null,
+      "prixBouteille": "320",
+      "ordre": 2
+    }
   ]
 }

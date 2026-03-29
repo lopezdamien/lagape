@@ -174,7 +174,7 @@
       font-size: clamp(0.9rem, 2vw, 1.2rem);
       font-weight: 300; letter-spacing: 0.3em;
       color: var(--grey-cloud); text-transform: uppercase;
-      margin-bottom: 50px;
+      margin-bottom: 50px; margin-right: -0.3em;
     }
     .hero-divider {
       width: 80px; height: 1px;
@@ -220,9 +220,11 @@
     .btn-gift:hover span { color: var(--bg-dark); }
     .hero-scroll {
       position: absolute; bottom: 40px;
+      left: 50%; transform: translateX(-50%);
       font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--texte-gris); display: flex; flex-direction: column; align-items: center; gap: 10px;
     }
+    .hero-scroll span { margin-right: -0.3em; }
     .hero-scroll::after {
       content: ''; display: block; width: 1px; height: 40px;
       background: linear-gradient(to bottom, var(--texte-gris), transparent);
@@ -237,10 +239,17 @@
     }
     .section-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-size: clamp(1.8rem, 4.8vw, 3.8rem);
       font-weight: 700; color: #ffffff;
       line-height: 1.1; margin-bottom: 32px;
       text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .section-title .small {
+      display: block;
+      font-size: 0.65em;
+      font-weight: 400;
+      margin-top: 4px;
+      opacity: 0.9;
     }
     .section-title em { font-style: italic; font-weight: 300; }
     .section-divider {
@@ -249,36 +258,6 @@
       margin-bottom: 32px;
     }
     .section-text { color: var(--argent); max-width: 580px; font-size: 0.9rem; }
-
-    /* ── DISTINCTIONS ── */
-    .distinctions {
-      background: var(--bleu-profond);
-      border-top: 1px solid rgba(184,196,208,0.08);
-      border-bottom: 1px solid rgba(184,196,208,0.08);
-      padding: 56px 60px;
-      display: flex; align-items: center; justify-content: center; gap: 120px;
-      flex-wrap: wrap;
-    }
-    .distinction-item {
-      display: flex; flex-direction: row; align-items: center; gap: 20px;
-      text-align: left;
-    }
-    .distinction-icon { line-height: 1; flex-shrink: 0; }
-    .distinction-logo {
-      height: 90px;
-      opacity: 0.85;
-      transition: opacity 0.4s ease;
-      display: block;
-    }
-    .distinction-logo-sm {
-      height: 80px;
-    }
-    .distinction-logo:hover { opacity: 1; }
-    .distinction-label {
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--grey-cloud); font-weight: 700;
-    }
-    .distinction-sep { width: 1px; height: 44px; background: rgba(184,196,208,0.12); }
 
     /* ── PRÉSENTATION ── */
     .presentation {
@@ -321,28 +300,32 @@
     .menu-preview-header { text-align: center; margin-bottom: 60px; }
     .menu-preview-header .section-divider { margin: 0 auto 32px; }
     .menu-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-      margin-bottom: 50px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      margin-bottom: 15px;
     }
     .menu-card {
-      background: rgba(30,51,83,0.5);
+      background: transparent;
       padding: 40px 32px;
-      border-top: 1px solid rgba(201,169,110,0.2);
+      border-top: 1px solid rgba(184,196,208,0.04);
+      border-left: 1px solid rgba(184,196,208,0.08);
       transition: background 0.3s;
     }
-    .menu-card:hover { background: rgba(30,51,83,0.9); }
+    .menu-card:first-child {
+      border-left: none;
+    }
+    .menu-card:hover { background: rgba(30,51,83,0.3); }
     .menu-card-cat {
-      font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--or); margin-bottom: 20px;
+      font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 20px; font-weight: 700;
     }
     .menu-item { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid rgba(184,196,208,0.08); }
     .menu-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .menu-item-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.05rem; font-weight: 500; color: var(--blanc-casse);
-      margin-bottom: 4px; letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 10px; letter-spacing: 0.05em; text-transform: uppercase;
     }
-    .menu-item-desc { font-size: 0.75rem; color: var(--texte-gris); margin-bottom: 6px; }
+    .menu-item-desc { font-size: 0.75rem; color: var(--argent); margin-bottom: 6px; }
     .menu-item-price { font-size: 0.8rem; color: var(--or); letter-spacing: 0.05em; }
     .menu-preview-footer { text-align: center; }
 
@@ -365,21 +348,22 @@
     .horaires-row .jour { color: var(--texte-clair); }
     .horaires-row.ferme .heure { color: var(--texte-gris); font-style: italic; }
     .contact-item {
-      font-size: 0.82rem; color: var(--argent);
+      font-size: 0.95rem; color: var(--argent);
       margin-bottom: 14px; display: flex; align-items: flex-start; gap: 12px;
     }
     .contact-item a { color: var(--argent); text-decoration: none; transition: color 0.3s; }
     .contact-item a:hover { color: var(--or); }
-    .contact-icon { color: var(--or); font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-icon { color: var(--or); font-size: 1.15rem; flex-shrink: 0; margin-top: 4px; }
     .traiteur-box {
-      background: rgba(201,169,110,0.08);
+      background: rgba(201,169,110,0.03);
       border: 1px solid rgba(201,169,110,0.25);
-      padding: 24px 28px;
-      margin-top: 8px;
+      padding: 18px 22px;
+      margin-top: -15px;
+      max-width: 92%;
     }
-    .traiteur-box p { font-size: 0.82rem; color: var(--argent); margin-bottom: 14px; }
+    .traiteur-box p { font-size: 0.88rem; color: var(--argent); margin-bottom: 14px; line-height: 1.6; }
     .traiteur-box a {
-      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--or); text-decoration: none;
     }
     .traiteur-box a:hover { text-decoration: underline; }
@@ -388,39 +372,41 @@
     footer {
       background: rgba(8, 16, 25, 0.98);
       border-top: 1px solid rgba(184,196,208,0.08);
-      padding: 50px 60px 30px;
+      padding: 80px 60px 40px;
     }
     .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 60px; margin-bottom: 40px;
+      gap: 60px; margin-bottom: 60px;
     }
     .footer-logo {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem; font-weight: 700; color: var(--grey-cloud);
-      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
+      font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;
     }
-    .footer-tagline { font-size: 0.75rem; color: var(--texte-gris); margin-bottom: 20px; }
-    .footer-social { display: flex; gap: 16px; }
+    .footer-tagline { font-size: 0.88rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
+    .footer-social { display: flex; gap: 20px; }
     .footer-social a {
-      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--texte-gris); text-decoration: none; transition: color 0.3s;
+      color: var(--blanc-casse); opacity: 0.9;
+      text-decoration: none; transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
     }
-    .footer-social a:hover { color: var(--or); }
+    .footer-social a:hover { color: var(--or); opacity: 1; transform: translateY(-2px); }
     .footer-col-title {
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--or); margin-bottom: 18px;
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 24px; font-weight: 600;
     }
     .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
+    .footer-links li { margin-bottom: 14px; }
     .footer-links a {
-      font-size: 0.78rem; color: var(--texte-gris); text-decoration: none; transition: color 0.3s;
+      font-size: 0.85rem; color: var(--argent); text-decoration: none; transition: color 0.3s;
+      font-weight: 300; letter-spacing: 0.03em;
     }
-    .footer-links a:hover { color: var(--argent-clair); }
+    .footer-links a:hover { color: var(--blanc-casse); }
     .footer-bottom {
       border-top: 1px solid rgba(184,196,208,0.08);
-      padding-top: 24px;
+      padding-top: 32px;
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.68rem; color: var(--texte-gris);
+      font-size: 0.72rem; color: rgba(184,196,208,0.4); font-weight: 300; letter-spacing: 0.05em;
     }
 
     /* ── POPUP ── */
@@ -502,12 +488,11 @@
       section { padding: 70px 24px; }
       .hero-cta { flex-direction: column; align-items: center; gap: 12px; }
       .btn-primary, .btn-secondary, .btn-gift { width: 260px; text-align: center; }
-      .distinctions { padding: 40px 24px; gap: 50px; }
-      .distinction-sep { display: none; }
       .presentation { grid-template-columns: 1fr; gap: 40px; }
       .pres-image { aspect-ratio: 16/9; }
       .pres-image::after { display: none; }
       .menu-grid { grid-template-columns: 1fr; }
+      .menu-card { border-left: none; padding: 20px 0; }
       .infos-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-grid { grid-template-columns: 1fr; gap: 30px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
@@ -576,23 +561,8 @@
       <a href="menu.html" class="btn-secondary">Découvrir la carte</a>
       <a href="https://mylightspeed.app/giftcard/3490d0b0-a717-43de-aa22-395873a46e6a/menu" target="_blank" class="btn-gift"><span>Offrir</span></a>
     </div>
-    <div class="hero-scroll">Défiler</div>
+    <div class="hero-scroll"><span>Défiler</span></div>
   </section>
-
-  <!-- DISTINCTIONS -->
-  <div class="distinctions">
-    <div class="distinction-item">
-      <div class="distinction-icon">
-        <img src="images/bib-gourmand.png" alt="Bib Gourmand Michelin" class="distinction-logo" style="filter: brightness(0) invert(1);">
-      </div>
-    </div>
-    <div class="distinction-sep"></div>
-    <div class="distinction-item">
-      <div class="distinction-icon">
-        <img src="images/gault-millau.png" alt="Gault & Millau" class="distinction-logo distinction-logo-sm" style="filter: brightness(0) invert(1);">
-      </div>
-    </div>
-  </div>
 
   <!-- PRÉSENTATION -->
   <section style="padding-top: 110px; padding-bottom: 110px;">
@@ -605,7 +575,7 @@
       </div>
       <div class="pres-content">
         <p class="section-label">Notre philosophie</p>
-        <h2 class="section-title">Une cuisine <em>sincère</em>,<br/>des produits<br/><em>de saison</em></h2>
+        <h2 class="section-title">Une cuisine sincère<br/><span class="small">des produits de saison</span></h2>
         <div class="section-divider"></div>
         <p class="section-text">
           À deux pas du vieux Carouge et non loin du centre ville de Genève, L'AGAPE est un lieu de partage où la gastronomie rencontre la convivialité.
@@ -616,17 +586,38 @@
           « Les agapes, premiers festins de l’histoire,<br/>célèbrent l’art de se réunir et de partager.<br/>
           Une tradition vivante, que nous faisons nôtre à chaque service. »
         </blockquote>
-        <a href="histoire.html" class="btn-secondary">Notre histoire</a>
+        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 40px; margin-top: 25px;">
+          <a href="histoire.html" class="btn-secondary" style="margin: 0;">Notre histoire</a>
+          <div style="display: flex; align-items: center; gap: 26px;">
+            <img src="images/bib-gourmand.png" alt="Bib Gourmand Michelin" style="height: 66px; filter: brightness(0) invert(1); opacity: 0.85;">
+            <div style="width: 1px; height: 45px; background: rgba(201,169,110,0.3);"></div>
+            <img src="images/gault-millau.png" alt="Gault & Millau" style="height: 54px; filter: brightness(0) invert(1); opacity: 0.85;">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- MENU PREVIEW -->
-  <section class="menu-preview">
+  <!-- MENU PREVIEW & ROSSINI -->
+  <section class="menu-preview" style="padding-bottom: 100px;">
+    
+    <!-- NOTRE TOURNEDOS ROSSINI -->
+    <div style="max-width: 800px; margin: 0 auto 60px; padding: 0 24px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+      <p class="section-label" style="color: var(--blanc-casse); letter-spacing: 0.25em; font-size: 1.2rem;">NOTRE INCONTOURNABLE</p>
+      <h2 class="section-title" style="color: var(--or); font-size: clamp(2.4rem, 5vw, 4.2rem);">
+        BŒUF FAÇON ROSSINI<br/>
+        <span style="font-size: 0.7em; font-weight: 500; opacity: 0.9;">AU CHARIOT</span>
+      </h2>
+      <div class="section-divider"></div>
+      <p class="section-text" style="margin-bottom: 0;">
+        Foie gras au choix, sauces et garnitures différentes au fil des saisons.
+      </p>
+    </div>
+
+    <!-- LA CARTE DU MOMENT -->
     <div class="menu-preview-inner">
       <div class="menu-preview-header">
-        <p class="section-label">Printemps 2026</p>
-        <h2 class="section-title">La Carte <em>du moment</em></h2>
+        <h2 class="section-title">La Carte du moment</h2>
         <div class="section-divider"></div>
         <p class="section-text" style="margin: 0 auto; text-align: center; max-width: 500px;">
           Une sélection de notre carte actuelle, renouvelée au fil des saisons.
@@ -637,8 +628,23 @@
         <div class="menu-card"></div>
         <div class="menu-card"></div>
       </div>
-      <div class="menu-preview-footer">
+      <div class="menu-preview-footer" style="padding-bottom: 60px;">
         <a href="menu.html" class="btn-secondary">Voir la carte complète</a>
+      </div>
+
+      <!-- MENU DES AGAPES -->
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 24px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <div class="section-divider" style="margin-bottom: 40px;"></div>
+        <p class="section-label" style="color: var(--or); font-size: 0.85rem; margin-bottom: 12px;">CHAQUE SOIR</p>
+        <h2 class="section-title" style="color: var(--blanc-casse); font-size: clamp(2.1rem, 4.5vw, 3.6rem); margin-bottom: 16px;">
+          LE MENU DES AGAPES
+        </h2>
+        <p class="section-text" style="max-width: 600px; margin-bottom: 10px; font-size: 1rem; color: var(--argent);">
+          Un menu découverte servi à l’ensemble de la table, imaginé au fil des saisons.
+        </p>
+        <p style="font-size: 0.95rem; color: rgba(201,169,110,0.8); margin-bottom: 0; letter-spacing: 0.08em; font-family: 'Barlow', sans-serif;">
+          À partir de CHF 89.—
+        </p>
       </div>
     </div>
   </section>
@@ -646,9 +652,8 @@
   <!-- INFOS PRATIQUES -->
   <section>
     <div class="infos">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <p class="section-label">Informations pratiques</p>
-        <h2 class="section-title">Nous <em>rendre visite</em></h2>
+      <div style="text-align: center; margin-bottom: 50px;">
+        <h2 class="section-title" style="font-weight: 400; font-size: clamp(2.1rem, 4.5vw, 3.6rem); margin-bottom: 24px;">Nous rendre visite</h2>
         <div class="section-divider" style="margin: 0 auto;"></div>
       </div>
       <div class="infos-grid">
@@ -702,10 +707,23 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo">L'AGAPE</div>
+        <p class="footer-tagline">Restaurant bistronomique à Genève</p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
-          <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
-          <a href="https://www.tripadvisor.com" target="_blank">TripAdvisor</a>
+          <a href="https://www.instagram.com/lagape_geneve" target="_blank" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+              <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/lagapegeneve" target="_blank" aria-label="Facebook">
+            <svg width="22" height="22" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/>
+            </svg>
+          </a>
+          <a href="https://www.tripadvisor.com" target="_blank" aria-label="TripAdvisor">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+            </svg>
+          </a>
         </div>
       </div>
       <div>
@@ -729,7 +747,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 L'AGAPE — Rue Caroline, 11 · Les Acacias</span>
+      <span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span>
     </div>
   </footer>
 
@@ -797,19 +815,24 @@
     function esc(str) {
       return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
-    fetch('https://lagape-dashboard.vercel.app/api/carte').then(r => r.json()).then(data => {
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? 'http://localhost:3001' 
+      : 'https://lagape-dashboard.vercel.app';
+    fetch(`${API_BASE}/api/carte`).then(r => r.json()).then(data => {
       const cards = document.querySelectorAll('.menu-card');
       const cats = ['entrees', 'plats', 'desserts'];
       const labels = { entrees: 'Entrées', plats: 'Plats', desserts: 'Desserts' };
       cats.forEach((cat, i) => {
-        const items = (data.plats || []).filter(p => p.categorie === cat && p.actif !== false).slice(0, 3);
+        const items = (data.plats || []).filter(p => p.categorie === cat && p.accueil === true);
         if (!items.length || !cards[i]) return;
         cards[i].innerHTML = `<p class="menu-card-cat">${labels[cat]}</p>` +
-          items.map(p => `<div class="menu-item">
-            <p class="menu-item-name">${esc(p.nom)}</p>
-            <p class="menu-item-desc">${esc((p.description || '').split(',')[0])}</p>
-            <p class="menu-item-price">CHF ${esc(p.prix)}.—</p>
-          </div>`).join('');
+          items.map(p => {
+            const desc = p.descriptionAccueil || p.description;
+            return `<div class="menu-item">
+              <p class="menu-item-name">${esc(p.nom)}</p>
+              ${desc ? `<p class="menu-item-desc">${esc(desc)}</p>` : ''}
+            </div>`
+          }).join('');
       });
     }).catch(() => { /* fallback : contenu statique conservé */ });
   </script>
