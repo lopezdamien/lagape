@@ -200,7 +200,8 @@
       .form-row { grid-template-columns: 1fr; }
       .traiteur-section { padding: 60px 24px; }
       .traiteur-inner { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
       footer { padding: 40px 24px 24px; }
     }

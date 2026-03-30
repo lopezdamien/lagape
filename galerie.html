@@ -222,7 +222,8 @@
       .galerie-container { padding: 20px 16px 60px; }
       .galerie-grid { columns: 2; }
       .cta-band, .galerie-note { padding: 40px 24px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
       footer { padding: 40px 24px 24px; }
     }

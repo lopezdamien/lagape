@@ -209,7 +209,8 @@
       .timeline-item { position: relative; padding-left: 50px; margin-bottom: 40px; }
       .tl-empty { display: none; }
       .presse-logos { gap: 30px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
       footer { padding: 40px 24px 24px; }
     }

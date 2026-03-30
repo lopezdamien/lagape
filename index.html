@@ -492,7 +492,8 @@
       .menu-grid { grid-template-columns: 1fr; }
       .menu-card { border-left: none; padding: 20px 0; }
       .infos-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
       footer { padding: 40px 24px 24px; }
     }
@@ -694,10 +695,11 @@
       /* 8 · FOOTER */
       footer { padding: 48px 24px 28px; }
       .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 36px;
         margin-bottom: 40px;
       }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
       .footer-logo { font-size: 1.8rem; margin-bottom: 6px; }
       .footer-tagline { font-size: 0.82rem; margin-bottom: 20px; }
       .footer-social { gap: 22px; }
