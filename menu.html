@@ -232,29 +232,25 @@
       background: #071820;
       border: 1px solid rgba(201,169,110,0.2);
       border-radius: 4px;
-      width: min(580px, 92vw);
-      max-height: 88vh;
-      overflow-y: auto;
-      padding: 52px 48px 48px;
+      width: min(540px, 92vw);
+      max-height: 92vh;
+      overflow: hidden;
+      padding: 36px 44px 32px;
       position: relative;
       transform: translateY(18px);
       transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
-      scrollbar-width: thin;
-      scrollbar-color: rgba(201,169,110,0.2) transparent;
     }
     .modal-overlay.open .modal-window { transform: translateY(0); }
-    .modal-window::-webkit-scrollbar { width: 4px; }
-    .modal-window::-webkit-scrollbar-thumb { background: rgba(201,169,110,0.2); border-radius: 2px; }
     .modal-close {
-      position: absolute; top: 18px; right: 22px;
+      position: absolute; top: 14px; right: 18px;
       background: none; border: none; cursor: pointer;
-      color: var(--texte-gris); font-size: 1.2rem; line-height: 1;
+      color: var(--texte-gris); font-size: 1.1rem; line-height: 1;
       transition: color 0.25s; padding: 4px 6px;
     }
     .modal-close:hover { color: var(--or); }
     .modal-ornament {
       display: flex; align-items: center; justify-content: center;
-      gap: 10px; margin-bottom: 20px;
+      gap: 10px; margin-bottom: 12px;
     }
     .modal-ornament::before, .modal-ornament::after {
       content: ''; flex: 1; max-width: 50px; height: 1px;
@@ -264,66 +260,66 @@
     .modal-ornament .diamond { width: 4px; height: 4px; background: var(--or); transform: rotate(45deg); opacity: 0.6; }
     .modal-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem; font-weight: 700; color: var(--or);
+      font-size: 1.8rem; font-weight: 700; color: var(--or);
       letter-spacing: 0.08em; text-transform: uppercase;
-      text-align: center; margin-bottom: 6px;
+      text-align: center; margin-bottom: 4px;
     }
     .modal-mention {
-      text-align: center; font-size: 0.7rem; letter-spacing: 0.2em;
+      text-align: center; font-size: 0.62rem; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--texte-gris);
-      margin-bottom: 36px; font-weight: 600;
+      margin-bottom: 20px; font-weight: 600;
     }
-    .modal-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+    .modal-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 18px; }
     .modal-step {
-      display: flex; align-items: baseline;
-      padding: 14px 0;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      padding: 9px 0;
       border-bottom: 1px solid rgba(184,196,208,0.06);
     }
     .modal-step:last-child { border-bottom: none; }
     .modal-step-label {
-      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--or); font-weight: 700; min-width: 110px; flex-shrink: 0;
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--or); font-weight: 700; margin-bottom: 3px;
       font-family: 'Barlow', sans-serif;
     }
     .modal-step-desc {
-      font-size: 0.9rem; color: var(--texte-gris);
-      font-weight: 300; line-height: 1.55; flex: 1;
+      font-size: 0.82rem; color: var(--texte-gris);
+      font-weight: 300; line-height: 1.45;
     }
     .modal-price-row {
       text-align: center;
       border-top: 1px solid rgba(201,169,110,0.12);
-      padding-top: 28px; margin-bottom: 28px;
+      padding-top: 16px; margin-bottom: 16px;
     }
     .modal-price-label {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--texte-gris); margin-bottom: 8px;
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--texte-gris); margin-bottom: 5px;
     }
     .modal-price-value {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2rem; color: var(--or);
+      font-size: 1.7rem; color: var(--or);
       font-weight: 500; letter-spacing: 0.05em;
     }
     .modal-accords {
       border-top: 1px solid rgba(201,169,110,0.12);
-      padding-top: 24px;
+      padding-top: 16px;
     }
     .modal-accords-title {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--or); font-weight: 700; text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
     .modal-accord-row {
       display: flex; justify-content: space-between; align-items: baseline;
-      font-size: 0.85rem; color: var(--argent);
-      padding: 10px 0; border-bottom: 1px solid rgba(184,196,208,0.05);
+      font-size: 0.82rem; color: var(--argent);
+      padding: 8px 0; border-bottom: 1px solid rgba(184,196,208,0.05);
     }
     .modal-accord-row:last-child { border-bottom: none; }
     .modal-accord-row .accord-price { color: var(--or); font-weight: 600; }
 
     @media (max-width: 900px) {
       .menu-agapes-compact { padding: 48px 20px; }
-      .modal-window { padding: 40px 24px 36px; }
-      .modal-step-label { min-width: 90px; font-size: 0.6rem; }
+      .modal-window { padding: 32px 20px 28px; }
     }
 
     .menu-rossini { background: transparent; padding: 60px 20px; text-align: center; }
