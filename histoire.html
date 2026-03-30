@@ -48,7 +48,7 @@
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
     .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
     .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
-    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 700; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; }
+    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 700; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; text-decoration: none; display: block; }
     .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
     .mobile-nav-list { list-style: none; text-align: center; }
     .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
@@ -234,7 +234,7 @@
   </nav>
 
   <div class="mobile-overlay" id="mobile-overlay">
-    <div class="mobile-overlay-logo">L'AGAPE</div>
+    <a href="index.html" class="mobile-overlay-logo">L'AGAPE</a>
     <ul class="mobile-nav-list">
       
       <li><a href="menu.html">La Carte</a></li>
