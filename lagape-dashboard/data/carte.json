@@ -2,35 +2,27 @@
   "formules": [
     {
       "id": "f1",
-      "label": "Formule Dej",
-      "nom": "Le Menu du JEREMY",
-      "detail": "Entrée + Plat ou Plat + Dessert",
-      "prix": "42",
+      "label": "Menu du midi",
+      "nom": "Menu de la semaine",
+      "detail": "Servi uniquement le midi — Entrée + Plat + Dessert CHF 40.— · Entrée + Plat CHF 35.— · Plat du jour CHF 25.—",
+      "prix": "40",
       "ordre": 1
     },
     {
       "id": "f2",
-      "label": "Formule Lunch",
-      "nom": "Le Menu Complet",
-      "detail": "Entrée + Plat + Dessert",
-      "prix": "58",
+      "label": "Menu du soir",
+      "nom": "Le Menu des Agapes",
+      "detail": "Menu découverte servi à l'ensemble de la table, imaginé au fil des saisons par le Chef Jérémy Verqueire",
+      "prix": "89",
       "ordre": 2
     },
     {
       "id": "f3",
-      "label": "Formule dîner",
-      "nom": "Menu Bistronomique",
-      "detail": "3 services au choix de la carte",
-      "prix": "72",
+      "label": "Menu signature",
+      "nom": "Menu Rossini",
+      "detail": "Entrée du Chef · Filet de bœuf façon Rossini (150g) · Dessert au choix",
+      "prix": "79",
       "ordre": 3
-    },
-    {
-      "id": "f4",
-      "label": "Formule dîner",
-      "nom": "Menu Dégustation",
-      "detail": "5 services — carte blanche au chef",
-      "prix": "98",
-      "ordre": 4
     }
   ],
   "plats": [
