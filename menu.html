@@ -71,7 +71,7 @@
 
     /* PAGE HEADER */
     .page-header {
-      padding: 160px 60px 80px;
+      padding: 120px 60px 40px;
       text-align: center;
       background: linear-gradient(170deg, #002b3c 0%, #00374D 60%, #002b3c 100%);
       position: relative;
@@ -80,36 +80,38 @@
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse at 50% 80%, rgba(209,217,225,0.05) 0%, transparent 60%);
     }
-    .page-label { font-size: 0.95rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey-cloud); margin-bottom: 16px; font-weight: 700; }
-    .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: #ffffff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .page-label { font-size: 0.95rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey-cloud); margin-bottom: 8px; font-weight: 700; }
+    .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 700; color: #ffffff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
     .page-title em { font-style: italic; font-weight: 300; }
-    .page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--grey-cloud), transparent); margin: 0 auto 24px; }
+    .page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--grey-cloud), transparent); margin: 0 auto 16px; }
     .page-desc { font-size: 0.95rem; color: var(--grey-cloud); max-width: 480px; margin: 0 auto; opacity: 0.9; }
 
     /* MENU NAV TABS */
     .menu-tabs {
-      background: var(--bleu-profond);
+      background: rgba(0, 43, 60, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(184,196,208,0.08);
       display: flex; justify-content: center;
       gap: 0; position: sticky; top: 70px; z-index: 50;
     }
     .menu-tab {
-      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      padding: 18px 32px; color: var(--texte-gris);
-      cursor: pointer; border-bottom: 2px solid transparent;
+      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 16px 20px; color: var(--texte-gris); margin: 0 4px;
+      cursor: pointer; border-bottom: 1px solid transparent;
       transition: all 0.3s; background: none; border-top: none; border-left: none; border-right: none;
       font-family: 'Barlow', sans-serif; font-weight: 700;
     }
     .menu-tab:hover { color: var(--argent-clair); }
-    .menu-tab.active { color: var(--or); border-bottom-color: var(--or); }
+    .menu-tab.active { color: var(--or-clair); border-bottom-color: var(--or-clair); text-shadow: 0 0 12px rgba(232, 213, 176, 0.2); }
 
     /* MENU SECTIONS */
     main { max-width: 900px; margin: 0 auto; padding: 0 40px 100px; }
-    .menu-section { padding: 70px 0; border-bottom: 1px solid rgba(184,196,208,0.07); }
+    .menu-section { padding: 90px 0 70px; border-bottom: 1px solid rgba(184,196,208,0.07); scroll-margin-top: 130px; }
     .menu-section:last-child { border-bottom: none; }
-    .menu-section-header { text-align: center; margin-bottom: 50px; }
-    .menu-section-icon { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; color: var(--or); opacity: 0.6; margin-bottom: 10px; }
-    .menu-section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--blanc-casse); margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .menu-section-header { text-align: center; margin-bottom: 40px; }
+    .menu-section-icon { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; color: var(--or); opacity: 0.4; margin-bottom: 10px; }
+    .menu-section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; font-weight: 700; color: var(--blanc-casse); margin-bottom: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
     .menu-section-subtitle { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texte-gris); }
 
     /* PLATS */
@@ -128,7 +130,7 @@
       padding: 36px 40px; margin-bottom: 50px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
     }
-    .formule-item {}
+
     .formule-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
     .formule-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--blanc-casse); margin-bottom: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
     .formule-detail { font-size: 0.78rem; color: var(--texte-gris); margin-bottom: 8px; }
@@ -146,9 +148,10 @@
 
     /* NOTE BAS */
     .menu-note {
-      text-align: center; margin-top: 50px;
-      padding: 28px; background: rgba(30,51,83,0.3);
-      border: 1px solid rgba(184,196,208,0.08);
+      text-align: center; max-width: 600px; margin: 40px auto 0;
+      padding: 16px; background: transparent;
+      border-top: 1px solid rgba(184,196,208,0.1);
+      border-bottom: 1px solid rgba(184,196,208,0.1);
       font-size: 0.78rem; color: var(--texte-gris); font-style: italic;
     }
 
@@ -159,14 +162,14 @@
     .menu-semaine { 
       background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.02) 100%);
       border: 1px solid rgba(201,169,110,0.3);
-      padding: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-      border-radius: 4px;
+      padding: 50px 60px; display: grid; grid-template-columns: 4fr 5fr; gap: 40px;
+      border-radius: 4px; max-width: 800px; margin: 0 auto;
     }
-    .semaine-prices p { font-size: 1.05rem; letter-spacing: 0.05em; color: var(--blanc-casse); margin-bottom: 16px; font-family: 'Barlow Condensed', sans-serif; font-weight: 500; }
-    .semaine-prices .notice { margin-top: 30px; font-size: 0.78rem; color: var(--texte-gris); font-style: italic; line-height: 1.4; }
-    .semaine-plats { display: flex; flex-direction: column; gap: 30px; }
-    .semaine-step-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); font-weight: 700; margin-bottom: 6px; }
-    .semaine-step-plat { font-size: 1.1rem; color: var(--blanc-casse); font-family: 'Barlow Condensed', sans-serif; font-weight: 400; letter-spacing: 0.02em; }
+    .semaine-prices h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; color: var(--or); margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+    .semaine-prices p { font-size: 1.1rem; letter-spacing: 0.05em; color: var(--or); margin-bottom: 16px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+    .semaine-plats { display: flex; flex-direction: column; gap: 40px; }
+    .semaine-step-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); font-weight: 700; margin-bottom: 12px; }
+    .semaine-step-plat { font-size: 1.25rem; color: var(--blanc-casse); font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: 0.02em; }
     .semaine-step-plat span.ou { font-size: 0.8rem; color: var(--texte-gris); margin: 6px 0; display: block; font-family: 'Barlow', sans-serif; }
 
     .menu-agapes {
@@ -176,38 +179,120 @@
       padding: 60px 40px; text-align: center;
       position: relative;
     }
-    .agapes-header { margin-bottom: 50px; }
-    .agapes-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--or); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
-    .agapes-steplist { display: flex; flex-direction: column; gap: 26px; margin-bottom: 50px; }
+    .agapes-header { margin-bottom: 30px; }
+    .agapes-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--or); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+    .agapes-steplist { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
     .agapes-step-title { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blanc-casse); font-weight: 600; margin-bottom: 4px; }
-    .agapes-step-desc { font-size: 0.85rem; color: var(--texte-gris); font-style: italic; }
-    .agapes-price { font-size: 1.4rem; color: var(--or); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.05em; margin-bottom: 40px; }
-    .agapes-accords { border-top: 1px dashed rgba(201,169,110,0.3); padding-top: 40px; max-width: 500px; margin: 0 auto; }
-    .agapes-accords-title { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--or); margin-bottom: 24px; font-weight: 600; }
+    .agapes-step-desc { font-size: 0.95rem; color: var(--texte-gris); font-style: normal; font-weight: 300; }
+    .agapes-price { font-size: 1.8rem; color: var(--or); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.05em; margin-top: 10px; margin-bottom: 30px; font-weight: 500; }
+    .agapes-accords { padding-top: 30px; max-width: 500px; margin: 10px auto 0; border-top: 1px solid rgba(201,169,110,0.1); }
+    .agapes-accords-title { font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 20px; font-weight: 600; }
     .accord-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; color: var(--argent); margin-bottom: 12px; }
     .accord-row span.glasses { font-size: 0.75rem; color: var(--texte-gris); font-style: italic; }
 
-    .menu-rossini {
-      background: transparent;
-      padding: 40px 0; text-align: center;
+    .menu-rossini { background: transparent; padding: 60px 20px; text-align: center; }
+    .rossini-cartouche {
+      background-color: #fdfbf7;
+      background-image: radial-gradient(ellipse at center, #ffffff 0%, #fdfbf7 100%);
+      border: 1px solid rgba(190,175,145,0.12);
+      border-radius: 6px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 40px 50px;
+      position: relative;
+      color: var(--blue-paon);
+      overflow: hidden;
     }
-    .rossini-header { margin-bottom: 40px; }
-    .rossini-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; font-weight: 700; color: var(--blanc-casse); letter-spacing: 0.05em; text-transform: uppercase; }
-    .rossini-subtitle { font-size: 0.8rem; letter-spacing: 0.25em; color: var(--or); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
-    .rossini-options { display: flex; justify-content: center; gap: 40px; margin-bottom: 50px; }
-    .rossini-box { border: 1px solid rgba(201,169,110,0.5); padding: 30px 40px; background: rgba(0, 43, 60, 0.6); position: relative; }
-    .rossini-box::after { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(201,169,110,0.15); pointer-events: none; }
-    .rbox-title { font-size: 0.65rem; color: var(--or); letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; }
-    .rbox-item { font-size: 0.9rem; color: var(--blanc-casse); margin: 8px 0; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; }
-    .rbox-separator { margin: 10px auto; width: 20px; height: 1px; background: rgba(201,169,110,0.4); }
-    .rbox-price { font-size: 1.1rem; color: var(--or); margin-top: 16px; font-weight: 500; }
+    .rc-corner { position: absolute; width: 14px; height: 14px; border: 1px solid #b89d67; opacity: 0.3; pointer-events: none; z-index: 1; }
+    .rc-tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+    .rc-tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+    .rc-bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+    .rc-br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
     
-    .rossini-choices { display: flex; flex-direction: column; gap: 40px; max-width: 600px; margin: 0 auto; }
-    .choice-group { border-top: 1px solid rgba(184,196,208,0.1); padding-top: 24px; }
-    .choice-label { font-size: 0.7rem; color: var(--blanc-casse); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
-    .choice-items { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px 40px; }
-    .c-item { font-size: 0.85rem; color: var(--texte-gris); position: relative; padding-left: 16px; }
-    .c-item::before { content: '◇'; position: absolute; left: 0; top: 0; color: var(--or); font-size: 0.8rem; }
+    .rossini-header { margin-bottom: 24px; position: relative; z-index: 2; }
+    .rossini-title-ornament { display: flex; align-items: center; justify-content: center; margin: 10px 0; }
+    .rossini-title-ornament::before, .rossini-title-ornament::after { content: ''; width: 30px; height: 1px; background: #b89d67; opacity: 0.4; }
+    .rossini-title-ornament .diamond { width: 3px; height: 3px; background: #b89d67; transform: rotate(45deg); margin: 0 8px; opacity: 0.7; }
+    .rossini-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 500; color: var(--blue-paon); letter-spacing: 0.1em; text-transform: uppercase; margin: 0 auto; line-height: 1.25; max-width: 480px; }
+    .rossini-subtitle { font-size: 0.75rem; letter-spacing: 0.35em; color: var(--or); text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
+    
+    .rossini-top-boxes { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
+    .rossini-box.rbox-horizontal { 
+      border: 1px solid rgba(166, 138, 86, 0.2); 
+      background: rgba(255, 255, 255, 0.05); 
+      border-radius: 4px; 
+      padding: 16px 30px; 
+      display: flex; 
+      flex-direction: row; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 20px;
+    }
+    .rbox-horizontal .rbox-title { color: #b89d67; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; margin: 0; min-width: 120px; text-align: left; }
+    .rbox-content-stack { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; flex-grow: 1; text-align: center; }
+    .rbox-content-stack .rbox-item { font-size: 1.05rem; font-weight: 400; color: var(--blue-paon); margin: 0; letter-spacing: 0.02em; line-height: 1.2; }
+    .rbox-horizontal .rbox-price { font-size: 1.5rem; color: var(--blue-paon); font-weight: 600; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.05em; margin: 0; min-width: 80px; text-align: right; }
+    
+    @media (max-width: 768px) {
+      .rossini-box.rbox-horizontal { flex-direction: column; text-align: center; padding: 20px; gap: 12px; }
+      .rbox-horizontal .rbox-title, .rbox-horizontal .rbox-price { text-align: center; min-width: auto; }
+      .rossini-cartouche { padding: 30px 20px; }
+      .rossini-title { font-size: 2.2rem; }
+      .rc-corner { display: none; }
+    }
+
+    .rossini-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; position: relative; z-index: 2; height: 100%; }
+    
+    .rb-left { display: block; position: relative; z-index: 2; height: 100%; }
+    .rb-right { display: flex; flex-direction: column; justify-content: stretch; z-index: 2; position: relative; height: 100%; }
+    
+    @media (max-width: 768px) { 
+      .rossini-bottom-grid { grid-template-columns: 1fr; gap: 30px; } 
+      .rb-left { height: auto; display: flex; justify-content: center; }
+      .rossini-sketch-container { height: auto; display: flex; justify-content: center; }
+      .rossini-watercolor { height: auto; max-width: 250px; object-fit: contain; object-position: center; margin: 0 auto; }
+    }
+
+    .rossini-details-box {
+      border: 1px solid rgba(166, 138, 86, 0.2); 
+      background: rgba(255, 255, 255, 0.05); 
+      border-radius: 4px; 
+      padding: 30px 24px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 24px; 
+      justify-content: space-evenly;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    
+    .choice-group { position: relative; text-align: center; }
+    .choice-group:not(:first-child)::before { content: '◆'; position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-size: 0.45rem; color: #b89d67; opacity: 0.35; line-height: 1; }
+    .choice-label { font-size: 0.85rem; color: #b89d67; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 12px; font-weight: 700; margin-top: 0; }
+    .choice-items { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .c-item { font-size: 0.9rem; font-weight: 400; color: var(--blue-paon); text-align: center; line-height: 1.35; margin: 0; }
+    
+    .rossini-sketch-container {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .rossini-watercolor {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: bottom left;
+      display: block;
+      margin: 0;
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 80%);
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 80%);
+    }
 
 
     /* FOOTER */
@@ -215,24 +300,25 @@
     footer {
       background: var(--bg-dark);
       border-top: 1px solid rgba(184,196,208,0.08);
-      padding: 80px 60px 40px;
+      padding: 60px 60px 30px;
     }
     .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 60px; margin-bottom: 60px;
+      gap: 40px; margin-bottom: 30px; max-width: 1000px; margin-left: auto; margin-right: auto;
     }
     .footer-logo {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse);
       letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;
     }
-    .footer-tagline { font-size: 0.88rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
+    .footer-tagline { font-size: 0.8rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
     .footer-social { display: flex; gap: 20px; }
     .footer-social a {
       color: var(--blanc-casse); opacity: 0.9;
       text-decoration: none; transition: all 0.3s ease;
       display: flex; align-items: center; justify-content: center;
     }
+    .footer-social svg { width: 24px; height: 24px; }
     .footer-social a:hover { color: var(--or); opacity: 1; transform: translateY(-2px); }
     .footer-col-title {
       font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
@@ -247,9 +333,9 @@
     .footer-links a:hover { color: var(--blanc-casse); }
     .footer-bottom {
       border-top: 1px solid rgba(184,196,208,0.08);
-      padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.72rem; color: rgba(184,196,208,0.4); font-weight: 300; letter-spacing: 0.05em;
+      padding-top: 20px;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 0.75rem; color: rgba(184,196,208,0.6); font-weight: 300; letter-spacing: 0.05em;
     }
 
     /* RESPONSIVE */
@@ -341,7 +427,7 @@
         <div class="menu-semaine">
            <div class="semaine-prices">
              <div>
-               <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; color: var(--or); margin-bottom: 20px; letter-spacing: 0.05em; text-transform: uppercase;">Menu de la semaine</h3>
+               <h3>Menu de la semaine</h3>
                <p>Entrée + Plat + Dessert = CHF 40.—</p>
                <p>Entrée + Plat = CHF 35.—</p>
                <p>Plat + Dessert = CHF 35.—</p>
@@ -419,48 +505,69 @@
 
         <!-- ROSSINI -->
         <div class="menu-rossini">
-          <div class="rossini-header">
-            <p class="rossini-subtitle">L'incontournable</p>
-            <h3 class="rossini-title">Bœuf Façon Rossini au Chariot</h3>
-          </div>
-          
-          <div class="rossini-options">
-            <div class="rossini-box">
-              <p class="rbox-title">Le Menu</p>
-              <p class="rbox-item">L'Entrée du Chef</p>
-              <div class="rbox-separator"></div>
-              <p class="rbox-item">Filet de bœuf<br>façon Rossini (150g)</p>
-              <div class="rbox-separator"></div>
-              <p class="rbox-item">Dessert au choix</p>
-              <p class="rbox-price">79.—</p>
+          <div class="rossini-cartouche">
+            <div class="rc-corner rc-tl"></div>
+            <div class="rc-corner rc-tr"></div>
+            <div class="rc-corner rc-bl"></div>
+            <div class="rc-corner rc-br"></div>
+            <div class="rossini-header">
+              <div class="rossini-title-ornament"><div class="diamond"></div></div>
+              <h3 class="rossini-title">MENU ROSSINI</h3>
+              <div class="rossini-title-ornament"><div class="diamond"></div></div>
             </div>
-            <div class="rossini-box" style="display: flex; flex-direction: column; justify-content: center;">
-              <p class="rbox-item" style="margin-bottom: 20px;">Filet de bœuf<br>façon Rossini (150g)</p>
-              <p class="rbox-price">54.—</p>
-            </div>
-          </div>
-          
-          <div class="rossini-choices">
-            <div class="choice-group">
-              <p class="choice-label">Choisissez le Foie Gras</p>
-              <div class="choice-items">
-                <span class="c-item">Foie gras des Landes au vin jaune</span>
-                <span class="c-item">Foie gras poêlé</span>
+            
+            <div class="rossini-top-boxes">
+              <div class="rossini-box rbox-horizontal">
+                <p class="rbox-title">LE MENU</p>
+                <div class="rbox-content-stack">
+                  <span class="rbox-item">Entrée du Chef</span>
+                  <span class="rbox-item">Filet de bœuf façon Rossini (150g)</span>
+                  <span class="rbox-item">Dessert au choix</span>
+                </div>
+                <p class="rbox-price">79.—</p>
+              </div>
+              
+              <div class="rossini-box rbox-horizontal">
+                <p class="rbox-title">À LA CARTE</p>
+                <div class="rbox-content-stack">
+                  <span class="rbox-item">Filet de bœuf façon Rossini (150g)</span>
+                </div>
+                <p class="rbox-price">54.—</p>
               </div>
             </div>
-            <div class="choice-group">
-              <p class="choice-label">Choisissez votre Sauce</p>
-              <div class="choice-items">
-                <span class="c-item">Sauce Morilles</span>
-                <span class="c-item">Sauce Madère</span>
-                <span class="c-item">Sauce 5 Poivres</span>
+            
+            <div class="rossini-bottom-grid">
+              <div class="rb-left">
+                <div class="rossini-sketch-container">
+                  <img src="images/rossini-sketch.png" alt="Croquis Tournedos Rossini" class="rossini-watercolor">
+                </div>
               </div>
-            </div>
-            <div class="choice-group">
-              <p class="choice-label">Choisissez votre Garniture</p>
-              <div class="choice-items">
-                <span class="c-item">Siphon pomme de terre au sel fumé</span>
-                <span class="c-item">Grenaille rôties au poivre rouge</span>
+              
+              <div class="rb-right">
+                <div class="rossini-details-box">
+                  <div class="choice-group">
+                    <p class="choice-label">Foie Gras</p>
+                    <div class="choice-items">
+                      <span class="c-item">Foie gras des Landes au vin jaune</span>
+                      <span class="c-item">Foie gras poêlé</span>
+                    </div>
+                  </div>
+                  <div class="choice-group">
+                    <p class="choice-label">Sauces</p>
+                    <div class="choice-items">
+                      <span class="c-item">Sauce Morilles</span>
+                      <span class="c-item">Sauce Madère</span>
+                      <span class="c-item">Sauce 5 Poivres</span>
+                    </div>
+                  </div>
+                  <div class="choice-group">
+                    <p class="choice-label">Garnitures</p>
+                    <div class="choice-items">
+                      <span class="c-item">Siphon pomme de terre au sel fumé</span>
+                      <span class="c-item">Grenaille rôties au poivre rouge</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
