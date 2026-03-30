@@ -13,40 +13,42 @@
       --blue-paon: #00374D;
       --blue-paon-light: #004d6b;
       --grey-cloud: #D1D9E1;
+      --grey-cloud-light: #f4f6f8;
       --or: #c9a96e;
       --or-clair: #e8d5b0;
       --text-main: #D1D9E1;
       --text-muted: #8a9aaa;
       --bg-dark: #002b3c;
       --bg-overlay: rgba(0, 43, 60, 0.95);
+      /* Aliases anciens noms */
       --bleu-nuit: var(--bg-dark);
       --bleu-profond: var(--blue-paon);
+      --bleu-moyen: var(--blue-paon-light);
       --texte-clair: var(--grey-cloud);
       --texte-gris: var(--text-muted);
       --argent: #b8c4d0;
+      --argent-clair: var(--grey-cloud);
       --blanc-casse: #e8eef4;
-      --or-dim: rgba(201,169,110,0.15);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg-dark); color: var(--text-main); font-family: 'Barlow', sans-serif; font-weight: 300; line-height: 1.7; }
 
-    /* ── NAV ── */
-    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 22px 60px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-overlay); border-bottom: 1px solid rgba(209,217,225,0.1); }
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 22px 60px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-overlay); border-bottom: 1px solid rgba(209, 217, 225, 0.1); }
     .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 500; letter-spacing: 0.15em; color: var(--grey-cloud); text-decoration: none; text-transform: uppercase; }
     .nav-links { display: flex; gap: 38px; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--grey-cloud); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
-    .nav-links a:hover, .nav-links a.active { color: #fff; opacity: 0.9; }
+    .nav-links a:hover, .nav-links a.active { color: #ffffff; opacity: 0.9; }
     .nav-reserve { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--or); color: var(--or); background: transparent; text-decoration: none; transition: all 0.3s; font-weight: 500; }
     .nav-reserve:hover { background: var(--or); color: var(--bg-dark); }
     .nav-burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; padding: 4px; }
-    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent); transition: all 0.42s cubic-bezier(0.23,1,0.32,1); transform-origin: center; }
+    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent-clair); transition: all 0.42s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--or-clair); }
     .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
-    .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77,0,0.175,1); pointer-events: none; }
+    .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
     .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
-    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #fff; font-weight: 700; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; text-decoration: none; display: block; }
+    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 700; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; text-decoration: none; display: block; }
     .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
     .mobile-nav-list { list-style: none; text-align: center; }
     .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
@@ -54,6 +56,7 @@
     .mobile-overlay.open .mobile-nav-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.32s; }
     .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
     .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.53s; }
     .mobile-nav-list a { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 8vw, 2.8rem); font-weight: 500; color: var(--grey-cloud); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; display: block; padding: 10px 0; transition: color 0.3s; outline: none; -webkit-tap-highlight-color: transparent; }
     .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or); }
     .mobile-nav-list a:focus, .mobile-overlay-logo:focus, .mobile-reserve-wrap a:focus { outline: none; }
@@ -67,273 +70,148 @@
     .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
     .mobile-social-row a:hover { color: var(--or); }
 
-    /* ── PAGE ── */
-    .page-wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 130px 60px 100px;
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 80px;
-      align-items: start;
-    }
+    /* PAGE HEADER */
+    .page-header { padding: 160px 60px 80px; text-align: center; background: linear-gradient(170deg, #002b3c 0%, #00374D 60%, #002b3c 100%); position: relative; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(209,217,225,0.05) 0%, transparent 60%); }
+    .page-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey-cloud); margin-bottom: 16px; font-weight: 500; }
+    .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: #ffffff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .page-title em { font-style: italic; font-weight: 300; }
+    .page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--grey-cloud), transparent); margin: 0 auto 24px; }
+    .page-desc { font-size: 0.95rem; color: var(--grey-cloud); max-width: 480px; margin: 0 auto; opacity: 0.9; }
 
-    /* ── COLONNE GAUCHE ── */
-    .left-col {}
+    /* CONTENU PRINCIPAL */
+    .main-content { max-width: 1100px; margin: 0 auto; padding: 80px 60px 100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
 
-    .page-eyebrow {
-      font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
-      color: var(--or); margin-bottom: 14px; font-weight: 600;
-    }
-    .page-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 5vw, 4.5rem);
-      font-weight: 400; color: #fff;
-      line-height: 1.1; margin-bottom: 20px;
-      letter-spacing: -0.01em;
-    }
-    .page-heading em { font-style: italic; color: var(--or-clair); }
-    .heading-rule {
-      width: 48px; height: 1px;
-      background: linear-gradient(to right, var(--or), transparent);
-      margin-bottom: 40px;
-    }
+    /* FORMULAIRE */
+    .form-section {}
+    .section-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey-cloud); margin-bottom: 16px; font-weight: 500; }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.22rem; font-weight: 700; color: #ffffff; margin-bottom: 12px; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.05em; }
+    .section-title em { font-style: italic; font-weight: 300; }
+    .section-divider { width: 60px; height: 1px; background: linear-gradient(to right, var(--grey-cloud), transparent); margin-bottom: 36px; }
 
     /* TheFork CTA */
-    .thefork-block {
+    .thefork-cta {
+      background: rgba(201,169,110,0.08);
       border: 1px solid rgba(201,169,110,0.3);
-      background: linear-gradient(135deg, rgba(201,169,110,0.07) 0%, rgba(201,169,110,0.02) 100%);
-      padding: 40px 44px;
-      margin-bottom: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-    .thefork-block::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(to right, transparent, var(--or), transparent);
-      opacity: 0.4;
-    }
-    .tf-eyebrow {
-      font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--or); margin-bottom: 12px; font-weight: 600;
-    }
-    .tf-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.6rem; font-weight: 700; color: #fff;
-      text-transform: uppercase; letter-spacing: 0.04em;
-      margin-bottom: 8px;
-    }
-    .tf-desc {
-      font-size: 0.82rem; color: var(--texte-gris);
-      margin-bottom: 28px; max-width: 360px; line-height: 1.65;
-    }
-    .btn-thefork {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em;
-      text-transform: uppercase; text-decoration: none;
-      padding: 15px 36px;
-      background: var(--or); color: var(--bg-dark);
-      transition: background 0.3s;
-    }
-    .btn-thefork:hover { background: var(--or-clair); }
-    .btn-thefork svg { width: 14px; height: 14px; }
-
-    /* Divider */
-    .or-divider {
-      display: flex; align-items: center; gap: 18px;
-      margin-bottom: 36px;
-    }
-    .or-divider::before, .or-divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(184,196,208,0.1);
-    }
-    .or-divider span {
-      font-size: 0.62rem; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--texte-gris);
-      white-space: nowrap;
-    }
-
-    /* Formulaire */
-    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-    .form-group { margin-bottom: 14px; }
-    label {
-      display: block; font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--texte-gris); margin-bottom: 7px;
-    }
-    input, select, textarea {
-      width: 100%; padding: 13px 16px;
-      background: rgba(0,43,60,0.5);
-      border: 1px solid rgba(209,217,225,0.12);
-      color: #fff; font-family: 'Barlow', sans-serif;
-      font-size: 0.88rem; font-weight: 300;
-      outline: none; transition: border-color 0.3s;
-      -webkit-appearance: none; border-radius: 0;
-    }
-    input:focus, select:focus, textarea:focus { border-color: rgba(201,169,110,0.5); }
-    input::placeholder, textarea::placeholder { color: var(--text-muted); }
-    select option { background: #002b3c; }
-    textarea { resize: vertical; min-height: 90px; }
-    .btn-submit {
-      width: 100%; padding: 16px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em;
-      text-transform: uppercase;
-      background: transparent; color: var(--or);
-      border: 1px solid rgba(201,169,110,0.4);
-      cursor: pointer; transition: all 0.3s;
-      margin-top: 6px;
-    }
-    .btn-submit:hover { background: rgba(201,169,110,0.08); border-color: var(--or); }
-    .form-note { font-size: 0.7rem; color: var(--texte-gris); margin-top: 10px; }
-    .success-msg {
-      display: none;
-      border: 1px solid rgba(201,169,110,0.25);
-      background: rgba(201,169,110,0.06);
-      padding: 24px; text-align: center;
-    }
-    .success-msg p { font-size: 0.88rem; color: var(--or-clair); }
-
-    /* ── COLONNE DROITE ── */
-    .right-col { position: sticky; top: 110px; }
-
-    .info-block {
-      border: 1px solid rgba(184,196,208,0.1);
-      padding: 32px 30px;
-      margin-bottom: 16px;
-      background: rgba(0,55,77,0.25);
-    }
-    .info-block-title {
-      font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--or); margin-bottom: 20px; padding-bottom: 14px;
-      border-bottom: 1px solid rgba(201,169,110,0.12); font-weight: 700;
-    }
-
-    /* Horaires */
-    .horaire-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 8px 0; border-bottom: 1px solid rgba(184,196,208,0.05);
-      font-size: 0.8rem;
-    }
-    .horaire-row:last-child { border-bottom: none; }
-    .horaire-jour { color: var(--texte-clair); }
-    .horaire-heure { color: var(--texte-gris); font-size: 0.75rem; }
-    .horaire-row.ferme .horaire-heure { color: rgba(138,154,170,0.5); font-style: italic; }
-
-    /* Contact */
-    .contact-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 10px 0; border-bottom: 1px solid rgba(184,196,208,0.05);
-      text-decoration: none; color: var(--argent);
-      font-size: 0.82rem; transition: color 0.3s;
-    }
-    .contact-item:last-child { border-bottom: none; }
-    .contact-item:hover { color: var(--or); }
-    .contact-item-icon {
-      width: 28px; height: 28px; border: 1px solid rgba(201,169,110,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; color: var(--or); flex-shrink: 0;
-    }
-
-    /* Note groupes */
-    .groups-note {
-      margin-top: 16px; padding: 14px 16px;
-      background: rgba(201,169,110,0.05);
-      border-left: 2px solid rgba(201,169,110,0.3);
-      font-size: 0.75rem; color: var(--texte-gris); line-height: 1.6;
-    }
-
-    /* ── TRAITEUR ── */
-    .traiteur-section {
-      border-top: 1px solid rgba(184,196,208,0.08);
-      background: var(--blue-paon);
-      padding: 80px 60px;
-    }
-    .traiteur-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .traiteur-eyebrow {
-      font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--or); margin-bottom: 16px; font-weight: 600;
-    }
-    .traiteur-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400;
-      color: #fff; margin-bottom: 16px; line-height: 1.15;
-    }
-    .traiteur-title em { font-style: italic; color: var(--or-clair); }
-    .traiteur-text { font-size: 0.85rem; color: var(--argent); line-height: 1.75; margin-bottom: 20px; }
-    .traiteur-list { list-style: none; margin-bottom: 30px; }
-    .traiteur-list li {
-      font-size: 0.8rem; color: var(--texte-gris);
-      padding: 7px 0; border-bottom: 1px solid rgba(184,196,208,0.06);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .traiteur-list li::before { content: '✦'; color: var(--or); font-size: 0.45rem; }
-    .btn-contact {
-      display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em;
-      text-transform: uppercase; padding: 14px 32px;
-      border: 1px solid rgba(201,169,110,0.4); color: var(--or);
-      text-decoration: none; transition: all 0.3s;
-    }
-    .btn-contact:hover { background: var(--or); color: var(--bleu-nuit); border-color: var(--or); }
-    .traiteur-visual {
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(0,43,60,0.4));
-      border: 1px solid rgba(201,169,110,0.15);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .traiteur-visual-inner {
+      padding: 32px 36px; margin-bottom: 32px;
       text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem; font-style: italic;
-      color: rgba(201,169,110,0.4); letter-spacing: 0.05em;
     }
+    .thefork-badge { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
+    .thefork-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--blanc-casse); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .thefork-desc { font-size: 0.78rem; color: var(--texte-gris); margin-bottom: 20px; }
+    .btn-thefork { display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 36px; background: var(--or); color: var(--bleu-nuit); text-decoration: none; transition: all 0.3s; font-weight: 500; }
+    .btn-thefork:hover { background: var(--or-clair); }
+
+    .form-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+    .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: rgba(184,196,208,0.1); }
+    .form-divider span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texte-gris); }
+
+    /* FORMULAIRE CONTACT */
+    form { }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--texte-gris); margin-bottom: 8px; }
+    input, select, textarea {
+      width: 100%; padding: 14px 16px;
+      background: rgba(0, 43, 60, 0.4); border: 1px solid rgba(209, 217, 225, 0.15);
+      color: #ffffff; font-family: 'Barlow', sans-serif; font-size: 0.88rem; font-weight: 300;
+      outline: none; transition: border-color 0.3s; -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--or); }
+    input::placeholder, textarea::placeholder { color: var(--text-muted); }
+    select option { background: var(--bg-dark); }
+    textarea { resize: vertical; min-height: 100px; }
+    .btn-submit { width: 100%; padding: 16px; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; background: var(--or); color: var(--bg-dark); border: none; cursor: pointer; font-family: 'Barlow', sans-serif; font-weight: 600; transition: background 0.3s; }
+    .btn-submit:hover { background: var(--or-clair); }
+    .form-note { font-size: 0.72rem; color: var(--texte-gris); margin-top: 12px; font-style: italic; }
+
+    /* INFOS LATÉRALES */
+    .info-sidebar { position: sticky; top: 100px; }
+    .info-card { background: rgba(21,34,56,0.7); border: 1px solid rgba(184,196,208,0.1); padding: 36px; margin-bottom: 20px; }
+    .info-card-title { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201,169,110,0.15); }
+    .horaires-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 8px 0; border-bottom: 1px solid rgba(184,196,208,0.05); color: var(--argent); }
+    .horaires-row .jour { color: var(--texte-clair); }
+    .horaires-row.ferme .heure { color: var(--texte-gris); font-style: italic; }
+    .contact-link { display: flex; align-items: center; gap: 12px; font-size: 0.82rem; color: var(--argent); text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(184,196,208,0.05); transition: color 0.3s; }
+    .contact-link:hover { color: var(--or); }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-icon { color: var(--or); width: 16px; text-align: center; flex-shrink: 0; }
+    .info-note { font-size: 0.75rem; color: var(--texte-gris); padding: 16px; background: rgba(201,169,110,0.05); border-left: 2px solid var(--or); margin-top: 8px; }
+
+    /* TRAITEUR */
+    .traiteur-section { background: var(--bleu-profond); padding: 80px 60px; border-top: 1px solid rgba(184,196,208,0.08); }
+    .traiteur-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .traiteur-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .traiteur-title em { font-style: italic; color: var(--or-clair); }
+    .traiteur-text { font-size: 0.85rem; color: var(--argent); margin-bottom: 12px; }
+    .traiteur-items { list-style: none; margin: 20px 0; }
+    .traiteur-items li { font-size: 0.8rem; color: var(--texte-gris); padding: 7px 0; border-bottom: 1px solid rgba(184,196,208,0.06); display: flex; align-items: center; gap: 10px; }
+    .traiteur-items li::before { content: '✦'; color: var(--or); font-size: 0.5rem; }
+    .btn-contact { display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 32px; border: 1px solid var(--or); color: var(--or); text-decoration: none; transition: all 0.3s; }
+    .btn-contact:hover { background: var(--or); color: var(--bleu-nuit); }
+    .traiteur-image { aspect-ratio: 4/3; background: var(--bleu-moyen); display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--texte-gris); letter-spacing: 0.1em; }
 
     /* ── FOOTER ── */
-    footer { background: var(--bg-dark); border-top: 1px solid rgba(184,196,208,0.08); padding: 60px 60px 30px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; max-width: 1000px; margin-left: auto; margin-right: auto; }
-    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
-    .footer-tagline { font-size: 0.8rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; }
+    footer {
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(184,196,208,0.08);
+      padding: 80px 60px 40px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .footer-tagline { font-size: 0.88rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
     .footer-social { display: flex; gap: 20px; }
-    .footer-social a { color: var(--blanc-casse); opacity: 0.9; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+    .footer-social a {
+      color: var(--blanc-casse); opacity: 0.9;
+      text-decoration: none; transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
     .footer-social a:hover { color: var(--or); opacity: 1; transform: translateY(-2px); }
-    .footer-col-title { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--or); margin-bottom: 24px; font-weight: 600; }
+    .footer-col-title {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--or); margin-bottom: 24px; font-weight: 600;
+    }
     .footer-links { list-style: none; }
     .footer-links li { margin-bottom: 14px; }
-    .footer-links a { font-size: 0.85rem; color: var(--argent); text-decoration: none; transition: color 0.3s; font-weight: 300; }
+    .footer-links a {
+      font-size: 0.85rem; color: var(--argent); text-decoration: none; transition: color 0.3s;
+      font-weight: 300; letter-spacing: 0.03em;
+    }
     .footer-links a:hover { color: var(--blanc-casse); }
-    .footer-bottom { border-top: 1px solid rgba(184,196,208,0.08); padding-top: 20px; display: flex; justify-content: center; font-size: 0.75rem; color: rgba(184,196,208,0.5); font-weight: 300; letter-spacing: 0.05em; }
+    .footer-bottom {
+      border-top: 1px solid rgba(184,196,208,0.08);
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.72rem; color: rgba(184,196,208,0.4); font-weight: 300; letter-spacing: 0.05em;
+    }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 960px) {
-      nav { padding: 14px 20px; }
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
       .nav-links, .nav-reserve { display: none; }
       .nav-burger { display: flex; }
-
-      .page-wrap {
-        grid-template-columns: 1fr;
-        padding: 100px 20px 60px;
-        gap: 50px;
-      }
-      .page-heading { text-align: center; }
-      .page-eyebrow { text-align: center; }
-      .heading-rule { margin: 0 auto 36px; }
-      .right-col { position: static; }
-      .form-grid-2 { grid-template-columns: 1fr; }
-      .thefork-block { padding: 28px 24px; }
-
-      .traiteur-section { padding: 60px 20px; }
-      .traiteur-inner { grid-template-columns: 1fr; gap: 40px; }
-      .traiteur-visual { display: none; }
-
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-      .footer-grid > div:first-child { grid-column: 1 / -1; }
-      footer { padding: 30px 20px 20px; }
+      .page-header { padding: 130px 24px 60px; }
+      .main-content { grid-template-columns: 1fr; padding: 50px 24px 60px; gap: 50px; }
+      .form-section .section-title { text-align: center; }
+      .info-sidebar { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+      .traiteur-section { padding: 60px 24px; }
+      .traiteur-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      footer { padding: 40px 24px 24px; }
     }
+
+    /* SUCCESS MESSAGE */
+    .success-msg { display: none; background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.3); padding: 20px 24px; text-align: center; }
+    .success-msg p { font-size: 0.85rem; color: var(--or-clair); }
   </style>
 </head>
 <body>
@@ -341,6 +219,7 @@
   <nav>
     <a href="index.html" class="nav-logo">L'AGAPE</a>
     <ul class="nav-links">
+      
       <li><a href="menu.html">La Carte</a></li>
       <li><a href="histoire.html">Notre Histoire</a></li>
       <li><a href="galerie.html">Galerie</a></li>
@@ -355,6 +234,7 @@
   <div class="mobile-overlay" id="mobile-overlay">
     <a href="index.html" class="mobile-overlay-logo">L'AGAPE</a>
     <ul class="mobile-nav-list">
+      
       <li><a href="menu.html">La Carte</a></li>
       <li><a href="histoire.html">Notre Histoire</a></li>
       <li><a href="galerie.html">Galerie</a></li>
@@ -367,30 +247,28 @@
     </div>
   </div>
 
-  <div class="page-wrap">
+  <div class="main-content" style="padding-top: 120px;">
 
-    <!-- COLONNE GAUCHE -->
-    <div class="left-col">
-      <p class="page-eyebrow">Table & Réservation</p>
-      <h1 class="page-heading">Réservez<br>votre <em>moment</em></h1>
-      <div class="heading-rule"></div>
+    <!-- COLONNE GAUCHE : FORMULAIRE -->
+    <div class="form-section">
+      <h2 class="section-title" style="font-size: clamp(2.2rem, 5vw, 3rem); text-align: left;">Réservez votre moment</h2>
+      <div class="section-divider"></div>
 
       <!-- THEFORK -->
-      <div class="thefork-block">
-        <p class="tf-eyebrow">Réservation instantanée</p>
-        <p class="tf-title">Réserver via TheFork</p>
-        <p class="tf-desc">Disponibilités en temps réel, confirmation immédiate.</p>
+      <div class="thefork-cta">
+        <p class="thefork-badge">Réservation instantanée</p>
+        <p class="thefork-title">Réserver via TheFork</p>
+        <p class="thefork-desc">Confirmez votre table en quelques clics, disponibilités en temps réel.</p>
         <a href="https://widget.thefork.com/44010571-5537-4a96-892f-8742477ff554" target="_blank" class="btn-thefork">
-          Réserver ma table
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          Réserver sur TheFork →
         </a>
       </div>
 
-      <div class="or-divider"><span>ou contactez-nous directement</span></div>
+      <div class="form-divider"><span>ou contactez-nous directement</span></div>
 
-      <!-- FORMULAIRE -->
+      <!-- FORMULAIRE DE CONTACT -->
       <form id="reservation-form" onsubmit="submitForm(event)">
-        <div class="form-grid-2">
+        <div class="form-row">
           <div class="form-group">
             <label for="prenom">Prénom *</label>
             <input type="text" id="prenom" name="prenom" placeholder="Jean" required/>
@@ -400,7 +278,7 @@
             <input type="text" id="nom" name="nom" placeholder="Dupont" required/>
           </div>
         </div>
-        <div class="form-grid-2">
+        <div class="form-row">
           <div class="form-group">
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="jean@exemple.ch" required/>
@@ -410,17 +288,17 @@
             <input type="tel" id="telephone" name="telephone" placeholder="+41 79 000 00 00"/>
           </div>
         </div>
-        <div class="form-grid-2">
+        <div class="form-row">
           <div class="form-group">
-            <label for="date">Date *</label>
+            <label for="date">Date souhaitée *</label>
             <input type="date" id="date" name="date" required/>
           </div>
           <div class="form-group">
             <label for="service">Service *</label>
             <select id="service" name="service" required>
               <option value="">Choisir...</option>
-              <option value="dejeuner">Déjeuner (12h – 13h30)</option>
-              <option value="diner">Dîner (19h – 21h30)</option>
+              <option value="dejeuner">Déjeuner (12h – 14h)</option>
+              <option value="diner">Dîner (19h – 21h)</option>
             </select>
           </div>
         </div>
@@ -442,7 +320,7 @@
           <textarea id="message" name="message" placeholder="Occasion spéciale, allergies alimentaires, régimes particuliers..."></textarea>
         </div>
         <button type="submit" class="btn-submit">Envoyer ma demande</button>
-        <p class="form-note">* Champs obligatoires. Confirmation par email sous 24h.</p>
+        <p class="form-note">* Champs obligatoires. Nous confirmerons votre réservation par email sous 24h.</p>
       </form>
 
       <div class="success-msg" id="success-msg">
@@ -450,54 +328,53 @@
       </div>
     </div>
 
-    <!-- COLONNE DROITE -->
-    <div class="right-col">
-
-      <div class="info-block">
-        <p class="info-block-title">Horaires d'ouverture</p>
-        <div class="horaire-row"><span class="horaire-jour">Lundi</span><span class="horaire-heure">12h–13h30 · 19h–21h30</span></div>
-        <div class="horaire-row"><span class="horaire-jour">Mardi</span><span class="horaire-heure">12h–13h30 · 19h–21h30</span></div>
-        <div class="horaire-row"><span class="horaire-jour">Mercredi</span><span class="horaire-heure">12h–13h30 · 19h–21h30</span></div>
-        <div class="horaire-row"><span class="horaire-jour">Jeudi</span><span class="horaire-heure">12h–13h30 · 19h–21h30</span></div>
-        <div class="horaire-row"><span class="horaire-jour">Vendredi</span><span class="horaire-heure">12h–13h30 · 19h–21h30</span></div>
-        <div class="horaire-row"><span class="horaire-jour">Samedi</span><span class="horaire-heure">12h–13h30 · 19h–21h30</span></div>
-        <div class="horaire-row ferme"><span class="horaire-jour">Dimanche</span><span class="horaire-heure">Fermé</span></div>
+    <!-- COLONNE DROITE : INFOS -->
+    <div class="info-sidebar">
+      <div class="info-card">
+        <p class="info-card-title">Horaires d'ouverture</p>
+        <div class="horaires-row"><span class="jour">Lundi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+        <div class="horaires-row"><span class="jour">Mardi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+        <div class="horaires-row"><span class="jour">Mercredi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+        <div class="horaires-row"><span class="jour">Jeudi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+        <div class="horaires-row"><span class="jour">Vendredi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+        <div class="horaires-row"><span class="jour">Samedi</span><span class="heure">12h–13h30 &amp; 19h–21h30</span></div>
+        <div class="horaires-row ferme"><span class="jour">Dimanche</span><span class="heure">Fermé</span></div>
       </div>
 
-      <div class="info-block">
-        <p class="info-block-title">Nous contacter</p>
-        <a href="tel:+41223431298" class="contact-item">
-          <span class="contact-item-icon">✆</span>
+      <div class="info-card">
+        <p class="info-card-title">Contact</p>
+        <a href="tel:+41223431298" class="contact-link">
+          <span class="contact-icon">✆</span>
           +41 22 343 12 98
         </a>
-        <a href="mailto:contact@lagape.ch" class="contact-item">
-          <span class="contact-item-icon">✉</span>
+        <a href="mailto:contact@lagape.ch" class="contact-link">
+          <span class="contact-icon">✉</span>
           contact@lagape.ch
         </a>
-        <a href="https://maps.google.com/?q=11+Rue+Caroline+Geneve" target="_blank" class="contact-item">
-          <span class="contact-item-icon">↟</span>
+        <a href="https://maps.google.com/?q=11+Rue+Caroline+Geneve" target="_blank" class="contact-link">
+          <span class="contact-icon">↟</span>
           11 Rue Caroline, 1227 Genève
         </a>
-        <a href="https://www.instagram.com/lagape_geneve" target="_blank" class="contact-item">
-          <span class="contact-item-icon">◈</span>
+        <a href="https://www.instagram.com/lagape_geneve" target="_blank" class="contact-link">
+          <span class="contact-icon">◈</span>
           @lagape_geneve
         </a>
-        <div class="groups-note">
-          Pour les groupes de 7 personnes et plus ou les événements privatifs, merci de nous contacter directement par téléphone ou email.
+        <div class="info-note">
+          Pour les groupes de 7 personnes et plus ou les événements privatifs, merci de nous contacter directement par téléphone ou par email.
         </div>
       </div>
-
     </div>
+
   </div>
 
   <!-- SERVICE TRAITEUR -->
   <div class="traiteur-section">
     <div class="traiteur-inner">
       <div>
-        <p class="traiteur-eyebrow">Nouveauté</p>
+        <p class="section-label" style="font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px;">Nouveauté</p>
         <h2 class="traiteur-title">Notre service <em>traiteur</em></h2>
-        <p class="traiteur-text">L'AGAPE propose son savoir-faire en dehors des murs du restaurant pour vos événements privés et professionnels à Genève et ses environs.</p>
-        <ul class="traiteur-list">
+        <p class="traiteur-text">L'AGAPE propose désormais son savoir-faire en dehors des murs du restaurant pour vos événements privés et professionnels à Genève et ses environs.</p>
+        <ul class="traiteur-items">
           <li>Cocktails et réceptions d'entreprise</li>
           <li>Dîners privés et événements familiaux</li>
           <li>Buffets gastronomiques sur mesure</li>
@@ -505,9 +382,7 @@
         </ul>
         <a href="mailto:contact@lagape.ch?subject=Service%20Traiteur" class="btn-contact">Nous contacter pour un devis →</a>
       </div>
-      <div class="traiteur-visual">
-        <div class="traiteur-visual-inner">Service traiteur</div>
-      </div>
+      <div class="traiteur-image">· Service traiteur ·</div>
     </div>
   </div>
 
@@ -537,6 +412,7 @@
       <div>
         <p class="footer-col-title">Navigation</p>
         <ul class="footer-links">
+          
           <li><a href="menu.html">La Carte</a></li>
           <li><a href="histoire.html">Notre Histoire</a></li>
           <li><a href="galerie.html">Galerie</a></li>
@@ -566,8 +442,12 @@
       document.getElementById('nav-burger').classList.toggle('open', menuOpen);
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     }
+    // Date min = aujourd'hui
     const dateInput = document.getElementById('date');
-    dateInput.min = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+
+    // Soumission formulaire
     function submitForm(e) {
       e.preventDefault();
       document.getElementById('reservation-form').style.display = 'none';
