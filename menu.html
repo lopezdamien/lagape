@@ -162,17 +162,18 @@
     .menu-semaine { 
       background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.02) 100%);
       border: 1px solid rgba(201,169,110,0.3);
-      padding: 40px 30px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px;
-      border-radius: 4px; max-width: 600px; margin: 0 auto;
+      padding: 50px 60px; display: grid; grid-template-columns: 4fr 5fr; gap: 60px;
+      border-radius: 4px; max-width: 850px; margin: 0 auto;
     }
-    .semaine-prices { width: 100%; border-bottom: 1px solid rgba(201,169,110,0.15); padding-bottom: 20px; margin-bottom: 10px; }
-    .semaine-prices h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; color: var(--or); margin-bottom: 20px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-    .semaine-prices p { font-size: 1.05rem; letter-spacing: 0.05em; color: var(--or); margin-bottom: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+    .semaine-prices { border-right: 1px solid rgba(201,169,110,0.15); padding-right: 20px; text-align: left; }
+    .semaine-prices h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; color: var(--or); margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+    .semaine-prices p { font-size: 1.1rem; letter-spacing: 0.05em; color: var(--or); margin-bottom: 16px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
     .semaine-prices p:last-child { margin-bottom: 0; }
-    .semaine-plats { display: flex; flex-direction: column; gap: 24px; width: 100%; }
-    .semaine-step-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); font-weight: 700; margin-bottom: 6px; }
+    .semaine-plats { display: flex; flex-direction: column; gap: 28px; text-align: left; }
+    .semaine-date { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--texte-gris); margin-bottom: 20px; font-weight: 500; }
+    .semaine-step-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); font-weight: 700; margin-bottom: 8px; }
     .semaine-step-plat { font-size: 1.25rem; color: var(--blanc-casse); font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: 0.02em; }
-    .semaine-step-plat span.ou { font-size: 0.75rem; color: var(--texte-gris); margin: 4px 0; display: block; font-family: 'Barlow', sans-serif; }
+    .semaine-step-plat span.ou { font-size: 0.8rem; color: var(--texte-gris); margin: 6px 0; display: block; font-family: 'Barlow', sans-serif; }
 
     .menu-agapes {
       background: rgba(0, 43, 60, 0.4);
@@ -380,7 +381,14 @@
       .plat-dots { display: none; }
       .menu-tabs { overflow-x: auto; justify-content: flex-start; top: 54px; }
       .menu-tab { padding: 12px 15px; white-space: nowrap; font-size: 0.65rem; }
-      .menu-semaine { grid-template-columns: 1fr; gap: 30px; padding: 25px 15px; }
+      .menu-semaine { 
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 30px; padding: 30px 20px; 
+      }
+      .semaine-prices { border-right: none; border-top: 1px solid rgba(201,169,110,0.15); padding-top: 25px; padding-right: 0; text-align: center; }
+      .semaine-plats { text-align: center; }
+      .semaine-date { margin-bottom: 15px; }
       .rossini-options { flex-direction: column; gap: 15px; }
       .agapes-accords { padding-left: 15px; padding-right: 15px; }
       .menu-agapes { padding: 40px 15px; }
@@ -456,26 +464,25 @@
         <!-- MENU DE LA SEMAINE -->
         <div class="menu-semaine">
            <div class="semaine-prices">
-              <div>
-                <h3>Menu de la semaine</h3>
-                <p>Entrée + Plat + Dessert = CHF 40.—</p>
-                <p>Entrée + Plat = CHF 35.—</p>
-                <p>Plat du jour = CHF 25.—</p>
-              </div>
+              <h3>Menu de la semaine</h3>
+              <p>Entrée + Plat + Dessert = CHF 40.—</p>
+              <p>Entrée + Plat = CHF 35.—</p>
+              <p>Plat du jour = CHF 25.—</p>
            </div>
            <div class="semaine-plats">
-             <div>
-               <p class="semaine-step-label">Entrée</p>
-               <p class="semaine-step-plat">Flan aux champignons</p>
-             </div>
-             <div>
-               <p class="semaine-step-label">Plat</p>
-               <p class="semaine-step-plat">Suprême de volaille et gratin de pommes de terre</p>
-             </div>
-             <div>
-               <p class="semaine-step-label">Dessert</p>
-               <p class="semaine-step-plat">Mousse au chocolat<span class="ou">OU</span>Assiette de fromages</p>
-             </div>
+              <p class="semaine-date">DU 31/03 AU 03/04</p>
+              <div>
+                <p class="semaine-step-label">Entrée</p>
+                <p class="semaine-step-plat">Flan aux champignons</p>
+              </div>
+              <div>
+                <p class="semaine-step-label">Plat</p>
+                <p class="semaine-step-plat">Suprême de volaille et gratin de pommes de terre</p>
+              </div>
+              <div>
+                <p class="semaine-step-label">Dessert</p>
+                <p class="semaine-step-plat">Mousse au chocolat<span class="ou">OU</span>Assiette de fromages</p>
+              </div>
            </div>
         </div>
 
