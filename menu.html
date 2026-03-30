@@ -179,23 +179,152 @@
     .semaine-prices { display: flex; flex-direction: column; align-items: center; gap: 12px; border-top: 1px solid rgba(201,169,110,0.1); padding-top: 24px; }
     .semaine-prices p { font-size: 0.9rem; letter-spacing: 0.04em; color: var(--or); margin: 0; font-family: 'Barlow', sans-serif; font-weight: 600; }
 
-    .menu-agapes {
-      background: rgba(0, 43, 60, 0.4);
+    /* MENU AGAPES — COMPACT */
+    .menu-agapes-compact {
       border-top: 1px solid rgba(184,196,208,0.1);
       border-bottom: 1px solid rgba(184,196,208,0.1);
-      padding: 60px 40px; text-align: center;
-      position: relative;
+      padding: 64px 40px; text-align: center;
     }
-    .agapes-header { margin-bottom: 30px; }
-    .agapes-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--or); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
-    .agapes-steplist { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
-    .agapes-step-title { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blanc-casse); font-weight: 600; margin-bottom: 4px; }
-    .agapes-step-desc { font-size: 0.95rem; color: var(--texte-gris); font-style: normal; font-weight: 300; }
-    .agapes-price { font-size: 1.8rem; color: var(--or); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.05em; margin-top: 10px; margin-bottom: 30px; font-weight: 500; }
-    .agapes-accords { padding-top: 30px; max-width: 500px; margin: 10px auto 0; border-top: 1px solid rgba(201,169,110,0.1); }
-    .agapes-accords-title { font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--or); margin-bottom: 20px; font-weight: 600; }
-    .accord-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; color: var(--argent); margin-bottom: 12px; }
-    .accord-row span.glasses { font-size: 0.75rem; color: var(--texte-gris); font-style: italic; }
+    .agapes-compact-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--or);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .agapes-compact-desc {
+      font-size: 0.95rem; color: var(--texte-gris);
+      max-width: 460px; margin: 0 auto 16px;
+      font-weight: 300; line-height: 1.75;
+    }
+    .agapes-compact-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem; color: var(--or);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 30px; font-weight: 500;
+    }
+    .agapes-btn {
+      display: inline-block;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--or); background: transparent;
+      border: 1px solid rgba(201,169,110,0.5);
+      padding: 14px 36px; cursor: pointer;
+      transition: all 0.35s ease;
+    }
+    .agapes-btn:hover {
+      background: rgba(201,169,110,0.08);
+      border-color: var(--or);
+    }
+
+    /* MODAL AGAPES */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0, 18, 28, 0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-window {
+      background: #071820;
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 4px;
+      width: min(580px, 92vw);
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 52px 48px 48px;
+      position: relative;
+      transform: translateY(18px);
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201,169,110,0.2) transparent;
+    }
+    .modal-overlay.open .modal-window { transform: translateY(0); }
+    .modal-window::-webkit-scrollbar { width: 4px; }
+    .modal-window::-webkit-scrollbar-thumb { background: rgba(201,169,110,0.2); border-radius: 2px; }
+    .modal-close {
+      position: absolute; top: 18px; right: 22px;
+      background: none; border: none; cursor: pointer;
+      color: var(--texte-gris); font-size: 1.2rem; line-height: 1;
+      transition: color 0.25s; padding: 4px 6px;
+    }
+    .modal-close:hover { color: var(--or); }
+    .modal-ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 20px;
+    }
+    .modal-ornament::before, .modal-ornament::after {
+      content: ''; flex: 1; max-width: 50px; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.35));
+    }
+    .modal-ornament::after { background: linear-gradient(to left, transparent, rgba(201,169,110,0.35)); }
+    .modal-ornament .diamond { width: 4px; height: 4px; background: var(--or); transform: rotate(45deg); opacity: 0.6; }
+    .modal-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; font-weight: 700; color: var(--or);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-align: center; margin-bottom: 6px;
+    }
+    .modal-mention {
+      text-align: center; font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--texte-gris);
+      margin-bottom: 36px; font-weight: 600;
+    }
+    .modal-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+    .modal-step {
+      display: flex; align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(184,196,208,0.06);
+    }
+    .modal-step:last-child { border-bottom: none; }
+    .modal-step-label {
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--or); font-weight: 700; min-width: 110px; flex-shrink: 0;
+      font-family: 'Barlow', sans-serif;
+    }
+    .modal-step-desc {
+      font-size: 0.9rem; color: var(--texte-gris);
+      font-weight: 300; line-height: 1.55; flex: 1;
+    }
+    .modal-price-row {
+      text-align: center;
+      border-top: 1px solid rgba(201,169,110,0.12);
+      padding-top: 28px; margin-bottom: 28px;
+    }
+    .modal-price-label {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--texte-gris); margin-bottom: 8px;
+    }
+    .modal-price-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; color: var(--or);
+      font-weight: 500; letter-spacing: 0.05em;
+    }
+    .modal-accords {
+      border-top: 1px solid rgba(201,169,110,0.12);
+      padding-top: 24px;
+    }
+    .modal-accords-title {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--or); font-weight: 700; text-align: center;
+      margin-bottom: 18px;
+    }
+    .modal-accord-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.85rem; color: var(--argent);
+      padding: 10px 0; border-bottom: 1px solid rgba(184,196,208,0.05);
+    }
+    .modal-accord-row:last-child { border-bottom: none; }
+    .modal-accord-row .accord-price { color: var(--or); font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .menu-agapes-compact { padding: 48px 20px; }
+      .modal-window { padding: 40px 24px 36px; }
+      .modal-step-label { min-width: 90px; font-size: 0.6rem; }
+    }
 
     .menu-rossini { background: transparent; padding: 60px 20px; text-align: center; }
     .rossini-cartouche {
@@ -485,57 +614,12 @@
             </div>
         </div>
 
-        <!-- MENU DES AGAPES -->
-        <div class="menu-agapes">
-          <div class="agapes-header">
-            <h3 class="agapes-title">Le Menu des Agapes</h3>
-            <p style="font-size: 0.85rem; color: #ffffff; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">Menu proposé uniquement le soir et servi à toute la table</p>
-          </div>
-          
-          <div class="agapes-steplist">
-            <div>
-              <p class="agapes-step-title">Amuse Bouche</p>
-              <p class="agapes-step-desc">Tartelette fenouil &amp; seiche à la vanille</p>
-            </div>
-            <div>
-              <p class="agapes-step-title">Entrée</p>
-              <p class="agapes-step-desc">Asperge verte et pamplemousse, œuf parfait à la moutarde violette</p>
-            </div>
-            <div>
-              <p class="agapes-step-title">Poisson</p>
-              <p class="agapes-step-desc">Saumon fumé en bouillon umami et rhubarbe confite</p>
-            </div>
-            <div>
-              <p class="agapes-step-title">Viande</p>
-              <p class="agapes-step-desc">Épaule d'agneau confite, cassolette de févettes aux fruits secs et vadouvan, tuile de seigle</p>
-            </div>
-            <div>
-              <p class="agapes-step-title">Fromage</p>
-              <p class="agapes-step-desc">Épaule d'agneau confite, cassolette de févettes aux fruits secs et vadouvan, tuile de seigle</p>
-            </div>
-            <div>
-              <p class="agapes-step-title">Dessert</p>
-              <p class="agapes-step-desc">Tartelette rhubarbe, meringue déstructurée</p>
-            </div>
-            <div>
-              <p class="agapes-step-title">Mignardises</p>
-              <p class="agapes-step-desc">Macarons</p>
-            </div>
-          </div>
-          
-          <p class="agapes-price">89.—</p>
-          
-          <div class="agapes-accords">
-            <p class="agapes-accords-title">Accords mets &amp; boissons</p>
-            <div class="accord-row">
-              <div style="text-align: left; font-weight: 500;">ACCORD 2 VERRES</div>
-              <div style="text-align: right; color: var(--or); font-weight: 600;">CHF 23.—</div>
-            </div>
-            <div class="accord-row">
-              <div style="text-align: left; font-weight: 500;">ACCORD 4 VERRES</div>
-              <div style="text-align: right; color: var(--or); font-weight: 600;">CHF 45.—</div>
-            </div>
-          </div>
+        <!-- MENU DES AGAPES — VERSION COMPACTE -->
+        <div class="menu-agapes-compact">
+          <h3 class="agapes-compact-title">Le Menu des Agapes</h3>
+          <p class="agapes-compact-desc">Chaque soir, nous proposons un menu découverte servi à l'ensemble de la table, imaginé au fil des saisons.</p>
+          <p class="agapes-compact-price">À partir de CHF 89.–</p>
+          <button class="agapes-btn" onclick="openAgapesModal()">DÉCOUVRIR NOTRE MENU DU MOMENT</button>
         </div>
 
         <!-- ROSSINI -->
@@ -702,10 +786,84 @@
     </div>
   </footer>
 
+  <!-- MODAL MENU DES AGAPES -->
+  <div class="modal-overlay" id="agapes-modal" onclick="handleModalClick(event)">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-label="Menu des Agapes">
+      <button class="modal-close" onclick="closeAgapesModal()" aria-label="Fermer">&#x2715;</button>
+
+      <div class="modal-ornament"><div class="diamond"></div></div>
+      <h2 class="modal-title">Le Menu des Agapes</h2>
+      <p class="modal-mention">Servi le soir uniquement &mdash; à l'ensemble de la table</p>
+
+      <div class="modal-steps">
+        <div class="modal-step">
+          <span class="modal-step-label">Amuse Bouche</span>
+          <span class="modal-step-desc">Tartelette fenouil &amp; seiche à la vanille</span>
+        </div>
+        <div class="modal-step">
+          <span class="modal-step-label">Entrée</span>
+          <span class="modal-step-desc">Asperge verte et pamplemousse, œuf parfait à la moutarde violette</span>
+        </div>
+        <div class="modal-step">
+          <span class="modal-step-label">Poisson</span>
+          <span class="modal-step-desc">Saumon fumé en bouillon umami et rhubarbe confite</span>
+        </div>
+        <div class="modal-step">
+          <span class="modal-step-label">Viande</span>
+          <span class="modal-step-desc">Épaule d'agneau confite, cassolette de févettes aux fruits secs et vadouvan, tuile de seigle</span>
+        </div>
+        <div class="modal-step">
+          <span class="modal-step-label">Fromage</span>
+          <span class="modal-step-desc">Sélection affinée, servi avec pain maison</span>
+        </div>
+        <div class="modal-step">
+          <span class="modal-step-label">Dessert</span>
+          <span class="modal-step-desc">Tartelette rhubarbe, meringue déstructurée</span>
+        </div>
+        <div class="modal-step">
+          <span class="modal-step-label">Mignardises</span>
+          <span class="modal-step-desc">Macarons du chef</span>
+        </div>
+      </div>
+
+      <div class="modal-price-row">
+        <p class="modal-price-label">Prix par personne</p>
+        <p class="modal-price-value">CHF 89.—</p>
+      </div>
+
+      <div class="modal-accords">
+        <p class="modal-accords-title">Accords mets &amp; boissons</p>
+        <div class="modal-accord-row">
+          <span>Accord 2 verres</span>
+          <span class="accord-price">CHF 23.—</span>
+        </div>
+        <div class="modal-accord-row">
+          <span>Accord 4 verres</span>
+          <span class="accord-price">CHF 45.—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
       ? 'http://localhost:3001/api/carte' 
       : 'https://lagape-dashboard.vercel.app/api/carte';
+
+    function openAgapesModal() {
+      document.getElementById('agapes-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAgapesModal() {
+      document.getElementById('agapes-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleModalClick(e) {
+      if (e.target === document.getElementById('agapes-modal')) closeAgapesModal();
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeAgapesModal();
+    });
 
     let menuOpen = false;
     function toggleMenu() {
