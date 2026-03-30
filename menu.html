@@ -162,22 +162,21 @@
     .menu-semaine { 
       background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.02) 100%);
       border: 1px solid rgba(201,169,110,0.3);
-      padding: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0;
-      border-radius: 4px; max-width: 580px; margin: 0 auto;
+      padding: 50px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      border-radius: 4px; max-width: 900px; margin: 0 auto;
     }
-    .semaine-header { margin-bottom: 30px; }
-    .semaine-header h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; color: var(--or); margin-bottom: 8px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+    .semaine-header { grid-column: 1 / -1; text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(201,169,110,0.1); padding-bottom: 30px; }
+    .semaine-header h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; color: var(--or); margin-bottom: 8px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
     .semaine-mention { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--texte-gris); margin-bottom: 12px; font-weight: 400; font-style: italic; }
-    .semaine-date { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--or); margin-bottom: 0; font-weight: 600; opacity: 0.8; }
+    .semaine-date { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--or); margin-bottom: 0; font-weight: 600; opacity: 0.8; }
     
-    .semaine-plats { display: flex; flex-direction: column; gap: 28px; width: 100%; margin-bottom: 40px; }
-    .semaine-step-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); font-weight: 700; margin-bottom: 8px; }
-    .semaine-step-plat { font-size: 1.3rem; color: var(--blanc-casse); font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: 0.02em; }
-    .semaine-step-plat span.ou { font-size: 0.8rem; color: var(--texte-gris); margin: 6px 0; display: block; font-family: 'Barlow', sans-serif; }
+    .semaine-plats { display: flex; flex-direction: column; gap: 32px; text-align: right; border-right: 1px solid rgba(201,169,110,0.15); padding-right: 40px; }
+    .semaine-step-label { font-size: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--or); font-weight: 500; margin-bottom: 6px; font-family: 'Barlow Condensed', sans-serif; }
+    .semaine-step-plat { font-size: 1.25rem; color: var(--blanc-casse); font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: 0.02em; }
+    .semaine-step-plat span.ou { font-size: 0.82rem; color: var(--texte-gris); margin: 6px 0; display: block; font-family: 'Barlow', sans-serif; }
     
-    .semaine-prices { text-align: center; border-top: 1px solid rgba(201,169,110,0.15); padding-top: 30px; width: 100%; }
-    .semaine-prices p { font-size: 1.05rem; letter-spacing: 0.05em; color: var(--or); margin-bottom: 12px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
-    .semaine-prices p:last-child { margin-bottom: 0; }
+    .semaine-prices { display: flex; flex-direction: column; justify-content: center; gap: 14px; text-align: left; padding-left: 10px; }
+    .semaine-prices p { font-size: 1.15rem; letter-spacing: 0.04em; color: var(--or); margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
 
     .menu-agapes {
       background: rgba(0, 43, 60, 0.4);
@@ -386,12 +385,14 @@
       .menu-tabs { overflow-x: auto; justify-content: flex-start; top: 54px; }
       .menu-tab { padding: 12px 15px; white-space: nowrap; font-size: 0.65rem; }
       .menu-semaine { 
-        padding: 40px 20px; 
+        display: flex; flex-direction: column; padding: 40px 20px; gap: 30px;
       }
-      .semaine-prices { padding-top: 25px; }
-      .semaine-plats { gap: 24px; margin-bottom: 30px; }
+      .semaine-header { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+      .semaine-plats { border-right: none; padding-right: 0; text-align: center; gap: 22px; }
+      .semaine-step-label { font-size: 1rem; }
       .semaine-step-plat { font-size: 1.15rem; }
-      .semaine-date { margin-bottom: 0; }
+      .semaine-prices { text-align: center; padding-left: 0; border-top: 1px solid rgba(201,169,110,0.15); padding-top: 30px; }
+      .semaine-prices p { font-size: 1.05rem; margin-bottom: 8px; }
       .rossini-options { flex-direction: column; gap: 15px; }
       .agapes-accords { padding-left: 15px; padding-right: 15px; }
       .menu-agapes { padding: 40px 15px; }
@@ -466,14 +467,14 @@
         
         <!-- MENU DE LA SEMAINE -->
         <div class="menu-semaine">
-            <!-- TITRE ET MENTION -->
+            <!-- TITRE ET MENTION (Spans 2 cols on Desktop) -->
             <div class="semaine-header">
                <h3>Menu de la semaine</h3>
                <p class="semaine-mention">Servi uniquement le midi</p>
                <p class="semaine-date">DU 31/03 AU 03/04</p>
             </div>
 
-            <!-- PLATS -->
+            <!-- PLATS (Left column on Desktop) -->
             <div class="semaine-plats">
                <div>
                  <p class="semaine-step-label">Entrée</p>
@@ -489,13 +490,13 @@
                </div>
             </div>
 
-            <!-- TARIFS -->
+            <!-- TARIFS (Right column on Desktop) -->
             <div class="semaine-prices">
                <p>Entrée + Plat + Dessert = CHF 40.—</p>
                <p>Entrée + Plat = CHF 35.—</p>
                <p>Plat du jour = CHF 25.—</p>
             </div>
-         </div>
+        </div>
 
         <!-- MENU DES AGAPES -->
         <div class="menu-agapes">
