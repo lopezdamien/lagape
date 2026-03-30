@@ -117,9 +117,11 @@
       text-decoration: none; letter-spacing: 0.1em;
       text-transform: uppercase;
       display: block; padding: 10px 0; transition: color 0.3s;
+      outline: none; -webkit-tap-highlight-color: transparent;
     }
     .mobile-nav-list a:hover, .mobile-nav-list a.active { color: var(--or); }
-    .mobile-nav-list a:focus, .mobile-overlay-logo:focus { outline: none; -webkit-tap-highlight-color: transparent; }
+    .mobile-nav-list a:focus, .mobile-overlay-logo:focus, .mobile-reserve-wrap a:focus { outline: none; }
+    .mobile-overlay * { -webkit-tap-highlight-color: transparent; }
     .mobile-reserve-wrap {
       margin-top: 40px;
       opacity: 0; transform: translateY(18px);
