@@ -12,22 +12,20 @@ export default function Header({ title, subtitle, actions }) {
       top: 0,
       zIndex: 5,
     }}>
-      <div>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px' }}>
         <div style={{
-          fontFamily: 'Barlow Condensed, sans-serif',
-          fontSize: '1.4rem',
-          fontWeight: 700,
+          fontFamily: 'Cormorant Garamond, serif',
+          fontSize: '1.6rem',
+          fontWeight: 400,
           color: '#ffffff',
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
+          letterSpacing: '0.04em',
         }}>{title}</div>
         {subtitle && (
           <div style={{
-            fontSize: '0.62rem',
-            letterSpacing: '0.22em',
+            fontSize: '0.6rem',
+            letterSpacing: '0.25em',
             textTransform: 'uppercase',
             color: 'var(--text-muted)',
-            marginTop: '2px',
             fontWeight: 400,
           }}>{subtitle}</div>
         )}
