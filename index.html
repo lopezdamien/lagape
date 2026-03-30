@@ -485,9 +485,6 @@
       nav { padding: 18px 24px; }
       .nav-links, .nav-reserve { display: none; }
       .nav-burger { display: flex; }
-      section { padding: 70px 24px; }
-      .hero-cta { flex-direction: column; align-items: center; gap: 12px; }
-      .btn-primary, .btn-secondary, .btn-gift { width: 260px; text-align: center; }
       .presentation { grid-template-columns: 1fr; gap: 40px; }
       .pres-image { aspect-ratio: 16/9; }
       .pres-image::after { display: none; }
@@ -497,6 +494,224 @@
       .footer-grid { grid-template-columns: 1fr; gap: 30px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
       footer { padding: 40px 24px 24px; }
+    }
+
+    /* ── MOBILE PREMIUM (≤ 768px) ── */
+    @media (max-width: 768px) {
+
+      /* 1 · HEADER */
+      nav {
+        padding: 14px 20px;
+        background: var(--bg-overlay);
+        border-bottom: 1px solid rgba(209,217,225,0.08);
+      }
+      .nav-logo { font-size: 1.5rem; }
+      .nav-burger { gap: 5px; }
+      .nav-burger span { width: 22px; }
+
+      /* 2 · HERO */
+      .hero {
+        height: auto;
+        min-height: 100svh;
+        padding: 100px 24px 60px;
+        justify-content: center;
+      }
+      .hero-ornament {
+        font-size: 0.62rem;
+        letter-spacing: 0.3em;
+        margin-bottom: 18px;
+        line-height: 1.9;
+      }
+      .hero-title {
+        font-size: clamp(3.6rem, 18vw, 5.5rem);
+        margin-bottom: 10px;
+        letter-spacing: 0.06em;
+      }
+      .hero-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.22em;
+        margin-bottom: 32px;
+      }
+      .hero-divider {
+        width: 50px;
+        margin-bottom: 32px;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+      .btn-primary, .btn-secondary, .btn-gift {
+        width: min(280px, 85vw);
+        text-align: center;
+        padding: 13px 28px;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+      }
+
+      /* 3 · PHILOSOPHIE */
+      section { padding: 60px 20px; }
+      .presentation { grid-template-columns: 1fr; gap: 32px; }
+      .pres-image { aspect-ratio: 4/3; border-radius: 3px; }
+      .pres-image::after { display: none; }
+      .pres-content { padding: 0; }
+      .section-label { font-size: 0.62rem; margin-bottom: 14px; }
+      .section-title {
+        font-size: clamp(1.6rem, 7vw, 2.4rem);
+        margin-bottom: 20px;
+        line-height: 1.15;
+      }
+      .section-text {
+        font-size: 0.84rem;
+        line-height: 1.75;
+        max-width: 100%;
+      }
+      .section-divider { width: 40px; margin-bottom: 20px; }
+      .pres-quote {
+        font-size: 0.82rem;
+        line-height: 1.7;
+        padding-left: 14px;
+        border-left-width: 1px;
+        margin: 18px 0;
+      }
+      .pres-content .btn-secondary { margin-top: 20px; }
+      /* Logos Michelin / G&M */
+      .pres-content > div:last-child {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px !important;
+      }
+
+      /* 4 · ROSSINI */
+      .menu-preview section,
+      section.menu-preview { padding: 50px 20px 60px; }
+      /* Rossini block inline styles can't be fully overridden without class — target via structure */
+      .menu-preview > section > div:first-child,
+      .menu-preview div[style*="max-width: 800px"]:first-of-type {
+        padding: 0 !important;
+        margin-bottom: 40px !important;
+      }
+      /* Rossini title size on mobile */
+      .menu-preview .section-title {
+        font-size: clamp(1.9rem, 8vw, 2.8rem) !important;
+        margin-bottom: 14px;
+      }
+      .menu-preview .section-label {
+        font-size: 0.78rem !important;
+        margin-bottom: 10px;
+      }
+      .menu-preview .section-text {
+        font-size: 0.84rem;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* 5 · LA CARTE DU MOMENT */
+      .menu-preview-header { margin-bottom: 28px; }
+      .menu-preview-header .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 14px; }
+      .menu-preview-header .section-text { font-size: 0.84rem; max-width: 100%; }
+      /* Menu cards — single column, left-aligned */
+      .menu-grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 10px;
+      }
+      .menu-card {
+        border-left: none;
+        border-top: 1px solid rgba(184,196,208,0.08);
+        padding: 24px 0;
+      }
+      .menu-card:first-child { border-top: none; }
+      .menu-card-cat {
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        margin-bottom: 16px;
+      }
+      .menu-item { margin-bottom: 18px; padding-bottom: 18px; }
+      .menu-item-name { font-size: 0.95rem; margin-bottom: 6px; letter-spacing: 0.04em; }
+      .menu-item-desc { font-size: 0.78rem; line-height: 1.55; margin-bottom: 4px; }
+      .menu-item-price { font-size: 0.78rem; }
+      /* CTA button */
+      .menu-preview-footer {
+        padding-bottom: 40px !important;
+        margin-top: 4px;
+      }
+      .menu-preview-footer .btn-secondary {
+        width: min(280px, 85vw);
+        padding: 12px 24px;
+        font-size: 0.68rem;
+      }
+
+      /* 6 · MENU DES AGAPES */
+      .menu-preview .menu-preview-inner > div:last-child {
+        padding: 0 4px !important;
+        margin-top: 0 !important;
+      }
+      .menu-preview .section-divider { margin-bottom: 28px !important; }
+
+      /* 7 · NOUS RENDRE VISITE */
+      .infos-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .info-block-title {
+        font-size: 0.6rem;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
+      }
+      /* Horaires — better alignment */
+      .horaires-row {
+        font-size: 0.8rem;
+        padding: 9px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .horaires-row .jour { min-width: 90px; }
+      /* Contact */
+      .contact-item {
+        font-size: 0.88rem;
+        margin-bottom: 16px;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .contact-icon { font-size: 1rem; margin-top: 3px; }
+      /* Traiteur box */
+      .traiteur-box {
+        max-width: 100%;
+        padding: 16px 18px;
+        margin-top: 0;
+      }
+      .traiteur-box p { font-size: 0.84rem; margin-bottom: 12px; line-height: 1.65; }
+      .traiteur-box a { font-size: 0.72rem; }
+
+      /* 8 · FOOTER */
+      footer { padding: 48px 24px 28px; }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        margin-bottom: 40px;
+      }
+      .footer-logo { font-size: 1.8rem; margin-bottom: 6px; }
+      .footer-tagline { font-size: 0.82rem; margin-bottom: 20px; }
+      .footer-social { gap: 22px; }
+      .footer-social svg { width: 22px; height: 22px; }
+      .footer-col-title { font-size: 0.6rem; margin-bottom: 16px; letter-spacing: 0.22em; }
+      .footer-links li { margin-bottom: 12px; }
+      .footer-links a { font-size: 0.88rem; }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding-top: 24px;
+        font-size: 0.68rem;
+      }
+
+      /* 9 · RÈGLES GÉNÉRALES */
+      /* Prevent any section from overflowing horizontally */
+      * { max-width: 100%; }
+      img, svg { max-width: 100%; }
     }
   </style>
 </head>
