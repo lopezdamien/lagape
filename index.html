@@ -377,18 +377,18 @@
     footer {
       background: var(--bg-dark);
       border-top: 1px solid rgba(184,196,208,0.08);
-      padding: 80px 60px 40px;
+      padding: 60px 60px 30px;
     }
     .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 60px; margin-bottom: 60px;
+      gap: 40px; margin-bottom: 30px; max-width: 1000px; margin-left: auto; margin-right: auto;
     }
     .footer-logo {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse);
       letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;
     }
-    .footer-tagline { font-size: 0.88rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
+    .footer-tagline { font-size: 0.8rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
     .footer-social { display: flex; gap: 20px; }
     .footer-social a {
       color: var(--blanc-casse); opacity: 0.9;
@@ -396,6 +396,7 @@
       display: flex; align-items: center; justify-content: center;
     }
     .footer-social a:hover { color: var(--or); opacity: 1; transform: translateY(-2px); }
+    .footer-social svg { width: 24px; height: 24px; }
     .footer-col-title {
       font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--or); margin-bottom: 24px; font-weight: 600;
@@ -409,9 +410,9 @@
     .footer-links a:hover { color: var(--blanc-casse); }
     .footer-bottom {
       border-top: 1px solid rgba(184,196,208,0.08);
-      padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.72rem; color: rgba(184,196,208,0.4); font-weight: 300; letter-spacing: 0.05em;
+      padding-top: 20px;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 0.75rem; color: rgba(184,196,208,0.6); font-weight: 300; letter-spacing: 0.05em;
     }
 
     /* ── POPUP ── */
@@ -496,10 +497,10 @@
       .menu-grid { grid-template-columns: 1fr; }
       .menu-card { border-left: none; padding: 20px 0; }
       .infos-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
       .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-      footer { padding: 40px 24px 24px; }
+      footer { padding: 30px 20px 20px; }
     }
 
     /* ── MOBILE PREMIUM (≤ 768px) ── */
