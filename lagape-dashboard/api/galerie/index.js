@@ -5,6 +5,8 @@ import formidable from 'formidable'
 import { promises as fs } from 'fs'
 import { checkAuth } from '../_auth.js'
 
+export const config = { api: { bodyParser: false } }
+
 const DEFAULT = { photos: [] }
 
 function parseForm(req) {
