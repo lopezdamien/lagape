@@ -40,6 +40,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
+      res.setHeader('Cache-Control', 'no-store')
       const data = (await kvGet('galerie')) || DEFAULT
       return res.json(data)
     }

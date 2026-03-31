@@ -386,7 +386,7 @@
     async function chargerGalerie() {
       const grid = document.getElementById('galerie-grid');
       try {
-        const r = await fetch(API + '/api/galerie');
+        const r = await fetch(API + '/api/galerie', { cache: 'no-store' });
         const data = await r.json();
         const photos = (data.photos || []).filter(p => p.url || p.filename);
 
