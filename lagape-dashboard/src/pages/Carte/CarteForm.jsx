@@ -25,7 +25,7 @@ const DEFAULTS = {
   vins: { categorieVin: 'blancs', nom: '', region: '', prixVerre: '', prixBouteille: '' },
 }
 
-export default function CarteForm() {
+export default function CarteForm({ isMobile, onMenuClick }) {
   const { type, id } = useParams()
   const navigate = useNavigate()
   const [formType, setFormType] = useState(type || 'plats')
@@ -155,8 +155,9 @@ export default function CarteForm() {
         title={isEdit ? `Modifier — ${formulaTitle || TYPE_LABELS[type]}` : 'Nouvel élément'}
         subtitle="La Carte"
         actions={<Button variant="subtle" onClick={() => navigate('/carte')}>← Retour</Button>}
+        isMobile={isMobile} onMenuClick={onMenuClick}
       />
-      <div style={{ padding: '40px', maxWidth: '660px' }}>
+      <div style={{ padding: isMobile ? '16px' : '40px', maxWidth: '660px' }}>
 
         {/* Sélecteur de type (création seulement) */}
         {!isEdit && (
@@ -190,7 +191,7 @@ export default function CarteForm() {
                   {field('Plat', 'plat', { placeholder: 'Nom du plat', textarea: true, rows: 2 })}
                   {field('Dessert', 'dessert', { placeholder: 'ex: Mousse au chocolat ou Assiette de fromages' })}
                   <p style={{ ...sectionTitleStyle, marginTop: '28px' }}>Tarifs</p>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: '14px' }}>
                     {field('E + P + D (CHF)', 'prixComplet', { placeholder: '40' })}
                     {field('E + P (CHF)', 'prixSansDessert', { placeholder: '35' })}
                     {field('Plat seul (CHF)', 'prixPlat', { placeholder: '25' })}
@@ -216,7 +217,7 @@ export default function CarteForm() {
                     </div>
                   ))}
                   <p style={{ ...sectionTitleStyle, marginTop: '28px' }}>Prix & Accords</p>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: '14px' }}>
                     {field('Prix / pers. (CHF)', 'prix', { placeholder: '89' })}
                     {field('Accord 2 verres (CHF)', 'accord2', { placeholder: '23' })}
                     {field('Accord 4 verres (CHF)', 'accord4', { placeholder: '45' })}

@@ -13,7 +13,7 @@ const TABS = [
   { id: 'desserts', label: 'Fromages & Desserts' },
 ]
 
-export default function CarteList() {
+export default function CarteList({ isMobile, onMenuClick }) {
   const [data, setData] = useState(null)
   const [activeTab, setActiveTab] = useState('entrees')
   const [deleteTarget, setDeleteTarget] = useState(null)
@@ -39,9 +39,12 @@ export default function CarteList() {
 
   const row = (item, type) => (
     <div key={item.id} style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '16px 24px', borderBottom: '1px solid var(--border)',
-      background: 'transparent', transition: 'background 0.15s',
+      display: 'flex', alignItems: isMobile ? 'flex-start' : 'center',
+      flexDirection: isMobile ? 'column' : 'row',
+      justifyContent: 'space-between',
+      padding: isMobile ? '14px 16px' : '16px 24px',
+      borderBottom: '1px solid var(--border)',
+      background: 'transparent', transition: 'background 0.15s', gap: isMobile ? '10px' : 0,
     }}
       onMouseEnter={e => e.currentTarget.style.background = 'rgba(30,51,83,0.3)'}
       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
@@ -82,13 +85,15 @@ export default function CarteList() {
         title="La Carte"
         subtitle="Gestion des plats et formules"
         actions={<Link to="/carte/nouveau"><Button>+ Nouveau</Button></Link>}
+        isMobile={isMobile} onMenuClick={onMenuClick}
       />
 
       {/* Tabs */}
       <div style={{
         display: 'flex', borderBottom: '1px solid var(--border)',
-        background: 'var(--bleu-profond)', padding: '0 40px',
+        background: 'var(--bleu-profond)', padding: isMobile ? '0 8px' : '0 40px',
         position: 'sticky', top: 'var(--header-height)', zIndex: 4,
+        overflowX: 'auto',
       }}>
         {TABS.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
@@ -103,7 +108,7 @@ export default function CarteList() {
         ))}
       </div>
 
-      <div style={{ padding: '0 40px 40px' }}>
+      <div style={{ padding: isMobile ? '0 0 40px' : '0 40px 40px' }}>
         {!data && (
           <div style={{ padding: '60px', textAlign: 'center', color: 'var(--texte-gris)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
             Chargement…

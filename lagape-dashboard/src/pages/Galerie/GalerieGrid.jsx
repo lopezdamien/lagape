@@ -15,7 +15,7 @@ const CATS = [
 
 const CAT_LABELS = { ambiance: 'Ambiance', cuisine: 'Cuisine', plats: 'Plats', equipe: 'Équipe' }
 
-export default function GalerieGrid() {
+export default function GalerieGrid({ isMobile, onMenuClick }) {
   const [photos, setPhotos] = useState([])
   const [filter, setFilter] = useState('tout')
   const [deleteTarget, setDeleteTarget] = useState(null)
@@ -166,6 +166,7 @@ export default function GalerieGrid() {
       <Header
         title="Galerie"
         subtitle="Photos du restaurant"
+        isMobile={isMobile} onMenuClick={onMenuClick}
         actions={
           <div style={{ display: 'flex', gap: '10px' }}>
             {reorderMode ? (
@@ -185,7 +186,7 @@ export default function GalerieGrid() {
 
       {/* Filtres (masqués en mode réorganisation) */}
       {!reorderMode && (
-        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', background: 'var(--bleu-profond)', padding: '0 40px', position: 'sticky', top: 'var(--header-height)', zIndex: 4 }}>
+        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', background: 'var(--bleu-profond)', padding: isMobile ? '0 4px' : '0 40px', position: 'sticky', top: 'var(--header-height)', zIndex: 4, overflowX: 'auto' }}>
           {CATS.map(c => (
             <button key={c.value} onClick={() => setFilter(c.value)} style={{
               padding: '14px 22px', background: 'none', border: 'none',
@@ -210,12 +211,12 @@ export default function GalerieGrid() {
 
       {/* Formulaire upload */}
       {showUpload && !reorderMode && (
-        <div style={{ margin: '24px 40px', padding: '28px 32px', background: 'var(--card-bg)', border: '1px solid var(--border-or)' }}>
+        <div style={{ margin: isMobile ? '16px' : '24px 40px', padding: isMobile ? '20px 16px' : '28px 32px', background: 'var(--card-bg)', border: '1px solid var(--border-or)' }}>
           <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: 'var(--blanc-casse)', marginBottom: '20px' }}>
             Ajouter une photo
           </div>
           <form onSubmit={handleUpload}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
               <div>
                 <label style={labelStyle}>Image</label>
                 <input
@@ -251,13 +252,13 @@ export default function GalerieGrid() {
       )}
 
       {/* Grille Instagram */}
-      <div style={{ padding: '24px 40px 60px' }}>
+      <div style={{ padding: isMobile ? '8px 0 40px' : '24px 40px 60px' }}>
         {visible.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px', color: 'var(--texte-gris)', fontSize: '0.8rem' }}>
             Aucune photo dans cette catégorie.
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '4px' }}>
             {visible.map((photo, idx) => (
               <GridItem
                 key={photo.id}

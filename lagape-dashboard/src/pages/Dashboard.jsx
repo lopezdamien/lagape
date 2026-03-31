@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/layout/Header'
 
-export default function Dashboard() {
+export default function Dashboard({ isMobile, onMenuClick }) {
   const [stats, setStats] = useState({ plats: 0, photos: 0, articles: 0 })
 
   useEffect(() => {
@@ -27,11 +27,11 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Header title="Tableau de bord" />
-      <div style={{ padding: '48px 40px' }}>
+      <Header title="Tableau de bord" isMobile={isMobile} onMenuClick={onMenuClick} />
+      <div style={{ padding: isMobile ? '24px 16px' : '48px 40px' }}>
 
         {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '56px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '16px', marginBottom: '40px' }}>
           {cards.map(card => (
             <Link key={card.to} to={card.to} style={{ textDecoration: 'none' }}>
               <div style={{

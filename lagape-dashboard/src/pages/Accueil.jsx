@@ -6,7 +6,7 @@ import { apiFetch } from '../lib/api'
 const API = '/api/siteconfig'
 const UPLOADS = 'http://localhost:3001/uploads/siteconfig'
 
-export default function Accueil() {
+export default function Accueil({ isMobile, onMenuClick }) {
   const [config, setConfig] = useState(null)
   const [loading, setLoading] = useState(true)
   const [uploadingPhoto, setUploadingPhoto] = useState(false)
@@ -70,8 +70,8 @@ export default function Accueil() {
 
   return (
     <div>
-      <Header title="Page d'accueil" subtitle="L'AGAPE · Gestion" />
-      <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+      <Header title="Page d'accueil" subtitle="L'AGAPE · Gestion" isMobile={isMobile} onMenuClick={onMenuClick} />
+      <div style={{ padding: isMobile ? '16px' : '40px', display: 'flex', flexDirection: 'column', gap: '32px' }}>
 
         {/* Toast */}
         {msg && (

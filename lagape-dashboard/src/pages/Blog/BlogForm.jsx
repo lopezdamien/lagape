@@ -11,7 +11,7 @@ function slugify(str) {
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
-export default function BlogForm() {
+export default function BlogForm({ isMobile, onMenuClick }) {
   const { id } = useParams()
   const navigate = useNavigate()
   const isEdit = !!id
@@ -85,11 +85,12 @@ export default function BlogForm() {
         title={isEdit ? 'Modifier l\'article' : 'Nouvel article'}
         subtitle="Blog"
         actions={<Button variant="subtle" onClick={() => navigate('/blog')}>← Retour</Button>}
+        isMobile={isMobile} onMenuClick={onMenuClick}
       />
 
-      <div style={{ padding: '40px', maxWidth: '760px' }}>
+      <div style={{ padding: isMobile ? '16px' : '40px', maxWidth: '760px' }}>
         <form onSubmit={handleSubmit}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '22px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px', marginBottom: '22px' }}>
             <div>
               <label style={labelStyle}>Titre</label>
               <input type="text" value={form.titre} onChange={e => set('titre', e.target.value)}
@@ -119,7 +120,7 @@ export default function BlogForm() {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '22px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px', marginBottom: '22px' }}>
             <div>
               <label style={labelStyle}>Image de couverture</label>
               <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFile}

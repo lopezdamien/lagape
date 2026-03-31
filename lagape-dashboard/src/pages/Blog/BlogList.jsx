@@ -6,7 +6,7 @@ import Modal from '../../components/ui/Modal'
 import { toast } from '../../components/ui/Toast'
 import { apiFetch } from '../../lib/api'
 
-export default function BlogList() {
+export default function BlogList({ isMobile, onMenuClick }) {
   const [articles, setArticles] = useState([])
   const [deleteTarget, setDeleteTarget] = useState(null)
 
@@ -39,9 +39,10 @@ export default function BlogList() {
         title="Blog"
         subtitle="Articles et actualités"
         actions={<Link to="/blog/nouveau"><Button>+ Nouvel article</Button></Link>}
+        isMobile={isMobile} onMenuClick={onMenuClick}
       />
 
-      <div style={{ padding: '32px 40px' }}>
+      <div style={{ padding: isMobile ? '16px' : '32px 40px' }}>
         {articles.length === 0 ? (
           <div style={{
             textAlign: 'center', padding: '80px 40px',
@@ -62,8 +63,10 @@ export default function BlogList() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {articles.map(article => (
               <div key={article.id} style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                padding: '18px 24px', background: 'var(--card-bg)',
+                display: 'flex', alignItems: isMobile ? 'flex-start' : 'center',
+                flexDirection: isMobile ? 'column' : 'row',
+                justifyContent: 'space-between', gap: isMobile ? '12px' : 0,
+                padding: isMobile ? '14px 16px' : '18px 24px', background: 'var(--card-bg)',
                 borderLeft: `3px solid ${article.publie ? 'var(--or)' : 'var(--border)'}`,
                 transition: 'background 0.15s',
               }}

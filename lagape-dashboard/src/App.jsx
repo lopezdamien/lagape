@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import { ToastContainer, useToast } from './components/ui/Toast'
 import { useAuth } from './contexts/AuthContext'
+import { useIsMobile } from './hooks/useIsMobile'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Accueil from './pages/Accueil'
@@ -11,32 +13,38 @@ import GalerieGrid from './pages/Galerie/GalerieGrid'
 import BlogList from './pages/Blog/BlogList'
 import BlogForm from './pages/Blog/BlogForm'
 
-// Force-trigger build on Vercel (Mar 27)
 export default function App() {
   const toasts = useToast()
   const { isAuthenticated } = useAuth()
+  const isMobile = useIsMobile()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   if (!isAuthenticated) return <Login />
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar />
+      <Sidebar
+        isMobile={isMobile}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
       <main style={{
-        marginLeft: 'var(--sidebar-width)',
+        marginLeft: isMobile ? 0 : 'var(--sidebar-width)',
         flex: 1,
         minHeight: '100vh',
         background: 'var(--bleu-nuit)',
+        minWidth: 0,
       }}>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/accueil" element={<Accueil />} />
-          <Route path="/carte" element={<CarteList />} />
-          <Route path="/carte/nouveau" element={<CarteForm />} />
-          <Route path="/carte/:type/:id" element={<CarteForm />} />
-          <Route path="/galerie" element={<GalerieGrid />} />
-          <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/nouveau" element={<BlogForm />} />
-          <Route path="/blog/:id" element={<BlogForm />} />
+          <Route path="/" element={<Dashboard isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/accueil" element={<Accueil isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/carte" element={<CarteList isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/carte/nouveau" element={<CarteForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/carte/:type/:id" element={<CarteForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/galerie" element={<GalerieGrid isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/blog" element={<BlogList isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/blog/nouveau" element={<BlogForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/blog/:id" element={<BlogForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
         </Routes>
       </main>
       <ToastContainer toasts={toasts} />
