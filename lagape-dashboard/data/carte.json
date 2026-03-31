@@ -20,13 +20,34 @@
       "label": "Menu du soir",
       "nom": "Le Menu des Agapes",
       "steps": [
-        { "label": "Amuse Bouche", "desc": "Tartelette fenouil & seiche à la vanille" },
-        { "label": "Entrée", "desc": "Asperge verte et pamplemousse, œuf parfait à la moutarde violette" },
-        { "label": "Poisson", "desc": "Saumon fumé en bouillon umami et rhubarbe confite" },
-        { "label": "Viande", "desc": "Épaule d'agneau confite, cassolette de févettes aux fruits secs et vadouvan, tuile de seigle" },
-        { "label": "Fromage", "desc": "Sélection affinée, servi avec pain maison" },
-        { "label": "Dessert", "desc": "Tartelette rhubarbe, meringue déstructurée" },
-        { "label": "Mignardises", "desc": "Macarons du chef" }
+        {
+          "label": "Amuse Bouche",
+          "desc": "Tartelette fenouil & seiche à la vanille"
+        },
+        {
+          "label": "Entrée",
+          "desc": "Asperge verte et pamplemousse, œuf parfait à la moutarde violette"
+        },
+        {
+          "label": "Poisson",
+          "desc": "Saumon fumé en bouillon umami et rhubarbe confite"
+        },
+        {
+          "label": "Viande",
+          "desc": "Épaule d'agneau confite, cassolette de févettes aux fruits secs et vadouvan, tuile de seigle"
+        },
+        {
+          "label": "Fromage",
+          "desc": "Sélection affinée, servi avec pain maison"
+        },
+        {
+          "label": "Dessert",
+          "desc": "Tartelette rhubarbe, meringue déstructurée"
+        },
+        {
+          "label": "Mignardises",
+          "desc": "Macarons du chef"
+        }
       ],
       "prix": "89",
       "accord2": "23",
@@ -38,9 +59,19 @@
       "type": "rossini",
       "label": "Menu signature",
       "nom": "Menu Rossini",
-      "foieGras": ["Foie gras des Landes au vin jaune", "Foie gras poêlé"],
-      "sauces": ["Sauce Morilles", "Sauce Madère", "Sauce 5 Poivres"],
-      "garnitures": ["Siphon pomme de terre au sel fumé", "Grenaille rôties au poivre rouge"],
+      "foieGras": [
+        "Foie gras des Landes au vin jaune",
+        "Foie gras poêlé"
+      ],
+      "sauces": [
+        "Sauce Morilles",
+        "Sauce Madère",
+        "Sauce 5 Poivres"
+      ],
+      "garnitures": [
+        "Siphon pommes de terre au sel fumé",
+        "Grenailles rôties au poivre rouge"
+      ],
       "prix": "79",
       "ordre": 3
     }

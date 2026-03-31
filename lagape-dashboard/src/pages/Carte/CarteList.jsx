@@ -11,10 +11,7 @@ const TABS = [
   { id: 'entrees', label: 'Entrées' },
   { id: 'plats', label: 'Plats' },
   { id: 'desserts', label: 'Fromages & Desserts' },
-  { id: 'vins', label: 'Vins' },
 ]
-
-const VIN_CATS = { blancs: 'Vins blancs', rouges: 'Vins rouges', champagnes: 'Champagnes & Pétillants' }
 
 export default function CarteList() {
   const [data, setData] = useState(null)
@@ -83,7 +80,7 @@ export default function CarteList() {
     <div>
       <Header
         title="La Carte"
-        subtitle="Gestion des plats, formules et vins"
+        subtitle="Gestion des plats et formules"
         actions={<Link to="/carte/nouveau"><Button>+ Nouveau</Button></Link>}
       />
 
@@ -127,23 +124,6 @@ export default function CarteList() {
           </div>
         )}
 
-        {data && activeTab === 'vins' && (
-          <div>
-            {Object.entries(VIN_CATS).map(([cat, label]) => (
-              <div key={cat}>
-                <div style={{
-                  padding: '20px 24px 10px',
-                  fontSize: '0.6rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-                  color: 'var(--argent)', borderBottom: '1px solid var(--border)',
-                  marginTop: '20px',
-                }}>
-                  {label}
-                </div>
-                {data.vins?.filter(v => v.categorieVin === cat).map(v => row(v, 'vins'))}
-              </div>
-            ))}
-          </div>
-        )}
       </div>
 
       <Modal
