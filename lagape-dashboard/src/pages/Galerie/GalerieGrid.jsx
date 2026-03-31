@@ -22,6 +22,11 @@ export default function GalerieGrid() {
   const [uploading, setUploading] = useState(false)
   const [showUpload, setShowUpload] = useState(false)
   const [uploadForm, setUploadForm] = useState({ caption: '', categorie: 'ambiance', file: null, preview: null })
+  const [reorderMode, setReorderMode] = useState(false)
+  const [orderChanged, setOrderChanged] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const dragIdx = useRef(null)
+  const dragOverIdx = useRef(null)
   const fileRef = useRef()
 
   async function loadPhotos() {
@@ -90,38 +95,118 @@ export default function GalerieGrid() {
     }
   }
 
+  // Drag & drop handlers (travaille sur photos triées visibles en mode tout, sinon sur le subset)
+  function onDragStart(idx) {
+    dragIdx.current = idx
+  }
+
+  function onDragOver(e, idx) {
+    e.preventDefault()
+    dragOverIdx.current = idx
+  }
+
+  function onDrop(visiblePhotos) {
+    const from = dragIdx.current
+    const to = dragOverIdx.current
+    if (from === null || to === null || from === to) return
+    const updated = [...visiblePhotos]
+    const [moved] = updated.splice(from, 1)
+    updated.splice(to, 0, moved)
+
+    if (filter === 'tout') {
+      setPhotos(updated)
+    } else {
+      // Reconstruire le tableau complet en remplaçant le subset filtré
+      const others = photos.filter(p => p.categorie !== filter)
+      setPhotos([...others, ...updated])
+    }
+    setOrderChanged(true)
+    dragIdx.current = null
+    dragOverIdx.current = null
+  }
+
+  async function saveOrder() {
+    setSaving(true)
+    const order = photos.map(p => p.id)
+    const r = await apiFetch('/api/galerie', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ order }) })
+    setSaving(false)
+    if (r.ok) {
+      toast('Ordre sauvegardé')
+      setOrderChanged(false)
+      setReorderMode(false)
+    } else {
+      toast('Erreur lors de la sauvegarde', 'error')
+    }
+  }
+
+  function cancelReorder() {
+    loadPhotos()
+    setOrderChanged(false)
+    setReorderMode(false)
+  }
+
   const visible = filter === 'tout' ? photos : photos.filter(p => p.categorie === filter)
+
   const inputStyle = {
     width: '100%', padding: '10px 14px',
     background: 'rgba(30,51,83,0.5)', border: '1px solid var(--border)',
     color: 'var(--texte-clair)', fontSize: '0.82rem',
     fontFamily: 'Montserrat, sans-serif', fontWeight: 300, outline: 'none',
   }
-  const labelStyle = { display: 'block', fontSize: '0.58rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--or)', marginBottom: '7px' }
+  const labelStyle = {
+    display: 'block', fontSize: '0.58rem', letterSpacing: '0.28em',
+    textTransform: 'uppercase', color: 'var(--or)', marginBottom: '7px',
+  }
 
   return (
     <div>
       <Header
         title="Galerie"
         subtitle="Photos du restaurant"
-        actions={<Button onClick={() => setShowUpload(true)}>+ Ajouter une photo</Button>}
+        actions={
+          <div style={{ display: 'flex', gap: '10px' }}>
+            {reorderMode ? (
+              <>
+                {orderChanged && <Button onClick={saveOrder} disabled={saving}>{saving ? 'Sauvegarde…' : 'Enregistrer l\'ordre'}</Button>}
+                <Button variant="subtle" onClick={cancelReorder}>Annuler</Button>
+              </>
+            ) : (
+              <>
+                <Button variant="subtle" onClick={() => { setReorderMode(true); setShowUpload(false) }}>⠿ Réorganiser</Button>
+                <Button onClick={() => setShowUpload(true)}>+ Ajouter une photo</Button>
+              </>
+            )}
+          </div>
+        }
       />
 
-      {/* Filtres */}
-      <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', background: 'var(--bleu-profond)', padding: '0 40px', position: 'sticky', top: 'var(--header-height)', zIndex: 4 }}>
-        {CATS.map(c => (
-          <button key={c.value} onClick={() => setFilter(c.value)} style={{
-            padding: '14px 22px', background: 'none', border: 'none',
-            borderBottom: filter === c.value ? '2px solid var(--or)' : '2px solid transparent',
-            color: filter === c.value ? 'var(--or)' : 'var(--texte-gris)',
-            fontSize: '0.62rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-            cursor: 'pointer', fontFamily: 'Montserrat, sans-serif',
-          }}>{c.label} {c.value !== 'tout' && `(${photos.filter(p => p.categorie === c.value).length})`}</button>
-        ))}
-      </div>
+      {/* Filtres (masqués en mode réorganisation) */}
+      {!reorderMode && (
+        <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', background: 'var(--bleu-profond)', padding: '0 40px', position: 'sticky', top: 'var(--header-height)', zIndex: 4 }}>
+          {CATS.map(c => (
+            <button key={c.value} onClick={() => setFilter(c.value)} style={{
+              padding: '14px 22px', background: 'none', border: 'none',
+              borderBottom: filter === c.value ? '2px solid var(--or)' : '2px solid transparent',
+              color: filter === c.value ? 'var(--or)' : 'var(--texte-gris)',
+              fontSize: '0.62rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+              cursor: 'pointer', fontFamily: 'Montserrat, sans-serif',
+            }}>{c.label} {c.value !== 'tout' && `(${photos.filter(p => p.categorie === c.value).length})`}</button>
+          ))}
+        </div>
+      )}
+
+      {/* Bandeau mode réorganisation */}
+      {reorderMode && (
+        <div style={{ padding: '12px 40px', background: 'rgba(201,169,110,0.08)', borderBottom: '1px solid var(--border-or)', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ fontSize: '0.62rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--or)' }}>
+            Mode réorganisation
+          </span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--texte-gris)' }}>— Glissez les photos pour modifier leur ordre</span>
+        </div>
+      )}
 
       {/* Formulaire upload */}
-      {showUpload && (
+      {showUpload && !reorderMode && (
         <div style={{ margin: '24px 40px', padding: '28px 32px', background: 'var(--card-bg)', border: '1px solid var(--border-or)' }}>
           <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: 'var(--blanc-casse)', marginBottom: '20px' }}>
             Ajouter une photo
@@ -162,41 +247,25 @@ export default function GalerieGrid() {
         </div>
       )}
 
-      {/* Grille */}
+      {/* Grille Instagram */}
       <div style={{ padding: '24px 40px 60px' }}>
         {visible.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px', color: 'var(--texte-gris)', fontSize: '0.8rem' }}>
             Aucune photo dans cette catégorie.
           </div>
         ) : (
-          <div style={{ columns: 3, columnGap: '14px' }}>
-            {visible.map(photo => (
-              <div key={photo.id} style={{ breakInside: 'avoid', marginBottom: '14px', position: 'relative', background: 'var(--bleu-moyen)', overflow: 'hidden', cursor: 'default' }}
-                onMouseEnter={e => e.currentTarget.querySelector('.overlay').style.opacity = '1'}
-                onMouseLeave={e => e.currentTarget.querySelector('.overlay').style.opacity = '0'}
-              >
-                {photo.url || photo.filename ? (
-                  <img src={photo.url || `/uploads/galerie/${photo.filename}`} alt={photo.caption} style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
-                ) : (
-                  <div style={{ height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Cormorant Garamond, serif', color: 'var(--texte-gris)', fontSize: '0.85rem' }}>
-                    · {photo.caption} ·
-                  </div>
-                )}
-                <div className="overlay" style={{
-                  position: 'absolute', inset: 0,
-                  background: 'linear-gradient(to top, rgba(13,27,42,0.9) 0%, rgba(13,27,42,0.3) 50%, transparent 100%)',
-                  opacity: 0, transition: 'opacity 0.3s',
-                  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '14px',
-                }}>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--texte-clair)', marginBottom: '4px' }}>{photo.caption}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--or)' }}>
-                      {CAT_LABELS[photo.categorie]}
-                    </span>
-                    <Button variant="danger" size="sm" onClick={() => setDeleteTarget(photo)}>Suppr.</Button>
-                  </div>
-                </div>
-              </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px' }}>
+            {visible.map((photo, idx) => (
+              <GridItem
+                key={photo.id}
+                photo={photo}
+                idx={idx}
+                reorderMode={reorderMode}
+                onDragStart={onDragStart}
+                onDragOver={onDragOver}
+                onDrop={() => onDrop(visible)}
+                onDelete={() => setDeleteTarget(photo)}
+              />
             ))}
           </div>
         )}
@@ -210,6 +279,90 @@ export default function GalerieGrid() {
         message={`"${deleteTarget?.caption}" sera définitivement supprimée.`}
         confirmLabel="Supprimer"
       />
+    </div>
+  )
+}
+
+function GridItem({ photo, idx, reorderMode, onDragStart, onDragOver, onDrop, onDelete }) {
+  const [hovered, setHovered] = useState(false)
+  const [dragOver, setDragOver] = useState(false)
+  const CAT_LABELS = { ambiance: 'Ambiance', cuisine: 'Cuisine', plats: 'Plats', equipe: 'Équipe' }
+  const imgSrc = photo.url || (photo.filename ? `/uploads/galerie/${photo.filename}` : null)
+
+  return (
+    <div
+      draggable={reorderMode}
+      onDragStart={() => onDragStart(idx)}
+      onDragOver={e => { onDragOver(e, idx); setDragOver(true) }}
+      onDragLeave={() => setDragOver(false)}
+      onDrop={() => { onDrop(); setDragOver(false) }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        position: 'relative',
+        aspectRatio: '1 / 1',
+        background: 'var(--bleu-moyen)',
+        overflow: 'hidden',
+        cursor: reorderMode ? 'grab' : 'default',
+        outline: dragOver ? '2px solid var(--or)' : 'none',
+        outlineOffset: '-2px',
+        opacity: reorderMode && dragOver ? 0.6 : 1,
+        transition: 'opacity 0.15s, outline 0.15s',
+      }}
+    >
+      {imgSrc ? (
+        <img
+          src={imgSrc}
+          alt={photo.caption}
+          draggable={false}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s', transform: hovered && !reorderMode ? 'scale(1.04)' : 'scale(1)' }}
+        />
+      ) : (
+        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Cormorant Garamond, serif', color: 'var(--texte-gris)', fontSize: '0.85rem' }}>
+          · {photo.caption} ·
+        </div>
+      )}
+
+      {/* Overlay infos (mode normal) */}
+      {!reorderMode && (
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to top, rgba(13,27,42,0.92) 0%, rgba(13,27,42,0.3) 50%, transparent 100%)',
+          opacity: hovered ? 1 : 0, transition: 'opacity 0.25s',
+          display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '12px',
+        }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--texte-clair)', marginBottom: '6px', lineHeight: 1.3 }}>{photo.caption}</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--or)' }}>
+              {CAT_LABELS[photo.categorie]}
+            </span>
+            <button
+              onClick={onDelete}
+              style={{
+                background: 'rgba(180,30,30,0.85)', border: 'none', color: '#fff',
+                fontSize: '0.6rem', letterSpacing: '0.1em', padding: '4px 8px',
+                cursor: 'pointer', fontFamily: 'Montserrat, sans-serif', textTransform: 'uppercase',
+              }}
+            >
+              Suppr.
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Indicateur de glissement (mode réorganisation) */}
+      {reorderMode && (
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: hovered ? 'rgba(13,27,42,0.45)' : 'transparent',
+          transition: 'background 0.2s',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          {hovered && (
+            <div style={{ fontSize: '1.6rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1 }}>⠿</div>
+          )}
+        </div>
+      )}
     </div>
   )
 }

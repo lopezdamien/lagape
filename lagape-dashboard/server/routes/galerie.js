@@ -51,6 +51,21 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 })
 
+// PATCH /api/galerie (réorganisation)
+router.patch('/', async (req, res) => {
+  try {
+    const { order } = req.body
+    if (!Array.isArray(order)) return res.status(400).json({ error: 'order requis' })
+    const data = await readData()
+    const map = Object.fromEntries(data.photos.map(p => [p.id, p]))
+    data.photos = order.map((id, i) => ({ ...map[id], ordre: i + 1 })).filter(Boolean)
+    await writeData(data)
+    res.json({ success: true })
+  } catch (e) {
+    res.status(500).json({ error: 'Erreur réorganisation' })
+  }
+})
+
 // PUT /api/galerie/:id (mise à jour caption/catégorie)
 router.put('/:id', async (req, res) => {
   try {

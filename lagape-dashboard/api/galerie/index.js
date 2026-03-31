@@ -7,6 +7,15 @@ import { checkAuth } from '../_auth.js'
 
 export const config = { api: { bodyParser: false } }
 
+function parseJson(req) {
+  return new Promise((resolve, reject) => {
+    let body = ''
+    req.on('data', chunk => { body += chunk.toString() })
+    req.on('end', () => { try { resolve(body ? JSON.parse(body) : {}) } catch { resolve({}) } })
+    req.on('error', reject)
+  })
+}
+
 const DEFAULT = { photos: [] }
 
 function parseForm(req) {
@@ -25,7 +34,7 @@ function field(val) {
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH,OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   if (req.method === 'OPTIONS') return res.status(200).end()
 
@@ -33,6 +42,17 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
       const data = (await kvGet('galerie')) || DEFAULT
       return res.json(data)
+    }
+
+    if (req.method === 'PATCH') {
+      if (!checkAuth(req, res)) return
+      const { order } = await parseJson(req)
+      if (!Array.isArray(order)) return res.status(400).json({ error: 'order requis' })
+      const data = (await kvGet('galerie')) || DEFAULT
+      const map = Object.fromEntries(data.photos.map(p => [p.id, p]))
+      data.photos = order.map((id, i) => ({ ...map[id], ordre: i + 1 })).filter(Boolean)
+      await kvSet('galerie', data)
+      return res.json({ success: true })
     }
 
     if (req.method === 'POST') {
