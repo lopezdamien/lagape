@@ -111,7 +111,9 @@ export default function GalerieGrid() {
     if (from === null || to === null || from === to) return
     const updated = [...visiblePhotos]
     const [moved] = updated.splice(from, 1)
-    updated.splice(to, 0, moved)
+    // Quand on tire vers l'avant, l'index cible se décale de -1 après le splice
+    const insertAt = from < to ? to - 1 : to
+    updated.splice(insertAt, 0, moved)
 
     if (filter === 'tout') {
       setPhotos(updated)
@@ -134,6 +136,7 @@ export default function GalerieGrid() {
       toast('Ordre sauvegardé')
       setOrderChanged(false)
       setReorderMode(false)
+      await loadPhotos() // Resync avec l'API pour confirmer ce qui a été sauvegardé
     } else {
       toast('Erreur lors de la sauvegarde', 'error')
     }
