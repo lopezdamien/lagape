@@ -45,12 +45,33 @@ export default function GalerieGrid() {
     setUploadForm(prev => ({ ...prev, file, preview: URL.createObjectURL(file) }))
   }
 
+  function compressImage(file, maxPx = 1600, quality = 0.82) {
+    return new Promise((resolve) => {
+      const img = new Image()
+      const url = URL.createObjectURL(file)
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        let { width, height } = img
+        if (width > maxPx || height > maxPx) {
+          if (width > height) { height = Math.round(height * maxPx / width); width = maxPx }
+          else { width = Math.round(width * maxPx / height); height = maxPx }
+        }
+        const canvas = document.createElement('canvas')
+        canvas.width = width; canvas.height = height
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height)
+        canvas.toBlob(blob => resolve(new File([blob], file.name, { type: 'image/jpeg' })), 'image/jpeg', quality)
+      }
+      img.src = url
+    })
+  }
+
   async function handleUpload(e) {
     e.preventDefault()
     if (!uploadForm.file) { toast('Sélectionnez une image', 'error'); return }
     setUploading(true)
+    const compressed = await compressImage(uploadForm.file)
     const fd = new FormData()
-    fd.append('image', uploadForm.file)
+    fd.append('image', compressed)
     fd.append('caption', uploadForm.caption)
     fd.append('categorie', uploadForm.categorie)
     const r = await apiFetch('/api/galerie', { method: 'POST', body: fd })
@@ -63,7 +84,9 @@ export default function GalerieGrid() {
       setUploadForm({ caption: '', categorie: 'ambiance', file: null, preview: null })
       if (fileRef.current) fileRef.current.value = ''
     } else {
-      toast('Erreur lors de l\'upload', 'error')
+      const errBody = await r.json().catch(() => ({}))
+      console.error('Upload error', r.status, errBody)
+      toast(`Erreur ${r.status} : ${errBody.error || 'upload échoué'}`, 'error')
     }
   }
 
