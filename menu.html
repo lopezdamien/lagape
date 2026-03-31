@@ -883,15 +883,70 @@
       return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    function renderFormules(formules) {
-      if (!formules.length) return;
-      document.querySelector('.formule-box').innerHTML = formules.map(f => `
-        <div class="formule-item">
-          <p class="formule-label">${esc(f.label)}</p>
-          <p class="formule-name">${esc(f.nom)}</p>
-          <p class="formule-detail">${esc(f.detail)}</p>
-          <p class="formule-price">CHF ${esc(f.prix)}.—</p>
-        </div>`).join('');
+    function renderFormulesSurMesure(formules) {
+      // ── Menu de la semaine ──
+      const semaine = formules.find(f => f.type === 'semaine');
+      if (semaine) {
+        const dateEl = document.querySelector('.semaine-date');
+        if (dateEl) dateEl.textContent = semaine.dates || '';
+
+        const platsEl = document.querySelector('.semaine-plats');
+        if (platsEl) platsEl.innerHTML = `
+          <div><p class="semaine-step-label">Entrée</p><p class="semaine-step-plat">${esc(semaine.entree)}</p></div>
+          <div><p class="semaine-step-label">Plat</p><p class="semaine-step-plat">${esc(semaine.plat)}</p></div>
+          <div><p class="semaine-step-label">Dessert</p><p class="semaine-step-plat">${esc(semaine.dessert)}</p></div>`;
+
+        const pricesEl = document.querySelector('.semaine-prices');
+        if (pricesEl) pricesEl.innerHTML = `
+          <p>Entrée + Plat + Dessert — CHF ${esc(semaine.prixComplet)}.—</p>
+          <p>Entrée + Plat — CHF ${esc(semaine.prixSansDessert)}.—</p>
+          <p>Plat du jour — CHF ${esc(semaine.prixPlat)}.—</p>`;
+      }
+
+      // ── Le Menu des Agapes ──
+      const agapes = formules.find(f => f.type === 'agapes');
+      if (agapes) {
+        const compactPrice = document.querySelector('.agapes-compact-price');
+        if (compactPrice) compactPrice.textContent = `À partir de CHF ${agapes.prix}.–`;
+
+        const stepsEl = document.querySelector('.modal-steps');
+        if (stepsEl && agapes.steps) {
+          stepsEl.innerHTML = agapes.steps.map(s => `
+            <div class="modal-step">
+              <span class="modal-step-label">${esc(s.label)}</span>
+              <span class="modal-step-desc">${esc(s.desc)}</span>
+            </div>`).join('');
+        }
+
+        const modalPrice = document.querySelector('.modal-price-value');
+        if (modalPrice) modalPrice.textContent = `CHF ${agapes.prix}.—`;
+
+        const accordRows = document.querySelectorAll('.modal-accord-row');
+        if (accordRows[0]) accordRows[0].querySelector('.accord-price').textContent = `CHF ${agapes.accord2}.—`;
+        if (accordRows[1]) accordRows[1].querySelector('.accord-price').textContent = `CHF ${agapes.accord4}.—`;
+      }
+
+      // ── Menu Rossini ──
+      const rossini = formules.find(f => f.type === 'rossini');
+      if (rossini) {
+        const rboxPrice = document.querySelector('.rbox-price');
+        if (rboxPrice) rboxPrice.textContent = `CHF ${rossini.prix}.—`;
+
+        const detailsBox = document.querySelector('.rossini-details-box');
+        if (detailsBox) {
+          detailsBox.innerHTML = [
+            { key: 'foieGras', label: 'Foie Gras' },
+            { key: 'sauces', label: 'Sauces' },
+            { key: 'garnitures', label: 'Garnitures' },
+          ].map(({ key, label }) => `
+            <div class="choice-group">
+              <p class="choice-label">${label}</p>
+              <div class="choice-items">
+                ${(rossini[key] || []).filter(Boolean).map(item => `<span class="c-item">${esc(item)}</span>`).join('')}
+              </div>
+            </div>`).join('');
+        }
+      }
     }
 
     function renderPlats(plats, categorie) {
@@ -938,11 +993,10 @@
     }
 
     fetch(API_URL).then(r => r.json()).then(data => {
-      // renderFormules(data.formules || []); // Remplacé par le design sur mesure
+      renderFormulesSurMesure(data.formules || []);
       renderPlats(data.plats || [], 'entrees');
       renderPlats(data.plats || [], 'plats');
       renderPlats(data.plats || [], 'desserts');
-      // renderVins(data.vins || []);
     }).catch(() => { /* fallback : contenu statique conservé */ });
   </script>
 </body>

@@ -47,6 +47,12 @@ export default function CarteForm() {
     setForm(prev => ({ ...prev, [key]: value }))
   }
 
+  function setStep(i, value) {
+    const steps = [...(form.steps || [])]
+    steps[i] = { ...steps[i], desc: value }
+    set('steps', steps)
+  }
+
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
@@ -71,7 +77,7 @@ export default function CarteForm() {
     background: 'rgba(30,51,83,0.5)', border: '1px solid var(--border)',
     color: 'var(--texte-clair)', fontSize: '0.85rem',
     outline: 'none', transition: 'border 0.2s',
-    fontFamily: 'Montserrat, sans-serif', fontWeight: 300,
+    fontFamily: 'Barlow, sans-serif', fontWeight: 300,
   }
 
   const labelStyle = {
@@ -79,15 +85,22 @@ export default function CarteForm() {
     textTransform: 'uppercase', color: 'var(--or)', marginBottom: '8px',
   }
 
+  const sectionTitleStyle = {
+    fontSize: '0.58rem', letterSpacing: '0.3em', textTransform: 'uppercase',
+    color: 'var(--text-muted)', marginBottom: '20px', paddingBottom: '10px',
+    borderBottom: '1px solid var(--border)',
+  }
+
   const field = (label, key, opts = {}) => (
-    <div style={{ marginBottom: '22px' }}>
+    <div style={{ marginBottom: '20px' }}>
       <label style={labelStyle}>{label}</label>
       {opts.textarea ? (
         <textarea
-          rows={3}
+          rows={opts.rows || 3}
           value={form[key] || ''}
           onChange={e => set(key, e.target.value)}
           style={{ ...inputStyle, resize: 'vertical' }}
+          placeholder={opts.placeholder}
           onFocus={e => e.target.style.borderColor = 'var(--or)'}
           onBlur={e => e.target.style.borderColor = 'var(--border)'}
         />
@@ -113,14 +126,37 @@ export default function CarteForm() {
     </div>
   )
 
+  const arrayField = (label, key, hint) => (
+    <div style={{ marginBottom: '20px' }}>
+      <label style={labelStyle}>{label}</label>
+      <textarea
+        rows={3}
+        value={(form[key] || []).join('\n')}
+        onChange={e => set(key, e.target.value.split('\n'))}
+        style={{ ...inputStyle, resize: 'vertical' }}
+        placeholder={hint}
+        onFocus={e => e.target.style.borderColor = 'var(--or)'}
+        onBlur={e => e.target.style.borderColor = 'var(--border)'}
+      />
+      <p style={{ marginTop: '5px', fontSize: '0.6rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+        {hint}
+      </p>
+    </div>
+  )
+
+  const formulaTitle = form.type === 'semaine' ? 'Menu de la semaine'
+    : form.type === 'agapes' ? 'Le Menu des Agapes'
+    : form.type === 'rossini' ? 'Menu Rossini'
+    : null
+
   return (
     <div>
       <Header
-        title={isEdit ? `Modifier — ${TYPE_LABELS[type]}` : 'Nouvel élément'}
+        title={isEdit ? `Modifier — ${formulaTitle || TYPE_LABELS[type]}` : 'Nouvel élément'}
         subtitle="La Carte"
         actions={<Button variant="subtle" onClick={() => navigate('/carte')}>← Retour</Button>}
       />
-      <div style={{ padding: '40px', maxWidth: '640px' }}>
+      <div style={{ padding: '40px', maxWidth: '660px' }}>
 
         {/* Sélecteur de type (création seulement) */}
         {!isEdit && (
@@ -129,7 +165,7 @@ export default function CarteForm() {
             <div style={{ display: 'flex', gap: '10px' }}>
               {Object.entries(TYPE_LABELS).map(([t, l]) => (
                 <button key={t} type="button" onClick={() => { setFormType(t); setForm(DEFAULTS[t]) }} style={{
-                  padding: '9px 20px', background: 'none', fontFamily: 'Montserrat, sans-serif',
+                  padding: '9px 20px', background: 'none', fontFamily: 'Barlow, sans-serif',
                   fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer',
                   border: formType === t ? '1px solid var(--or)' : '1px solid var(--border)',
                   color: formType === t ? 'var(--or)' : 'var(--texte-gris)',
@@ -141,21 +177,83 @@ export default function CarteForm() {
         )}
 
         <form onSubmit={handleSubmit}>
+
+          {/* ── FORMULES ── */}
           {formType === 'formules' && (
             <>
-              {field('Label', 'label', { placeholder: 'ex: Formule déjeuner' })}
-              {field('Nom', 'nom', { placeholder: 'ex: Le Menu du Marché' })}
-              {field('Détail', 'detail', { placeholder: 'ex: Entrée + Plat + Dessert' })}
-              {field('Prix (CHF)', 'prix', { placeholder: '42', type: 'text' })}
+              {/* Menu de la semaine */}
+              {form.type === 'semaine' && (
+                <>
+                  <p style={sectionTitleStyle}>Menu de la semaine — Champs éditables</p>
+                  {field('Dates', 'dates', { placeholder: 'ex: DU 31/03 AU 03/04' })}
+                  {field('Entrée', 'entree', { placeholder: "Nom de l'entrée" })}
+                  {field('Plat', 'plat', { placeholder: 'Nom du plat', textarea: true, rows: 2 })}
+                  {field('Dessert', 'dessert', { placeholder: 'ex: Mousse au chocolat ou Assiette de fromages' })}
+                  <p style={{ ...sectionTitleStyle, marginTop: '28px' }}>Tarifs</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+                    {field('E + P + D (CHF)', 'prixComplet', { placeholder: '40' })}
+                    {field('E + P (CHF)', 'prixSansDessert', { placeholder: '35' })}
+                    {field('Plat seul (CHF)', 'prixPlat', { placeholder: '25' })}
+                  </div>
+                </>
+              )}
+
+              {/* Le Menu des Agapes */}
+              {form.type === 'agapes' && (
+                <>
+                  <p style={sectionTitleStyle}>Le Menu des Agapes — Étapes du menu</p>
+                  {(form.steps || []).map((step, i) => (
+                    <div key={i} style={{ marginBottom: '18px' }}>
+                      <label style={{ ...labelStyle, color: 'var(--argent)' }}>{step.label}</label>
+                      <textarea
+                        rows={2}
+                        value={step.desc || ''}
+                        onChange={e => setStep(i, e.target.value)}
+                        style={{ ...inputStyle, resize: 'vertical' }}
+                        onFocus={e => e.target.style.borderColor = 'var(--or)'}
+                        onBlur={e => e.target.style.borderColor = 'var(--border)'}
+                      />
+                    </div>
+                  ))}
+                  <p style={{ ...sectionTitleStyle, marginTop: '28px' }}>Prix & Accords</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+                    {field('Prix / pers. (CHF)', 'prix', { placeholder: '89' })}
+                    {field('Accord 2 verres (CHF)', 'accord2', { placeholder: '23' })}
+                    {field('Accord 4 verres (CHF)', 'accord4', { placeholder: '45' })}
+                  </div>
+                </>
+              )}
+
+              {/* Menu Rossini */}
+              {form.type === 'rossini' && (
+                <>
+                  <p style={sectionTitleStyle}>Menu Rossini — Choix proposés</p>
+                  {arrayField('Foie Gras', 'foieGras', 'Un choix par ligne')}
+                  {arrayField('Sauces', 'sauces', 'Une sauce par ligne')}
+                  {arrayField('Garnitures', 'garnitures', 'Une garniture par ligne')}
+                  {field('Prix (CHF)', 'prix', { placeholder: '79' })}
+                </>
+              )}
+
+              {/* Formule générique (création manuelle) */}
+              {!form.type && (
+                <>
+                  {field('Label', 'label', { placeholder: 'ex: Formule déjeuner' })}
+                  {field('Nom', 'nom', { placeholder: 'ex: Le Menu du Marché' })}
+                  {field('Détail', 'detail', { placeholder: 'ex: Entrée + Plat + Dessert' })}
+                  {field('Prix (CHF)', 'prix', { placeholder: '42', type: 'text' })}
+                </>
+              )}
             </>
           )}
 
+          {/* ── PLATS ── */}
           {formType === 'plats' && (
             <>
               {field('Catégorie', 'categorie', { select: true, options: PLAT_CATS })}
               {field('Nom du plat', 'nom', { placeholder: 'ex: Saint-Jacques poêlées' })}
               {field('Description', 'description', { textarea: true, placeholder: 'Ingrédients et préparation' })}
-              <div style={{ marginBottom: '22px' }}>
+              <div style={{ marginBottom: '20px' }}>
                 <label style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
                   <input
                     type="checkbox"
@@ -166,9 +264,8 @@ export default function CarteForm() {
                   Visible sur la page d'accueil
                 </label>
               </div>
-
               {form.accueil === true && (
-                <div style={{ marginBottom: '22px', borderLeft: '2px solid var(--or)', paddingLeft: '14px', marginLeft: '6px' }}>
+                <div style={{ marginBottom: '20px', borderLeft: '2px solid var(--or)', paddingLeft: '14px', marginLeft: '6px' }}>
                   <label style={labelStyle}>Description page d'accueil</label>
                   <textarea
                     rows={2}
@@ -178,16 +275,16 @@ export default function CarteForm() {
                     onFocus={e => e.target.style.borderColor = 'var(--or)'}
                     onBlur={e => e.target.style.borderColor = 'var(--border)'}
                   />
-                  <p style={{ marginTop: '8px', marginBottom: 0, fontSize: '0.65rem', color: 'var(--texte-gris)', fontStyle: 'italic' }}>
-                    Version courte affichée sur la page d'accueil (une ligne maximum).
+                  <p style={{ marginTop: '6px', fontSize: '0.62rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                    Version courte affichée sur la page d'accueil.
                   </p>
                 </div>
               )}
-
               {field('Prix (CHF)', 'prix', { placeholder: '32', type: 'text' })}
             </>
           )}
 
+          {/* ── VINS ── */}
           {formType === 'vins' && (
             <>
               {field('Catégorie', 'categorieVin', { select: true, options: VIN_CATS })}
@@ -198,18 +295,7 @@ export default function CarteForm() {
             </>
           )}
 
-          {/* Aperçu prix */}
-          {(form.prix || form.prixBouteille) && (
-            <div style={{
-              marginBottom: '28px', padding: '14px 18px',
-              background: 'rgba(201,169,110,0.06)', border: '1px solid var(--border-or)',
-              fontSize: '0.78rem', color: 'var(--or)',
-            }}>
-              Aperçu : CHF {form.prix || form.prixBouteille}.—
-            </div>
-          )}
-
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
             <Button type="submit" disabled={loading}>
               {loading ? 'Enregistrement…' : isEdit ? 'Enregistrer' : 'Créer'}
             </Button>
