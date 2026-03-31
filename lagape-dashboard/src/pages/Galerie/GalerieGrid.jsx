@@ -6,18 +6,18 @@ import { toast } from '../../components/ui/Toast'
 import { apiFetch } from '../../lib/api'
 
 const CATS = [
-  { value: 'tout', label: 'Tout' },
   { value: 'ambiance', label: 'Ambiance' },
+  { value: 'plats', label: 'Mets' },
   { value: 'cuisine', label: 'Cuisine' },
-  { value: 'plats', label: 'Les plats' },
+  { value: 'vins', label: 'Vins' },
   { value: 'equipe', label: "L'équipe" },
 ]
 
-const CAT_LABELS = { ambiance: 'Ambiance', cuisine: 'Cuisine', plats: 'Plats', equipe: 'Équipe' }
+const CAT_LABELS = { ambiance: 'Ambiance', plats: 'Mets', cuisine: 'Cuisine', vins: 'Vins', equipe: 'Équipe' }
 
 export default function GalerieGrid({ isMobile, onMenuClick }) {
   const [photos, setPhotos] = useState([])
-  const [filter, setFilter] = useState('tout')
+  const [filter, setFilter] = useState('ambiance')
   const [deleteTarget, setDeleteTarget] = useState(null)
   const [uploading, setUploading] = useState(false)
   const [showUpload, setShowUpload] = useState(false)
@@ -115,13 +115,9 @@ export default function GalerieGrid({ isMobile, onMenuClick }) {
     const insertAt = from < to ? to - 1 : to
     updated.splice(insertAt, 0, moved)
 
-    if (filter === 'tout') {
-      setPhotos(updated)
-    } else {
-      // Reconstruire le tableau complet en remplaçant le subset filtré
-      const others = photos.filter(p => p.categorie !== filter)
-      setPhotos([...others, ...updated])
-    }
+    // Reconstruire le tableau complet en remplaçant le subset filtré
+    const others = photos.filter(p => p.categorie !== filter)
+    setPhotos([...others, ...updated])
     setOrderChanged(true)
     dragIdx.current = null
     dragOverIdx.current = null
@@ -148,7 +144,7 @@ export default function GalerieGrid({ isMobile, onMenuClick }) {
     setReorderMode(false)
   }
 
-  const visible = filter === 'tout' ? photos : photos.filter(p => p.categorie === filter)
+  const visible = photos.filter(p => p.categorie === filter)
 
   const inputStyle = {
     width: '100%', padding: '10px 14px',
@@ -194,7 +190,7 @@ export default function GalerieGrid({ isMobile, onMenuClick }) {
               color: filter === c.value ? 'var(--or)' : 'var(--texte-gris)',
               fontSize: '0.62rem', letterSpacing: '0.2em', textTransform: 'uppercase',
               cursor: 'pointer', fontFamily: 'Montserrat, sans-serif',
-            }}>{c.label} {c.value !== 'tout' && `(${photos.filter(p => p.categorie === c.value).length})`}</button>
+            }}>{c.label} ({photos.filter(p => p.categorie === c.value).length})</button>
           ))}
         </div>
       )}
@@ -290,7 +286,7 @@ export default function GalerieGrid({ isMobile, onMenuClick }) {
 function GridItem({ photo, idx, reorderMode, onDragStart, onDragOver, onDrop, onDelete }) {
   const [hovered, setHovered] = useState(false)
   const [dragOver, setDragOver] = useState(false)
-  const CAT_LABELS = { ambiance: 'Ambiance', cuisine: 'Cuisine', plats: 'Plats', equipe: 'Équipe' }
+  const CAT_LABELS = { ambiance: 'Ambiance', plats: 'Mets', cuisine: 'Cuisine', vins: 'Vins', equipe: 'Équipe' }
   const imgSrc = photo.url || (photo.filename ? `/uploads/galerie/${photo.filename}` : null)
 
   return (

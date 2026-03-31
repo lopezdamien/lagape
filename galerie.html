@@ -268,18 +268,16 @@
   </div>
 
   <div class="page-header">
-    <p class="page-label">En images</p>
-    <h1 class="page-title">La <em>Galerie</em></h1>
     <div class="page-divider"></div>
     <p class="page-desc">Découvrez l'ambiance de L'AGAPE, nos créations et les coulisses de notre cuisine.</p>
   </div>
 
   <!-- FILTRES -->
   <div class="filtres">
-    <button class="filtre-btn active" onclick="filtrer('tout', this)">Tout</button>
-    <button class="filtre-btn" onclick="filtrer('ambiance', this)">Ambiance</button>
+    <button class="filtre-btn active" onclick="filtrer('ambiance', this)">Ambiance</button>
+    <button class="filtre-btn" onclick="filtrer('plats', this)">Mets</button>
     <button class="filtre-btn" onclick="filtrer('cuisine', this)">Cuisine</button>
-    <button class="filtre-btn" onclick="filtrer('plats', this)">Les plats</button>
+    <button class="filtre-btn" onclick="filtrer('vins', this)">Vins</button>
     <button class="filtre-btn" onclick="filtrer('equipe', this)">L'équipe</button>
   </div>
 
@@ -359,7 +357,7 @@
   </footer>
 
   <script>
-    const CAT_LABELS = { ambiance: 'Ambiance', cuisine: 'Cuisine', plats: 'Les plats', equipe: "L'équipe" };
+    const CAT_LABELS = { ambiance: 'Ambiance', plats: 'Mets', cuisine: 'Cuisine', vins: 'Vins', equipe: "L'équipe" };
     const API = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://lagape-dashboard.vercel.app';
     let allItems = [];
     let currentIndex = 0;
@@ -377,7 +375,7 @@
       document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.galerie-item').forEach(item => {
-        item.style.display = (cat === 'tout' || item.dataset.cat === cat) ? '' : 'none';
+        item.style.display = item.dataset.cat === cat ? '' : 'none';
       });
     }
 
