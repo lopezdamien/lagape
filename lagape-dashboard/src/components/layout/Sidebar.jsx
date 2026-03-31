@@ -34,7 +34,7 @@ export default function Sidebar() {
         borderBottom: '1px solid var(--border)',
       }}>
         <div style={{
-          fontFamily: 'Barlow Condensed, sans-serif',
+          fontFamily: 'Montserrat, sans-serif',
           fontSize: '1.75rem',
           fontWeight: 700,
           color: '#ffffff',
@@ -47,8 +47,7 @@ export default function Sidebar() {
           fontSize: '0.72rem',
           letterSpacing: '0.12em',
           color: 'var(--or)',
-          fontStyle: 'italic',
-          opacity: 0.85,
+                    opacity: 0.85,
         }}>Administration</div>
       </div>
 
@@ -140,7 +139,7 @@ export default function Sidebar() {
             cursor: 'pointer',
             textAlign: 'left',
             transition: 'color 0.2s',
-            fontFamily: 'Barlow, sans-serif',
+            fontFamily: 'Montserrat, sans-serif',
           }}
           onMouseEnter={e => e.currentTarget.style.color = 'var(--danger)'}
           onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}

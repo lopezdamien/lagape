@@ -1,6 +1,6 @@
 export default function Button({ children, variant = 'primary', size = 'md', onClick, type = 'button', disabled, style: extraStyle }) {
   const base = {
-    fontFamily: 'Barlow, sans-serif',
+    fontFamily: 'Montserrat, sans-serif',
     fontWeight: 500,
     fontSize: size === 'sm' ? '0.62rem' : '0.68rem',
     letterSpacing: '0.2em',

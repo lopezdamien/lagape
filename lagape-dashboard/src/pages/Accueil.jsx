@@ -160,8 +160,7 @@ export default function Accueil() {
 
           <p style={{
             marginTop: '16px', fontSize: '0.68rem', color: 'var(--text-muted)',
-            fontStyle: 'italic',
-          }}>
+                      }}>
             Formats acceptés : JPG, PNG, WebP · Taille max : 10 Mo
           </p>
         </div>

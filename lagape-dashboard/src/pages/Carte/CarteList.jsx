@@ -55,7 +55,7 @@ export default function CarteList() {
             </span>
           )}
         </div>
-        <div style={{ fontSize: '0.75rem', color: 'var(--texte-gris)', fontStyle: 'italic' }}>
+        <div style={{ fontSize: '0.75rem', color: 'var(--texte-gris)', }}>
           {item.description || item.detail || item.region}
         </div>
       </div>

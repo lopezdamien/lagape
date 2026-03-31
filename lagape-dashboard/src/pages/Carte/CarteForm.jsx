@@ -77,7 +77,7 @@ export default function CarteForm() {
     background: 'rgba(30,51,83,0.5)', border: '1px solid var(--border)',
     color: 'var(--texte-clair)', fontSize: '0.85rem',
     outline: 'none', transition: 'border 0.2s',
-    fontFamily: 'Barlow, sans-serif', fontWeight: 300,
+    fontFamily: 'Montserrat, sans-serif', fontWeight: 300,
   }
 
   const labelStyle = {
@@ -138,7 +138,7 @@ export default function CarteForm() {
         onFocus={e => e.target.style.borderColor = 'var(--or)'}
         onBlur={e => e.target.style.borderColor = 'var(--border)'}
       />
-      <p style={{ marginTop: '5px', fontSize: '0.6rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+      <p style={{ marginTop: '5px', fontSize: '0.6rem', color: 'var(--text-muted)', }}>
         {hint}
       </p>
     </div>
@@ -165,7 +165,7 @@ export default function CarteForm() {
             <div style={{ display: 'flex', gap: '10px' }}>
               {Object.entries(TYPE_LABELS).map(([t, l]) => (
                 <button key={t} type="button" onClick={() => { setFormType(t); setForm(DEFAULTS[t]) }} style={{
-                  padding: '9px 20px', background: 'none', fontFamily: 'Barlow, sans-serif',
+                  padding: '9px 20px', background: 'none', fontFamily: 'Montserrat, sans-serif',
                   fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer',
                   border: formType === t ? '1px solid var(--or)' : '1px solid var(--border)',
                   color: formType === t ? 'var(--or)' : 'var(--texte-gris)',
@@ -275,7 +275,7 @@ export default function CarteForm() {
                     onFocus={e => e.target.style.borderColor = 'var(--or)'}
                     onBlur={e => e.target.style.borderColor = 'var(--border)'}
                   />
-                  <p style={{ marginTop: '6px', fontSize: '0.62rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                  <p style={{ marginTop: '6px', fontSize: '0.62rem', color: 'var(--text-muted)', }}>
                     Version courte affichée sur la page d'accueil.
                   </p>
                 </div>

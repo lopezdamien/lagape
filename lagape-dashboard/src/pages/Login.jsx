@@ -42,7 +42,7 @@ export default function Login() {
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{
-            fontFamily: 'Barlow Condensed, sans-serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '2.8rem',
             fontWeight: 700,
             color: '#ffffff',
@@ -58,8 +58,7 @@ export default function Login() {
             fontSize: '0.9rem',
             letterSpacing: '0.15em',
             color: 'var(--or)',
-            fontStyle: 'italic',
-            marginBottom: '20px',
+                        marginBottom: '20px',
           }}>
             Administration
           </div>
@@ -114,7 +113,7 @@ export default function Login() {
                   border: error ? '1px solid var(--danger)' : '1px solid rgba(209,217,225,0.12)',
                   color: '#ffffff',
                   fontSize: '0.9rem',
-                  fontFamily: 'Barlow, sans-serif',
+                  fontFamily: 'Montserrat, sans-serif',
                   fontWeight: 300,
                   outline: 'none',
                   transition: 'border 0.2s',
@@ -147,7 +146,7 @@ export default function Login() {
                 fontSize: '0.68rem',
                 letterSpacing: '0.25em',
                 textTransform: 'uppercase',
-                fontFamily: 'Barlow, sans-serif',
+                fontFamily: 'Montserrat, sans-serif',
                 fontWeight: 600,
                 cursor: loading ? 'default' : 'pointer',
                 transition: 'all 0.25s',
