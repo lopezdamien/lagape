@@ -83,4 +83,54 @@ router.delete('/photo-accueil', async (req, res) => {
   }
 })
 
+// --- Photo traiteur ---
+
+const storageTraiteur = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase()
+    cb(null, `photo-traiteur-${Date.now()}${ext}`)
+  }
+})
+const uploadTraiteur = multer({
+  storage: storageTraiteur,
+  fileFilter: (req, file, cb) => {
+    const allowed = ['image/jpeg', 'image/png', 'image/webp']
+    cb(null, allowed.includes(file.mimetype))
+  },
+  limits: { fileSize: 10 * 1024 * 1024 }
+})
+
+// POST /api/siteconfig/photo-traiteur
+router.post('/photo-traiteur', uploadTraiteur.single('photo'), async (req, res) => {
+  try {
+    const data = await readData()
+    if (data.photoTraiteur) {
+      const old = path.join(UPLOADS_DIR, data.photoTraiteur)
+      await fs.unlink(old).catch(() => {})
+    }
+    data.photoTraiteur = req.file ? req.file.filename : null
+    await writeData(data)
+    res.json({ photoTraiteur: data.photoTraiteur })
+  } catch {
+    res.status(500).json({ error: 'Erreur upload photo traiteur' })
+  }
+})
+
+// DELETE /api/siteconfig/photo-traiteur
+router.delete('/photo-traiteur', async (req, res) => {
+  try {
+    const data = await readData()
+    if (data.photoTraiteur) {
+      const filepath = path.join(UPLOADS_DIR, data.photoTraiteur)
+      await fs.unlink(filepath).catch(() => {})
+      data.photoTraiteur = null
+      await writeData(data)
+    }
+    res.json({ success: true })
+  } catch {
+    res.status(500).json({ error: 'Erreur suppression photo traiteur' })
+  }
+})
+
 export default router
