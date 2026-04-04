@@ -82,7 +82,7 @@ export default function CarteList({ isMobile, onMenuClick }) {
   return (
     <div>
       <Header
-        title="La Carte"
+        title="Carte"
         subtitle="Gestion des plats et formules"
         actions={<Link to="/carte/nouveau"><Button>+ Nouveau</Button></Link>}
         isMobile={isMobile} onMenuClick={onMenuClick}

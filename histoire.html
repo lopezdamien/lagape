@@ -48,7 +48,7 @@
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
     .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
     .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
-    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 700; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; text-decoration: none; display: block; }
+    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 600; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; text-decoration: none; display: block; }
     .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
     .mobile-nav-list { list-style: none; text-align: center; }
     .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
@@ -72,11 +72,11 @@
 
     /* PAGE HEADER */
     .page-header { padding: 160px 60px 80px; text-align: center; background: linear-gradient(170deg, #002b3c 0%, #00374D 60%, #002b3c 100%); position: relative; }
-    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(209,217,225,0.05) 0%, transparent 60%); }
-    .page-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey-cloud); margin-bottom: 16px; font-weight: 500; }
-    .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; color: #ffffff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .page-title em { font-style: italic; font-weight: 300; }
-    .page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--grey-cloud), transparent); margin: 0 auto 24px; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(201,169,110,0.07) 0%, transparent 60%); }
+    .page-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px; font-weight: 500; }
+    .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 600; color: #ffffff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .page-title em { font-style: normal; color: var(--or); }
+    .page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); margin: 0 auto 24px; }
     .page-desc { font-size: 0.95rem; color: var(--grey-cloud); max-width: 480px; margin: 0 auto; opacity: 0.9; }
 
     /* CONTENU */
@@ -86,12 +86,12 @@
     .story-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; }
     .story-image { aspect-ratio: 4/5; background: var(--bleu-moyen); position: relative; overflow: hidden; border-radius: 4px; border: 1px solid rgba(201,169,110,0.3); box-shadow: 0 0 0 6px rgba(0,43,60,0.8), 0 0 0 7px rgba(201,169,110,0.15), 0 24px 60px rgba(0,0,0,0.4); }
     .story-image-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--bleu-moyen) 0%, #243a56 100%); display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--texte-gris); letter-spacing: 0.1em; }
-        .section-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--grey-cloud); margin-bottom: 16px; font-weight: 500; }
-    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 32px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .section-title em { font-style: italic; font-weight: 300; }
-    .section-divider { width: 60px; height: 1px; background: linear-gradient(to right, var(--grey-cloud), transparent); margin-bottom: 28px; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--or); margin-bottom: 16px; font-weight: 500; }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 600; color: #ffffff; line-height: 1.1; margin-bottom: 32px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .section-title em { font-style: normal; color: var(--or); }
+    .section-divider { width: 60px; height: 1px; background: linear-gradient(to right, var(--or), transparent); margin-bottom: 28px; }
     .section-text { font-size: 0.9rem; color: var(--grey-cloud); margin-bottom: 18px; opacity: 0.9; }
-    .pull-quote { font-family: 'Barlow', sans-serif; font-size: 1.4rem; font-style: italic; color: #ffffff; border-left: 1px solid var(--grey-cloud); padding: 12px 24px; margin: 28px 0; line-height: 1.6; }
+    .pull-quote { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-style: normal; color: var(--or-clair); border-left: 2px solid var(--or); padding: 12px 24px; margin: 28px 0; line-height: 1.6; }
 
     /* VALEURS */
     .valeurs-section { background: var(--bleu-profond); padding: 90px 60px; }
@@ -99,9 +99,9 @@
     .valeurs-header { text-align: center; margin-bottom: 60px; }
     .valeurs-header .section-divider { margin: 0 auto 28px; }
     .valeurs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-    .valeur-card { padding: 36px 28px; border-top: 1px solid rgba(201,169,110,0.2); }
-    .valeur-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; color: rgba(201,169,110,0.15); line-height: 1; margin-bottom: 12px; }
-    .valeur-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--blanc-casse); margin-bottom: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .valeur-card { padding: 36px 28px; border-top: 2px solid rgba(201,169,110,0.4); }
+    .valeur-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; color: rgba(201,169,110,0.35); line-height: 1; margin-bottom: 12px; font-weight: 300; }
+    .valeur-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--or-clair); margin-bottom: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
     .valeur-text { font-size: 0.82rem; color: var(--texte-gris); line-height: 1.7; }
 
     /* ÉQUIPE */
@@ -113,7 +113,7 @@
     .membre-card { text-align: center; }
     .membre-photo { aspect-ratio: 3/4; background: var(--bleu-moyen); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--texte-gris); letter-spacing: 0.08em; position: relative; overflow: hidden; border-radius: 4px; border: 1px solid rgba(201,169,110,0.3); box-shadow: 0 0 0 6px rgba(0,43,60,0.8), 0 0 0 7px rgba(201,169,110,0.15), 0 24px 60px rgba(0,0,0,0.4); }
     .membre-photo::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(13,27,42,0.7), transparent); }
-    .membre-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--blanc-casse); margin-bottom: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .membre-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--blanc-casse); margin-bottom: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
     .membre-role { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--or); margin-bottom: 12px; }
     .membre-bio { font-size: 0.78rem; color: var(--texte-gris); line-height: 1.6; }
 
@@ -134,20 +134,20 @@
     .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--or); flex-shrink: 0; }
     .tl-year-label { font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--or); margin-top: 6px; writing-mode: vertical-lr; text-orientation: mixed; transform: rotate(180deg); }
     .tl-content { padding: 0 20px; }
-    .tl-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--blanc-casse); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .tl-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--or-clair); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
     .tl-text { font-size: 0.78rem; color: var(--texte-gris); line-height: 1.6; }
     .tl-empty { }
 
     /* PRESSE */
-    .presse-band { padding: 60px; text-align: center; border-top: 1px solid rgba(184,196,208,0.08); border-bottom: 1px solid rgba(184,196,208,0.08); }
-    .presse-title { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--texte-gris); margin-bottom: 32px; }
+    .presse-band { padding: 60px; text-align: center; border-top: 1px solid rgba(201,169,110,0.15); border-bottom: 1px solid rgba(201,169,110,0.15); }
+    .presse-title { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--or); margin-bottom: 32px; }
     .presse-logos { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; }
-    .presse-logo { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: rgba(184,196,208,0.4); letter-spacing: 0.08em; }
+    .presse-logo { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: rgba(201,169,110,0.55); letter-spacing: 0.08em; }
 
     /* CTA RÉSERVATION */
     .cta-section { padding: 90px 60px; text-align: center; }
-    .cta-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: #ffffff; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .cta-title em { font-style: italic; color: var(--or-clair); }
+    .cta-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; color: #ffffff; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .cta-title em { font-style: normal; color: var(--or); }
     .cta-text { font-size: 0.88rem; color: var(--argent); margin-bottom: 36px; }
     .btn-primary { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 40px; background: var(--or); color: var(--bg-dark); text-decoration: none; transition: all 0.3s; font-weight: 500; display: inline-block; }
     .btn-primary:hover { background: var(--or-clair); }
@@ -223,8 +223,8 @@
     <a href="index.html" class="nav-logo">L'AGAPE</a>
     <ul class="nav-links">
       
-      <li><a href="menu.html">La Carte</a></li>
-      <li><a href="histoire.html" class="active">Notre Histoire</a></li>
+      <li><a href="menu.html">Carte</a></li>
+      <li><a href="histoire.html" class="active">Histoire</a></li>
       <li><a href="galerie.html">Galerie</a></li>
       <li><a href="reservation.html">Réservation</a></li>
     </ul>
@@ -238,8 +238,8 @@
     <a href="index.html" class="mobile-overlay-logo">L'AGAPE</a>
     <ul class="mobile-nav-list">
       
-      <li><a href="menu.html">La Carte</a></li>
-      <li><a href="histoire.html" class="active">Notre Histoire</a></li>
+      <li><a href="menu.html">Carte</a></li>
+      <li><a href="histoire.html" class="active">Histoire</a></li>
       <li><a href="galerie.html">Galerie</a></li>
       <li><a href="reservation.html">Réservation</a></li>
     </ul>
@@ -251,10 +251,9 @@
   </div>
 
   <div class="page-header">
-    <p class="page-label">La maison</p>
-    <h1 class="page-title">Notre <em>Histoire</em></h1>
+<h1 class="page-title">Notre Histoire</h1>
     <div class="page-divider"></div>
-    <p class="page-desc">La naissance d'un lieu de partage au cœur de Genève.</p>
+
   </div>
 
   <!-- HISTOIRE -->
@@ -264,26 +263,19 @@
         <div class="story-image-placeholder">· Photo de la salle ·</div>
       </div>
       <div>
-        <p class="section-label">Les origines</p>
+
         <h2 class="section-title">La naissance d'une <em>table</em> sincère</h2>
         <div class="section-divider"></div>
         <p class="section-text">
-          Née d'une passion commune pour la cuisine de marché et le partage, L'AGAPE a ouvert ses portes
-          au cœur de Genève avec une ambition simple : offrir une gastronomie sincère, accessible et
-          profondément ancrée dans les saisons.
+          Le restaurant L'AGAPE a ouvert ses portes le 12 Juin 2019 avec une ambition simple : offrir une gastronomie sincère, accessible et profondément ancrée dans les saisons.
         </p>
-        <p class="section-text">
-          Le nom « L'AGAPE » puise dans le grec ancien — ce festin offert à tous, symbole de générosité
-          et de communion. C'est cette philosophie qui guide chaque assiette, chaque accord, chaque moment
-          partagé autour de notre table.
-        </p>
+
         <blockquote class="pull-quote">
           « Nous croyons que la grande cuisine n'a pas à être inaccessible.<br/>
           L'excellence doit se partager. »
         </blockquote>
         <p class="section-text">
-          Rapidement reconnu par le Michelin avec son Bib Gourmand et distingué par Gault &amp; Millau,
-          L'AGAPE s'est imposé comme une adresse incontournable de la scène gastronomique genevoise.
+          Reconnu par le Guide Michelin avec son Bib Gourmand et distingué d'une note de 14/20 par le Gault &amp; Millau, L'AGAPE se présente comme une adresse incontournable de la scène gastronomique genevoise.
         </p>
       </div>
     </div>
@@ -293,15 +285,15 @@
   <div class="valeurs-section">
     <div class="valeurs-inner">
       <div class="valeurs-header">
-        <p class="section-label">Ce qui nous guide</p>
-        <h2 class="section-title">Nos <em>valeurs</em></h2>
+
+        <h2 class="section-title">Nos valeurs</h2>
         <div class="section-divider"></div>
       </div>
       <div class="valeurs-grid">
         <div class="valeur-card">
           <div class="valeur-num">01</div>
           <h3 class="valeur-title">Les saisons avant tout</h3>
-          <p class="valeur-text">Notre carte évolue au rythme du marché. Nous travaillons en étroite collaboration avec des producteurs locaux et régionaux pour garantir la fraîcheur et l'authenticité de chaque ingrédient.</p>
+          <p class="valeur-text">Notre carte évolue au fil des saisons. Nous travaillons en collaboration avec des producteurs locaux et régionaux pour garantir la fraîcheur et l'authenticité de nos ingrédients.</p>
         </div>
         <div class="valeur-card">
           <div class="valeur-num">02</div>
@@ -322,7 +314,7 @@
     <div class="equipe-inner">
       <div class="equipe-header">
         <p class="section-label">Les visages de la maison</p>
-        <h2 class="section-title">Notre <em>équipe</em></h2>
+        <h2 class="section-title">Notre équipe</h2>
         <div class="section-divider"></div>
       </div>
       <div class="equipe-grid">
@@ -352,7 +344,7 @@
   <div class="timeline-section">
     <div class="timeline-inner">
       <div class="timeline-header">
-        <p class="section-label">Notre parcours</p>
+
         <h2 class="section-title">Les <em>grandes étapes</em></h2>
         <div class="section-divider"></div>
       </div>
@@ -407,7 +399,7 @@
   <!-- CTA -->
   <div class="cta-section">
     <h2 class="cta-title">Venez <em>nous rejoindre</em></h2>
-    <p class="cta-text">Réservez votre table et laissez-vous emporter par l'expérience L'AGAPE.</p>
+    <p class="cta-text">Réservez votre table et profitez d'un moment de gastronomie sincère.</p>
     <a href="reservation.html" class="btn-primary">Réserver une table</a>
   </div>
 
@@ -438,8 +430,8 @@
         <p class="footer-col-title">Navigation</p>
         <ul class="footer-links">
           
-          <li><a href="menu.html">La Carte</a></li>
-          <li><a href="histoire.html">Notre Histoire</a></li>
+          <li><a href="menu.html">Carte</a></li>
+          <li><a href="histoire.html">Histoire</a></li>
           <li><a href="galerie.html">Galerie</a></li>
           <li><a href="reservation.html">Réservation</a></li>
         </ul>

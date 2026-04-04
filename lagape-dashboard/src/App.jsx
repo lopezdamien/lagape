@@ -12,6 +12,7 @@ import CarteForm from './pages/Carte/CarteForm'
 import GalerieGrid from './pages/Galerie/GalerieGrid'
 import BlogList from './pages/Blog/BlogList'
 import BlogForm from './pages/Blog/BlogForm'
+import Statistiques from './pages/Statistiques'
 
 export default function App() {
   const toasts = useToast()
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/blog" element={<BlogList isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
           <Route path="/blog/nouveau" element={<BlogForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
           <Route path="/blog/:id" element={<BlogForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/statistiques" element={<Statistiques isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
         </Routes>
       </main>
       <ToastContainer toasts={toasts} />

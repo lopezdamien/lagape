@@ -153,7 +153,7 @@ export default function CarteForm({ isMobile, onMenuClick }) {
     <div>
       <Header
         title={isEdit ? `Modifier — ${formulaTitle || TYPE_LABELS[type]}` : 'Nouvel élément'}
-        subtitle="La Carte"
+        subtitle="Carte"
         actions={<Button variant="subtle" onClick={() => navigate('/carte')}>← Retour</Button>}
         isMobile={isMobile} onMenuClick={onMenuClick}
       />

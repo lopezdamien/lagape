@@ -20,7 +20,7 @@ export default function Dashboard({ isMobile, onMenuClick }) {
   }, [])
 
   const cards = [
-    { label: 'La Carte', value: stats.plats, unit: 'items', icon: '❧', to: '/carte', color: 'var(--or)' },
+    { label: 'Carte', value: stats.plats, unit: 'items', icon: '❧', to: '/carte', color: 'var(--or)' },
     { label: 'Galerie', value: stats.photos, unit: 'photos', icon: '✦', to: '/galerie', color: 'var(--argent)' },
     { label: 'Blog', value: stats.articles, unit: 'articles', icon: '◎', to: '/blog', color: 'var(--or-clair)' },
   ]
