@@ -102,14 +102,14 @@
     .valeur-card { padding: 36px 28px; border-top: 2px solid rgba(201,169,110,0.4); }
     .valeur-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; color: rgba(201,169,110,0.35); line-height: 1; margin-bottom: 12px; font-weight: 300; }
     .valeur-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--or-clair); margin-bottom: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
-    .valeur-text { font-size: 0.82rem; color: var(--texte-gris); line-height: 1.7; }
+    .valeur-text { font-size: 0.82rem; color: var(--texte-gris); line-height: 1.7; text-align: justify; }
 
     /* ÉQUIPE */
     .equipe-section { padding: 90px 60px; }
     .equipe-inner { max-width: 1100px; margin: 0 auto; }
     .equipe-header { text-align: center; margin-bottom: 60px; }
     .equipe-header .section-divider { margin: 0 auto 28px; }
-    .equipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .equipe-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
     .membre-card { text-align: center; }
     .membre-photo { aspect-ratio: 3/4; background: var(--bleu-moyen); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--texte-gris); letter-spacing: 0.08em; position: relative; overflow: hidden; border-radius: 4px; border: 1px solid rgba(201,169,110,0.3); box-shadow: 0 0 0 6px rgba(0,43,60,0.8), 0 0 0 7px rgba(201,169,110,0.15), 0 24px 60px rgba(0,0,0,0.4); }
     .membre-photo::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(13,27,42,0.7), transparent); }
@@ -124,7 +124,7 @@
     .timeline-header .section-divider { margin: 0 auto 28px; }
     .timeline { position: relative; }
     .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--or) 10%, var(--or) 90%, transparent); transform: translateX(-50%); }
-    .timeline-item { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; margin-bottom: 50px; align-items: start; }
+    .timeline-item { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; margin-bottom: 50px; align-items: center; }
     .timeline-item:nth-child(even) .tl-content { grid-column: 3; grid-row: 1; text-align: left; }
     .timeline-item:nth-child(even) .tl-year { grid-column: 2; grid-row: 1; }
     .timeline-item:nth-child(even) .tl-empty { grid-column: 1; grid-row: 1; }
@@ -132,17 +132,19 @@
     .timeline-item:nth-child(odd) .tl-year { grid-column: 2; }
     .tl-year { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
     .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--or); flex-shrink: 0; }
-    .tl-year-label { font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: var(--or); margin-top: 6px; writing-mode: vertical-lr; text-orientation: mixed; transform: rotate(180deg); }
+    .tl-year-label { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600; color: var(--or); margin-top: 8px; letter-spacing: 0.08em; }
     .tl-content { padding: 0 20px; }
-    .tl-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--or-clair); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .tl-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 600; color: #ffffff; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
     .tl-text { font-size: 0.78rem; color: var(--texte-gris); line-height: 1.6; }
-    .tl-empty { }
+    .tl-empty { display: flex; align-items: center; }
+    .timeline-item:nth-child(odd) .tl-empty { justify-content: flex-start; padding-left: 20px; }
+    .timeline-item:nth-child(even) .tl-empty { justify-content: flex-end; padding-right: 20px; }
 
     /* PRESSE */
     .presse-band { padding: 60px; text-align: center; border-top: 1px solid rgba(201,169,110,0.15); border-bottom: 1px solid rgba(201,169,110,0.15); }
-    .presse-title { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--or); margin-bottom: 32px; }
+    .presse-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ffffff; margin-bottom: 40px; }
     .presse-logos { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; }
-    .presse-logo { font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: rgba(201,169,110,0.55); letter-spacing: 0.08em; }
+    .presse-logo { font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 700; color: rgba(201,169,110,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
 
     /* CTA RÉSERVATION */
     .cta-section { padding: 90px 60px; text-align: center; }
@@ -203,7 +205,8 @@
       .story-intro { grid-template-columns: 1fr; gap: 40px; }
       .story-image { aspect-ratio: 4/3; }
       .valeurs-section, .equipe-section, .timeline-section, .presse-band, .cta-section { padding: 60px 24px; }
-      .valeurs-grid, .equipe-grid { grid-template-columns: 1fr; gap: 30px; }
+      .valeurs-grid { grid-template-columns: 1fr; gap: 30px; }
+      .equipe-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
       .timeline::before { left: 20px; }
       .timeline-item, .timeline-item:nth-child(even) .tl-content, .timeline-item:nth-child(odd) .tl-content { display: block; text-align: left !important; padding-left: 50px; }
       .tl-year { position: absolute; left: 0; }
@@ -264,17 +267,13 @@
       </div>
       <div>
 
-        <h2 class="section-title">La naissance d'une <em>table</em> sincère</h2>
+        <h2 class="section-title">La naissance d'une <em>table</em> <span style="color:var(--or)">sincère</span></h2>
         <div class="section-divider"></div>
         <p class="section-text">
           Le restaurant L'AGAPE a ouvert ses portes le 12 Juin 2019 avec une ambition simple : offrir une gastronomie sincère, accessible et profondément ancrée dans les saisons.
         </p>
 
-        <blockquote class="pull-quote">
-          « Nous croyons que la grande cuisine n'a pas à être inaccessible.<br/>
-          L'excellence doit se partager. »
-        </blockquote>
-        <p class="section-text">
+<p class="section-text">
           Reconnu par le Guide Michelin avec son Bib Gourmand et distingué d'une note de 14/20 par le Gault &amp; Millau, L'AGAPE se présente comme une adresse incontournable de la scène gastronomique genevoise.
         </p>
       </div>
@@ -298,12 +297,12 @@
         <div class="valeur-card">
           <div class="valeur-num">02</div>
           <h3 class="valeur-title">Le savoir-faire artisanal</h3>
-          <p class="valeur-text">Chaque préparation est réalisée maison, des terrines à la pâtisserie. Nous refusons les compromis : le temps investi dans la mise en place est au service de votre plaisir.</p>
+          <p class="valeur-text">Chaque préparation est faite maison. Nous refusons les compromis: le temps investi dans l'élaboration de vos mets est au service de votre plaisir</p>
         </div>
         <div class="valeur-card">
           <div class="valeur-num">03</div>
           <h3 class="valeur-title">L'hospitalité sincère</h3>
-          <p class="valeur-text">Bienvenue chez nous. L'AGAPE est avant tout un lieu de vie, où chaque convive est reçu comme un ami. Notre service allie professionnalisme et chaleur humaine sans artifice.</p>
+          <p class="valeur-text">Bienvenue chez nous. L'AGAPE est avant tout un lieu de vie, où chaque convive est accueilli avec attention et générosité. Un service simple, chaleureux et attentif.</p>
         </div>
       </div>
     </div>
@@ -320,21 +319,27 @@
       <div class="equipe-grid">
         <div class="membre-card">
           <div class="membre-photo">· Photo du chef ·</div>
-          <h3 class="membre-name">Le Chef</h3>
+          <h3 class="membre-name">Jérémy Verqueire</h3>
           <p class="membre-role">Chef de cuisine</p>
-          <p class="membre-bio">Formé dans les plus grandes maisons françaises, il apporte à L'AGAPE son goût pour les produits nobles et les techniques classiques revisitées avec modernité.</p>
+          <a href="https://www.instagram.com/jeremyverqueire" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:var(--or);opacity:0.8;text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+            <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            @jeremyverqueire
+          </a>
         </div>
         <div class="membre-card">
           <div class="membre-photo">· Photo du sommelier ·</div>
-          <h3 class="membre-name">Le Sommelier</h3>
-          <p class="membre-role">Chef sommelier</p>
-          <p class="membre-bio">Sa connaissance approfondie des vignobles suisses et français vous garantit des accords mets &amp; vins d'exception, allant de la découverte aux grands crus.</p>
+          <h3 class="membre-name">Clément Thellier</h3>
+          <p class="membre-role">Gérant du restaurant</p>
         </div>
         <div class="membre-card">
           <div class="membre-photo">· Photo en salle ·</div>
-          <h3 class="membre-name">L'Équipe de salle</h3>
-          <p class="membre-role">Service &amp; hospitalité</p>
-          <p class="membre-bio">Discrets et attentionnés, ils veillent à ce que chaque moment passé chez nous soit parfait. Leur passion du service est au cœur de l'expérience L'AGAPE.</p>
+          <h3 class="membre-name">Valentin Guido</h3>
+          <p class="membre-role">Service &amp; sommellerie</p>
+        </div>
+        <div class="membre-card">
+          <div class="membre-photo">· Photo ·</div>
+          <h3 class="membre-name">Damien Lopez</h3>
+          <p class="membre-role">Gérant du restaurant</p>
         </div>
       </div>
     </div>
@@ -345,41 +350,29 @@
     <div class="timeline-inner">
       <div class="timeline-header">
 
-        <h2 class="section-title">Les <em>grandes étapes</em></h2>
+        <h2 class="section-title">Les grandes étapes</h2>
         <div class="section-divider"></div>
       </div>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="tl-content">
-            <p class="tl-title">L'ouverture</p>
-            <p class="tl-text">L'AGAPE ouvre ses portes au 11 Rue Caroline à Genève. Un projet de cœur, une table bistronomique née d'une vision simple : partager la grande cuisine.</p>
-          </div>
-          <div class="tl-year"><div class="tl-dot"></div><span class="tl-year-label">Ouverture</span></div>
-          <div class="tl-empty"></div>
+          <div class="tl-content"><p class="tl-title">L'ouverture</p><p class="tl-text">L'AGAPE ouvre ses portes à la Rue Caroline 11 à Genève. Une table bistronomique née d'une envie simple : proposer une cuisine soignée, accessible et de saison.</p></div>
+          <div class="tl-year"><div class="tl-dot"></div></div>
+          <div class="tl-empty"><span class="tl-year-label">2019</span></div>
         </div>
         <div class="timeline-item">
-          <div class="tl-empty"></div>
-          <div class="tl-year"><div class="tl-dot"></div><span class="tl-year-label">Michelin</span></div>
-          <div class="tl-content">
-            <p class="tl-title">Bib Gourmand Michelin</p>
-            <p class="tl-text">Le Guide Michelin distingue L'AGAPE de son Bib Gourmand, récompensant le rapport qualité-prix exceptionnel et la régularité de notre cuisine.</p>
-          </div>
+          <div class="tl-empty"><span class="tl-year-label">2022</span></div>
+          <div class="tl-year"><div class="tl-dot"></div></div>
+          <div class="tl-content"><p class="tl-title">Bib Gourmand Michelin</p><p class="tl-text">Le Guide Michelin distingue L'AGAPE de son Bib Gourmand, récompensant le rapport qualité-prix et la régularité de notre cuisine.</p></div>
         </div>
         <div class="timeline-item">
-          <div class="tl-content">
-            <p class="tl-title">Gault &amp; Millau</p>
-            <p class="tl-text">L'AGAPE est également distingué par Gault &amp; Millau, confirmant sa place parmi les meilleures tables de Genève.</p>
-          </div>
-          <div class="tl-year"><div class="tl-dot"></div><span class="tl-year-label">G&amp;M</span></div>
-          <div class="tl-empty"></div>
+          <div class="tl-content"><p class="tl-title">14/20 Gault &amp; Millau</p><p class="tl-text">L'AGAPE est également distingué par Gault &amp; Millau, confirmant sa place parmi les belles tables de Genève.</p></div>
+          <div class="tl-year"><div class="tl-dot"></div></div>
+          <div class="tl-empty"><span class="tl-year-label">2022</span></div>
         </div>
         <div class="timeline-item">
-          <div class="tl-empty"></div>
-          <div class="tl-year"><div class="tl-dot"></div><span class="tl-year-label">Traiteur</span></div>
-          <div class="tl-content">
-            <p class="tl-title">Lancement du service traiteur</p>
-            <p class="tl-text">L'AGAPE étend son savoir-faire au-delà des murs du restaurant avec un service traiteur haut de gamme pour vos événements privés et professionnels.</p>
-          </div>
+          <div class="tl-empty"><span class="tl-year-label">2024</span></div>
+          <div class="tl-year"><div class="tl-dot"></div></div>
+          <div class="tl-content"><p class="tl-title">Lancement du service traiteur</p><p class="tl-text">L'AGAPE étend son savoir-faire au-delà des murs du restaurant avec un service traiteur haut de gamme pour vos événements privés et professionnels.</p></div>
         </div>
       </div>
     </div>
@@ -389,16 +382,16 @@
   <div class="presse-band">
     <p class="presse-title">Ils parlent de nous</p>
     <div class="presse-logos">
-      <span class="presse-logo">Michelin ✦ Bib Gourmand</span>
-      <span class="presse-logo">Gault &amp; Millau</span>
-      <span class="presse-logo">TripAdvisor</span>
-      <span class="presse-logo">Le Temps</span>
+      <a href="https://guide.michelin.com/ch/fr/geneve-region/geneve/restaurant/l-agape-1197107" target="_blank" rel="noreferrer" class="presse-logo" style="text-decoration:none;">Michelin</a>
+      <a href="https://www.gaultmillau.ch/fr/restaurants/lagape-522268" target="_blank" rel="noreferrer" class="presse-logo" style="text-decoration:none;">Gault &amp; Millau</a>
+      <a href="https://www.bilan.ch/opinions/edouard-amoiel/lagape-bistrot-spontane" target="_blank" rel="noreferrer" class="presse-logo" style="text-decoration:none;">Bilan</a>
+      <a href="https://amoiel.ch/chronique/lagape-le-plaisir-en-six-actes/" target="_blank" rel="noreferrer" class="presse-logo" style="text-decoration:none;">Amoiel</a>
     </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-section">
-    <h2 class="cta-title">Venez <em>nous rejoindre</em></h2>
+
     <p class="cta-text">Réservez votre table et profitez d'un moment de gastronomie sincère.</p>
     <a href="reservation.html" class="btn-primary">Réserver une table</a>
   </div>
@@ -447,7 +440,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;"><span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span><span><a href="mentions-legales.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Mentions légales</a> &nbsp;·&nbsp; <a href="cgv.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">CGV</a> &nbsp;·&nbsp; <a href="politique-donnees.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Données personnelles</a></span></div>
     </div>
   </footer>
 
@@ -460,5 +453,6 @@
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     }
   </script>
+  <script src="cookies.js"></script>
 </body>
 </html>

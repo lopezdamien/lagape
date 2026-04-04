@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Politique de protection des données — L'AGAPE · Genève</title>
+  <meta name="description" content="Politique de protection des données personnelles du restaurant L'AGAPE à Genève."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;500;600&family=Barlow+Condensed:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --or: #c9a96e;
+      --or-clair: #e8d5b0;
+      --bg-dark: #002b3c;
+      --bg-overlay: rgba(0, 43, 60, 0.95);
+      --bleu-profond: #00374D;
+      --bleu-nuit: #002b3c;
+      --grey-cloud: #D1D9E1;
+      --text-muted: #8a9aaa;
+      --argent: #b8c4d0;
+      --blanc-casse: #e8eef4;
+      --argent-clair: #D1D9E1;
+      --border: rgba(184,196,208,0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-dark); color: var(--grey-cloud); font-family: 'Barlow', sans-serif; font-weight: 300; line-height: 1.7; }
+
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 22px 60px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-overlay); border-bottom: 1px solid rgba(209,217,225,0.1); }
+    .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 500; letter-spacing: 0.15em; color: var(--grey-cloud); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 38px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--grey-cloud); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: #ffffff; opacity: 0.9; }
+    .nav-reserve { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--or); color: var(--or); background: transparent; text-decoration: none; transition: all 0.3s; font-weight: 500; }
+    .nav-reserve:hover { background: var(--or); color: var(--bg-dark); }
+    .nav-burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 102; padding: 4px; }
+    .nav-burger span { display: block; width: 26px; height: 1px; background: var(--argent-clair); transition: all 0.42s cubic-bezier(0.23, 1, 0.32, 1); transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--or-clair); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--or-clair); }
+    .mobile-overlay { position: fixed; inset: 0; z-index: 101; background: var(--bleu-nuit); display: flex; flex-direction: column; align-items: center; justify-content: center; clip-path: circle(0% at calc(100% - 44px) 44px); transition: clip-path 0.65s cubic-bezier(0.77, 0, 0.175, 1); pointer-events: none; }
+    .mobile-overlay.open { clip-path: circle(170% at calc(100% - 44px) 44px); pointer-events: all; }
+    .mobile-overlay-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; letter-spacing: 0.2em; color: #ffffff; font-weight: 600; text-transform: uppercase; margin-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.3s, transform 0.4s 0.3s; text-decoration: none; display: block; }
+    .mobile-overlay.open .mobile-overlay-logo { opacity: 1; transform: translateY(0); }
+    .mobile-nav-list { list-style: none; text-align: center; }
+    .mobile-nav-list li { opacity: 0; transform: translateY(28px); transition: opacity 0.4s, transform 0.4s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.32s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.39s; }
+    .mobile-overlay.open .mobile-nav-list li:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.46s; }
+    .mobile-nav-list a { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 8vw, 2.8rem); font-weight: 500; color: var(--grey-cloud); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; display: block; padding: 10px 0; transition: color 0.3s; outline: none; -webkit-tap-highlight-color: transparent; }
+    .mobile-nav-list a:hover { color: var(--or); }
+    .mobile-nav-list a:focus, .mobile-overlay-logo:focus, .mobile-reserve-wrap a:focus { outline: none; }
+    .mobile-overlay * { -webkit-tap-highlight-color: transparent; }
+    .mobile-reserve-wrap { margin-top: 44px; opacity: 0; transform: translateY(18px); transition: opacity 0.4s 0.6s, transform 0.4s 0.6s; }
+    .mobile-overlay.open .mobile-reserve-wrap { opacity: 1; transform: translateY(0); }
+    .mobile-reserve-wrap a { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 13px 38px; border: 1px solid var(--or); color: var(--or); text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .mobile-reserve-wrap a:hover { background: var(--or); color: var(--bleu-nuit); }
+    .mobile-social-row { margin-top: 32px; display: flex; gap: 24px; opacity: 0; transition: opacity 0.4s 0.65s; }
+    .mobile-overlay.open .mobile-social-row { opacity: 1; }
+    .mobile-social-row a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+    .mobile-social-row a:hover { color: var(--or); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 160px 60px 80px; text-align: center; background: linear-gradient(170deg, #002b3c 0%, #00374D 60%, #002b3c 100%); position: relative; }
+    .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(201,169,110,0.07) 0%, transparent 60%); }
+    .page-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 600; color: #ffffff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); margin: 0 auto; }
+
+    /* CONTENU */
+    .mentions-content { max-width: 800px; margin: 0 auto; padding: 80px 60px 100px; }
+    .mentions-section { margin-bottom: 52px; }
+    .mentions-section:last-child { margin-bottom: 0; }
+    .mentions-section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--or); font-weight: 600; margin-bottom: 16px;
+    }
+    .mentions-divider { width: 40px; height: 1px; background: linear-gradient(to right, var(--or), transparent); margin-bottom: 20px; }
+    .mentions-text { font-size: 0.9rem; color: var(--grey-cloud); line-height: 1.8; margin-bottom: 10px; }
+    .mentions-text a { color: var(--or); text-decoration: none; transition: color 0.2s; }
+    .mentions-text a:hover { color: var(--or-clair); }
+    .mentions-text strong { color: var(--blanc-casse); font-weight: 500; }
+    .mentions-list { list-style: none; padding: 0; }
+    .mentions-list li { font-size: 0.9rem; color: var(--grey-cloud); line-height: 1.8; padding-left: 20px; position: relative; margin-bottom: 4px; }
+    .mentions-list li::before { content: '—'; position: absolute; left: 0; color: var(--or); }
+
+    /* FOOTER */
+    footer { background: var(--bg-dark); border-top: 1px solid rgba(184,196,208,0.08); padding: 60px 60px 30px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--blanc-casse); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+    .footer-tagline { font-size: 0.8rem; color: var(--argent); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.02em; }
+    .footer-social { display: flex; gap: 20px; }
+    .footer-social a { color: var(--blanc-casse); opacity: 0.9; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+    .footer-social a:hover { color: var(--or); opacity: 1; transform: translateY(-2px); }
+    .footer-social svg { width: 24px; height: 24px; }
+    .footer-col-title { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--or); margin-bottom: 24px; font-weight: 600; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 14px; }
+    .footer-links a { font-size: 0.85rem; color: var(--argent); text-decoration: none; transition: color 0.3s; font-weight: 300; letter-spacing: 0.03em; }
+    .footer-links a:hover { color: var(--blanc-casse); }
+    .footer-bottom { border-top: 1px solid rgba(184,196,208,0.08); padding-top: 20px; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; color: rgba(184,196,208,0.6); font-weight: 300; letter-spacing: 0.05em; }
+
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links, .nav-reserve { display: none; }
+      .nav-burger { display: flex; }
+      .page-header { padding: 130px 24px 60px; }
+      .mentions-content { padding: 60px 24px 80px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+      footer { padding: 30px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">L'AGAPE</a>
+    <ul class="nav-links">
+      <li><a href="menu.html">Carte</a></li>
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-reserve">Réserver</a>
+    <div class="nav-burger" id="nav-burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" id="mobile-overlay">
+    <a href="index.html" class="mobile-overlay-logo">L'AGAPE</a>
+    <ul class="mobile-nav-list">
+      <li><a href="menu.html">Carte</a></li>
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+    </ul>
+    <div class="mobile-reserve-wrap"><a href="reservation.html">Réserver une table</a></div>
+    <div class="mobile-social-row">
+      <a href="https://www.instagram.com/lagape_geneve" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/lagapegeneve" target="_blank">Facebook</a>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1 class="page-title">Protection des données</h1>
+    <div class="page-divider"></div>
+  </div>
+
+  <div class="mentions-content">
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Introduction</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">La présente politique de protection des données décrit la manière dont <strong>Thelo Sàrl</strong>, exploitant du restaurant L'AGAPE, collecte, utilise et protège les données personnelles des utilisateurs du site internet <strong>www.lagape.ch</strong>, conformément à la Loi fédérale sur la protection des données (LPD) et, le cas échéant, au Règlement général sur la protection des données (RGPD) pour les visiteurs européens.</p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Responsable du traitement des données</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Le responsable du traitement des données personnelles est :</p>
+      <p class="mentions-text">
+        <strong>Thelo Sàrl</strong><br/>
+        Avenue d'Aïre 73C<br/>
+        1203 Genève<br/>
+        <strong>Email :</strong> <a href="mailto:contact@lagape.ch">contact@lagape.ch</a>
+      </p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Données personnelles collectées</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Dans le cadre de l'utilisation du site internet, les données personnelles suivantes peuvent être collectées :</p>
+      <ul class="mentions-list">
+        <li>nom et prénom</li>
+        <li>adresse email</li>
+        <li>données liées aux commandes (cartes cadeaux, produits)</li>
+        <li>informations nécessaires au paiement, traitées par un prestataire externe</li>
+        <li>données techniques de navigation à des fins statistiques</li>
+      </ul>
+      <p class="mentions-text" style="margin-top: 14px;">Le site ne propose pas de formulaire de contact intégré.</p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Finalités du traitement</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Les données personnelles sont collectées et utilisées uniquement pour :</p>
+      <ul class="mentions-list">
+        <li>le traitement et la gestion des commandes</li>
+        <li>l'envoi des cartes cadeaux numériques par email, sous forme de QR code</li>
+        <li>la gestion administrative et comptable</li>
+        <li>le respect des obligations légales</li>
+        <li>l'amélioration du site et de l'expérience utilisateur</li>
+      </ul>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Paiement en ligne</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Les paiements effectués sur le site sont traités via le prestataire de paiement <strong>Lightspeed</strong>.</p>
+      <p class="mentions-text">Les données bancaires ne sont jamais stockées par Thelo Sàrl et sont traitées directement par Lightspeed conformément à leurs propres politiques de sécurité et de confidentialité.</p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Hébergement et prestataires</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Le site est hébergé par <strong>Vercel Inc.</strong>, 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.</p>
+      <p class="mentions-text">Vercel peut collecter des données techniques anonymes nécessaires au bon fonctionnement du site et à des fins statistiques. Thelo Sàrl s'assure que ses prestataires respectent des standards de sécurité conformes aux exigences légales en matière de protection des données.</p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Durée de conservation des données</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Les données personnelles sont conservées uniquement pendant la durée nécessaire à la réalisation des finalités pour lesquelles elles ont été collectées, et conformément aux obligations légales, notamment en matière comptable.</p>
+      <p class="mentions-text">Les données peuvent être supprimées sur demande de la personne concernée, dans les limites prévues par la loi.</p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Droits des personnes concernées</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Toute personne concernée par un traitement de données personnelles dispose des droits suivants :</p>
+      <ul class="mentions-list">
+        <li>droit d'accès à ses données</li>
+        <li>droit de rectification</li>
+        <li>droit à l'effacement, dans les limites légales</li>
+        <li>droit d'opposition au traitement</li>
+      </ul>
+      <p class="mentions-text" style="margin-top: 14px;">Toute demande relative à l'exercice de ces droits peut être adressée à : <a href="mailto:contact@lagape.ch">contact@lagape.ch</a></p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Sécurité des données</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">Thelo Sàrl met en œuvre des mesures techniques et organisationnelles appropriées afin de protéger les données personnelles contre tout accès non autorisé, perte, altération ou divulgation.</p>
+    </div>
+
+    <div class="mentions-section">
+      <p class="mentions-section-title">Modification de la présente politique</p>
+      <div class="mentions-divider"></div>
+      <p class="mentions-text">La présente politique de protection des données peut être modifiée à tout moment. La version applicable est celle publiée sur le site au moment de la consultation.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">L'AGAPE</div>
+        <p class="footer-tagline">Restaurant bistronomique à Genève</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/lagape_geneve" target="_blank" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+              <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/lagapegeneve" target="_blank" aria-label="Facebook">
+            <svg width="22" height="22" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/>
+            </svg>
+          </a>
+          <a href="https://www.tripadvisor.fr/Restaurant_Review-g188057-d17613868-Reviews-L_Agape-Geneva.html" target="_blank" aria-label="TripAdvisor">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Navigation</p>
+        <ul class="footer-links">
+          <li><a href="menu.html">Carte</a></li>
+          <li><a href="histoire.html">Histoire</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Réserver</p>
+        <ul class="footer-links">
+          <li><a href="https://widget.thefork.com/44010571-5537-4a96-892f-8742477ff554" target="_blank">En ligne via TheFork</a></li>
+          <li><a href="tel:+41223431298">Par téléphone</a></li>
+          <li><a href="mailto:contact@lagape.ch">Par email</a></li>
+          <li><a href="mailto:contact@lagape.ch">Service traiteur</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;"><span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span><span><a href="mentions-legales.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Mentions légales</a> &nbsp;·&nbsp; <a href="cgv.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">CGV</a> &nbsp;·&nbsp; <a href="politique-donnees.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Données personnelles</a></span></div>
+    </div>
+  </footer>
+
+  <script>
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
+      document.getElementById('nav-burger').classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+  </script>
+  <script src="cookies.js"></script>
+</body>
+</html>

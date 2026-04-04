@@ -81,46 +81,60 @@
 
     /* FILTRES */
     .filtres {
-      display: flex; justify-content: center; gap: 0;
-      padding: 30px 60px; border-bottom: 1px solid rgba(184,196,208,0.08);
+      display: flex; justify-content: center; align-items: center; gap: 0;
+      padding: 40px 60px 0;
     }
     .filtre-btn {
-      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      padding: 12px 28px; color: var(--texte-gris);
-      cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent;
-      transition: all 0.3s; font-family: 'Barlow', sans-serif; font-weight: 400;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+      padding: 10px 32px; color: var(--texte-gris);
+      cursor: pointer; border: none; background: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s; font-weight: 400;
+      position: relative;
     }
-    .filtre-btn:hover { color: var(--argent-clair); }
-    .filtre-btn.active { color: var(--or); border-bottom-color: var(--or); }
+    .filtre-btn::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
+      height: 1px; background: var(--or);
+      transition: left 0.3s ease, right 0.3s ease;
+    }
+    .filtre-btn:hover { color: var(--grey-cloud); }
+    .filtre-btn.active { color: var(--or); }
+    .filtre-btn.active::after { left: 20%; right: 20%; }
+    .filtres-divider { width: 1px; height: 14px; background: rgba(184,196,208,0.2); }
 
     /* GALERIE GRID */
-    .galerie-container { padding: 40px 40px 80px; max-width: 1300px; margin: 0 auto; }
+    .galerie-container { padding: 40px 40px 80px; max-width: 1400px; margin: 0 auto; }
     .galerie-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 220px;
+      gap: 6px;
     }
     .galerie-item {
       position: relative; overflow: hidden; cursor: pointer;
-      background: var(--bleu-moyen); aspect-ratio: 1 / 1;
+      background: var(--bleu-moyen);
+      grid-column: span 4; grid-row: span 1;
     }
+    .galerie-item.gi-featured { grid-column: span 8; grid-row: span 2; }
+    .galerie-item.gi-tall     { grid-column: span 4; grid-row: span 2; }
+    .galerie-item.gi-wide     { grid-column: span 8; grid-row: span 1; }
+
     .galerie-item:hover .galerie-overlay { opacity: 1; }
-    .galerie-item:hover .galerie-img { transform: none; }
+    .galerie-item:hover .galerie-img { transform: scale(1.04); }
     .galerie-img {
-      width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 0.5s ease;
+      width: 100%; height: 100%; display: block; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       background: linear-gradient(135deg, var(--bleu-moyen), #243a56);
-    }
-    .galerie-placeholder {
-      width: 100%; display: flex; align-items: center; justify-content: center;
-      font-family: 'Barlow', sans-serif; font-size: 0.8rem;
-      color: var(--texte-gris); letter-spacing: 0.08em;
     }
     .galerie-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.2) 60%, transparent 100%);
-      opacity: 0; transition: opacity 0.4s;
-      display: flex; align-items: flex-end; padding: 20px;
+      background: linear-gradient(to top, rgba(0,20,35,0.88) 0%, rgba(0,20,35,0.15) 55%, transparent 100%);
+      opacity: 0; transition: opacity 0.45s;
+      display: flex; align-items: flex-end; padding: 24px;
     }
-    .galerie-caption { font-size: 0.78rem; color: var(--texte-clair); }
-    .galerie-caption em { display: block; font-size: 0.65rem; color: var(--or); font-style: normal; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 3px; }
+    .galerie-caption { font-size: 0.82rem; color: #fff; line-height: 1.5; }
+    .galerie-caption em { display: block; font-size: 0.58rem; color: var(--or); font-style: normal; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 4px; }
 
     /* LIGHTBOX */
     .lightbox {
@@ -220,9 +234,14 @@
       .nav-links, .nav-reserve { display: none; }
       .nav-burger { display: flex; }
       .page-header { padding: 130px 24px 60px; }
-      .filtres { overflow-x: auto; justify-content: flex-start; padding: 20px 24px; }
-      .galerie-container { padding: 20px 16px 60px; }
-      .galerie-grid { grid-template-columns: repeat(2, 1fr); }
+      .filtres { overflow-x: auto; justify-content: flex-start; padding: 24px 24px 0; gap: 0; }
+      .filtres-divider { display: none; }
+      .galerie-container { padding: 20px 12px 60px; }
+      .galerie-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 180px; }
+      .galerie-item.gi-featured { grid-column: span 6; grid-row: span 2; }
+      .galerie-item.gi-tall     { grid-column: span 3; grid-row: span 2; }
+      .galerie-item.gi-wide     { grid-column: span 6; grid-row: span 1; }
+      .galerie-item              { grid-column: span 3; }
       .cta-band, .galerie-note { padding: 40px 24px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
       .footer-grid > div:first-child { grid-column: 1 / -1; text-align: left; }
@@ -230,7 +249,9 @@
       footer { padding: 30px 20px 20px; }
     }
     @media (max-width: 500px) {
-      .galerie-grid { grid-template-columns: 1fr; }
+      .galerie-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+      .galerie-item, .galerie-item.gi-featured, .galerie-item.gi-tall, .galerie-item.gi-wide { grid-column: span 2; grid-row: span 1; }
+      .galerie-item.gi-featured { grid-row: span 2; }
     }
   </style>
 </head>
@@ -274,10 +295,16 @@
 
   <!-- FILTRES -->
   <div class="filtres">
-    <button class="filtre-btn active" onclick="filtrer('ambiance', this)">Ambiance</button>
+    <button class="filtre-btn active" onclick="filtrer('all', this)">Tout</button>
+    <div class="filtres-divider"></div>
+    <button class="filtre-btn" onclick="filtrer('ambiance', this)">Ambiance</button>
+    <div class="filtres-divider"></div>
     <button class="filtre-btn" onclick="filtrer('plats', this)">Mets</button>
+    <div class="filtres-divider"></div>
     <button class="filtre-btn" onclick="filtrer('cuisine', this)">Cuisine</button>
+    <div class="filtres-divider"></div>
     <button class="filtre-btn" onclick="filtrer('vins', this)">Vins</button>
+    <div class="filtres-divider"></div>
     <button class="filtre-btn" onclick="filtrer('equipe', this)">L'équipe</button>
   </div>
 
@@ -352,7 +379,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;"><span>© 2026 L'AGAPE — Rue Caroline, 11 · 1227 Les Acacias</span><span><a href="mentions-legales.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Mentions légales</a> &nbsp;·&nbsp; <a href="cgv.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">CGV</a> &nbsp;·&nbsp; <a href="politique-donnees.html" style="color: inherit; text-decoration: none; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Données personnelles</a></span></div>
     </div>
   </footer>
 
@@ -370,12 +397,26 @@
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     }
 
+    // Pattern éditorial : featured=0, tall=1, normal, normal, wide=4, normal, normal — repeat
+    const PATTERN = ['gi-featured', 'gi-tall', '', '', 'gi-wide', '', ''];
+
+    function editorialClass(idx) { return PATTERN[idx % PATTERN.length]; }
+
     // Filtres
     function filtrer(cat, btn) {
       document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      document.querySelectorAll('.galerie-item').forEach(item => {
-        item.style.display = item.dataset.cat === cat ? '' : 'none';
+      const items = document.querySelectorAll('.galerie-item');
+      // Retire les classes éditoriales, réassigne selon les visibles
+      items.forEach(item => {
+        const visible = cat === 'all' || item.dataset.cat === cat;
+        item.style.display = visible ? '' : 'none';
+        item.classList.remove('gi-featured', 'gi-tall', 'gi-wide');
+      });
+      const visible = [...items].filter(i => i.style.display !== 'none');
+      visible.forEach((item, i) => {
+        const cls = editorialClass(i);
+        if (cls) item.classList.add(cls);
       });
     }
 
@@ -392,16 +433,18 @@
           return;
         }
 
-        grid.innerHTML = photos.map((photo, idx) => `
-          <div class="galerie-item" data-cat="${photo.categorie}" onclick="openLightbox(${idx})">
-            <img class="galerie-img" src="${photo.url || API + '/uploads/galerie/' + photo.filename}" alt="${photo.caption}" loading="lazy"/>
-            <div class="galerie-overlay">
-              <div class="galerie-caption">
-                <em>${CAT_LABELS[photo.categorie] || photo.categorie}</em>${photo.caption}
+        grid.innerHTML = photos.map((photo, idx) => {
+          const cls = editorialClass(idx);
+          return `
+            <div class="galerie-item${cls ? ' ' + cls : ''}" data-cat="${photo.categorie}" onclick="openLightbox(${idx})">
+              <img class="galerie-img" src="${photo.url || API + '/uploads/galerie/' + photo.filename}" alt="${photo.caption}" loading="lazy"/>
+              <div class="galerie-overlay">
+                <div class="galerie-caption">
+                  <em>${CAT_LABELS[photo.categorie] || photo.categorie}</em>${photo.caption}
+                </div>
               </div>
-            </div>
-          </div>
-        `).join('');
+            </div>`;
+        }).join('');
 
         allItems = photos;
       } catch (e) {
@@ -443,5 +486,6 @@
 
     document.addEventListener('DOMContentLoaded', chargerGalerie);
   </script>
+  <script src="cookies.js"></script>
 </body>
 </html>
