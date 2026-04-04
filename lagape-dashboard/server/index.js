@@ -7,6 +7,7 @@ import carteRouter from './routes/carte.js'
 import galerieRouter from './routes/galerie.js'
 import blogRouter from './routes/blog.js'
 import siteconfigRouter from './routes/siteconfig.js'
+import histoireRouter from './routes/histoire.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
@@ -38,6 +39,7 @@ app.use('/api/carte', carteRouter)
 app.use('/api/galerie', galerieRouter)
 app.use('/api/blog', blogRouter)
 app.use('/api/siteconfig', siteconfigRouter)
+app.use('/api/histoire', histoireRouter)
 
 app.listen(PORT, () => {
   console.log(`✦ L'AGAPE API — http://localhost:${PORT}`)

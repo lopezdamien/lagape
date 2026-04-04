@@ -1,0 +1,14 @@
+{
+  "equipe": [
+    { "id": "jeremy", "nom": "Jérémy Verqueire", "role": "Chef de cuisine", "photo": null },
+    { "id": "clement", "nom": "Clément Thellier", "role": "Gérant du restaurant", "photo": null },
+    { "id": "valentin", "nom": "Valentin Guido", "role": "Service & sommellerie", "photo": null },
+    { "id": "damien", "nom": "Damien Lopez", "role": "Gérant du restaurant", "photo": null }
+  ],
+  "presse": [
+    { "id": "michelin", "label": "Michelin", "url": "https://guide.michelin.com/ch/fr/geneve-region/geneve/restaurant/l-agape-1197107" },
+    { "id": "gaultmillau", "label": "Gault & Millau", "url": "https://www.gaultmillau.ch/fr/restaurants/lagape-522268" },
+    { "id": "bilan", "label": "Bilan", "url": "https://www.bilan.ch/opinions/edouard-amoiel/lagape-bistrot-spontane" },
+    { "id": "amoiel", "label": "Amoiel", "url": "https://amoiel.ch/chronique/lagape-le-plaisir-en-six-actes/" }
+  ]
+}

@@ -7,6 +7,7 @@ const navItems = [
   { to: '/carte', label: 'Carte', icon: '❧' },
   { to: '/galerie', label: 'Galerie', icon: '✦' },
   { to: '/blog', label: 'Blog', icon: '◎' },
+  { to: '/histoire', label: 'Histoire', icon: '◐' },
   { to: '/statistiques', label: 'Statistiques', icon: '▲' },
 ]
 

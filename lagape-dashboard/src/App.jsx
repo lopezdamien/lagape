@@ -13,6 +13,7 @@ import GalerieGrid from './pages/Galerie/GalerieGrid'
 import BlogList from './pages/Blog/BlogList'
 import BlogForm from './pages/Blog/BlogForm'
 import Statistiques from './pages/Statistiques'
+import Histoire from './pages/Histoire'
 
 export default function App() {
   const toasts = useToast()
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/blog/nouveau" element={<BlogForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
           <Route path="/blog/:id" element={<BlogForm isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
           <Route path="/statistiques" element={<Statistiques isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
+          <Route path="/histoire" element={<Histoire isMobile={isMobile} onMenuClick={() => setSidebarOpen(true)} />} />
         </Routes>
       </main>
       <ToastContainer toasts={toasts} />
