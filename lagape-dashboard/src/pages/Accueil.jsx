@@ -37,7 +37,7 @@ export default function Accueil({ isMobile, onMenuClick }) {
     fd.append('photo', file)
 
     try {
-      const r = await apiFetch(`${API}/photo-accueil`, { method: 'POST', body: fd })
+      const r = await apiFetch(`${API}?type=accueil`, { method: 'POST', body: fd })
       const data = await r.json()
       if (r.ok) {
         setConfig(c => ({ ...c, photoAccueil: data.photoAccueil }))
@@ -56,7 +56,7 @@ export default function Accueil({ isMobile, onMenuClick }) {
   async function handleDelete() {
     if (!confirm('Supprimer la photo de présentation ?')) return
     try {
-      const r = await apiFetch(`${API}/photo-accueil`, { method: 'DELETE' })
+      const r = await apiFetch(`${API}?type=accueil`, { method: 'DELETE' })
       if (r.ok) {
         setConfig(c => ({ ...c, photoAccueil: null }))
         notify('Photo supprimée')
@@ -73,7 +73,7 @@ export default function Accueil({ isMobile, onMenuClick }) {
     const fd = new FormData()
     fd.append('photo', file)
     try {
-      const r = await apiFetch(`${API}/photo-traiteur`, { method: 'POST', body: fd })
+      const r = await apiFetch(`${API}?type=traiteur`, { method: 'POST', body: fd })
       const data = await r.json()
       if (r.ok) {
         setConfig(c => ({ ...c, photoTraiteur: data.photoTraiteur }))
@@ -91,7 +91,7 @@ export default function Accueil({ isMobile, onMenuClick }) {
   async function handleDeleteTraiteur() {
     if (!confirm('Supprimer la photo du service traiteur ?')) return
     try {
-      const r = await apiFetch(`${API}/photo-traiteur`, { method: 'DELETE' })
+      const r = await apiFetch(`${API}?type=traiteur`, { method: 'DELETE' })
       if (r.ok) {
         setConfig(c => ({ ...c, photoTraiteur: null }))
         notify('Photo traiteur supprimée')
