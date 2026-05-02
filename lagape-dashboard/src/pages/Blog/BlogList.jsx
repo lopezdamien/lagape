@@ -49,7 +49,7 @@ export default function BlogList({ isMobile, onMenuClick }) {
             border: '1px solid var(--border)',
             background: 'var(--card-bg)',
           }}>
-            <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', color: 'var(--blanc-casse)', marginBottom: '12px' }}>
+            <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '1.5rem', color: 'var(--blanc-casse)', marginBottom: '12px' }}>
               Aucun article pour l'instant
             </div>
             <p style={{ fontSize: '0.82rem', color: 'var(--texte-gris)', marginBottom: '24px' }}>
@@ -75,7 +75,7 @@ export default function BlogList({ isMobile, onMenuClick }) {
               >
                 <div style={{ flex: 1 }}>
                   <div style={{
-                    fontFamily: 'Cormorant Garamond, serif',
+                    fontFamily: 'Montserrat, sans-serif',
                     fontSize: '1.1rem', color: 'var(--blanc-casse)', marginBottom: '4px',
                   }}>
                     {article.titre || '(Sans titre)'}

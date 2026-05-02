@@ -208,7 +208,7 @@ export default function GalerieGrid({ isMobile, onMenuClick }) {
       {/* Formulaire upload */}
       {showUpload && !reorderMode && (
         <div style={{ margin: isMobile ? '16px' : '24px 40px', padding: isMobile ? '20px 16px' : '28px 32px', background: 'var(--card-bg)', border: '1px solid var(--border-or)' }}>
-          <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: 'var(--blanc-casse)', marginBottom: '20px' }}>
+          <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '1.1rem', color: 'var(--blanc-casse)', marginBottom: '20px' }}>
             Ajouter une photo
           </div>
           <form onSubmit={handleUpload}>
@@ -318,7 +318,7 @@ function GridItem({ photo, idx, reorderMode, onDragStart, onDragOver, onDrop, on
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s', transform: hovered && !reorderMode ? 'scale(1.04)' : 'scale(1)' }}
         />
       ) : (
-        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Cormorant Garamond, serif', color: 'var(--texte-gris)', fontSize: '0.85rem' }}>
+        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Montserrat, sans-serif', color: 'var(--texte-gris)', fontSize: '0.85rem' }}>
           · {photo.caption} ·
         </div>
       )}

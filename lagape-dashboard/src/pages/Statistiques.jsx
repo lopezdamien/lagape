@@ -126,7 +126,7 @@ export default function Statistiques({ isMobile, onMenuClick }) {
                 </span>
                 <span style={{ fontSize: '0.85rem', color: kpi.color, opacity: 0.6 }}>{kpi.icon}</span>
               </div>
-              <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.8rem', fontWeight: 300, color: '#ffffff', lineHeight: 1 }}>
+              <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '2.8rem', fontWeight: 300, color: '#ffffff', lineHeight: 1 }}>
                 {kpi.value}
               </div>
               <div style={{ fontSize: '0.62rem', color: 'var(--text-muted)', marginTop: '8px', letterSpacing: '0.08em' }}>
@@ -287,7 +287,7 @@ export default function Statistiques({ isMobile, onMenuClick }) {
                 <span style={{ fontSize: '0.75rem', color: 'var(--grey-cloud)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {row.query}
                 </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--or)', textAlign: 'right', fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', fontWeight: 300 }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--or)', textAlign: 'right', fontFamily: 'Montserrat, sans-serif', fontSize: '1rem', fontWeight: 300 }}>
                   {row.clics}
                 </span>
                 {!isMobile && (

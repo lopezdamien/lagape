@@ -24,7 +24,7 @@ export default function Modal({ isOpen, onClose, onConfirm, title, message, conf
         }}
       >
         <div style={{
-          fontFamily: 'Cormorant Garamond, serif',
+          fontFamily: 'Montserrat, sans-serif',
           fontSize: '1.3rem',
           fontWeight: 400,
           color: 'var(--blanc-casse)',

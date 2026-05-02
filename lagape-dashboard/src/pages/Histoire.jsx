@@ -100,7 +100,7 @@ export default function Histoire({ isMobile, onMenuClick }) {
     color: 'var(--text-main)',
     padding: '9px 12px',
     fontSize: '0.78rem',
-    fontFamily: 'Barlow, sans-serif',
+    fontFamily: 'Montserrat, sans-serif',
     outline: 'none',
     width: '100%',
   }
@@ -283,7 +283,7 @@ export default function Histoire({ isMobile, onMenuClick }) {
                   background: 'none', border: '1px dashed rgba(201,169,110,0.35)',
                   color: 'var(--or)', cursor: 'pointer', padding: '9px 20px',
                   fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-                  fontFamily: 'Barlow, sans-serif', marginBottom: '20px',
+                  fontFamily: 'Montserrat, sans-serif', marginBottom: '20px',
                   transition: 'all 0.2s',
                 }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--or)'}

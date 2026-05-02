@@ -58,7 +58,7 @@ export default function Dashboard({ isMobile, onMenuClick }) {
                   </span>
                   <span style={{ fontSize: '1rem', color: card.color, opacity: 0.6 }}>{card.icon}</span>
                 </div>
-                <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3.2rem', fontWeight: 300, color: '#ffffff', lineHeight: 1 }}>
+                <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '3.2rem', fontWeight: 300, color: '#ffffff', lineHeight: 1 }}>
                   {card.value}
                 </div>
                 <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginTop: '8px', letterSpacing: '0.08em' }}>{card.unit}</div>

@@ -56,7 +56,7 @@ export default function Sidebar({ isOpen, onClose, isMobile }) {
             color: '#ffffff', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '2px',
           }}>L'AGAPE</div>
           <div style={{
-            fontFamily: 'Cormorant Garamond, serif', fontSize: '0.72rem',
+            fontFamily: 'Montserrat, sans-serif', fontSize: '0.72rem',
             letterSpacing: '0.12em', color: 'var(--or)', opacity: 0.85,
           }}>Administration</div>
         </div>

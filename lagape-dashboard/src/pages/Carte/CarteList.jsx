@@ -50,7 +50,7 @@ export default function CarteList({ isMobile, onMenuClick }) {
       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
     >
       <div style={{ flex: 1 }}>
-        <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.05rem', color: 'var(--blanc-casse)', marginBottom: '3px' }}>
+        <div style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '1.05rem', color: 'var(--blanc-casse)', marginBottom: '3px' }}>
           {item.nom || item.name}
           {item.accueil === true && (
             <span style={{ marginLeft: '10px', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--or)', border: '1px solid rgba(201,169,110,0.3)', padding: '2px 8px', background: 'rgba(201,169,110,0.1)' }}>

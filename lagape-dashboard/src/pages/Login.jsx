@@ -54,7 +54,7 @@ export default function Login() {
             L'AGAPE
           </div>
           <div style={{
-            fontFamily: 'Cormorant Garamond, serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '0.9rem',
             letterSpacing: '0.15em',
             color: 'var(--or)',

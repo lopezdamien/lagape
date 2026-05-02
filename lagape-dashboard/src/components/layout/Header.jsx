@@ -29,7 +29,7 @@ export default function Header({ title, subtitle, actions, onMenuClick, isMobile
         )}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', minWidth: 0 }}>
           <div style={{
-            fontFamily: 'Cormorant Garamond, serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: isMobile ? '1.3rem' : '1.6rem',
             fontWeight: 400,
             color: '#ffffff',
